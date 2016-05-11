@@ -8,7 +8,7 @@ An example of a site where it works http://www.beladm.ru
 Installations
 ============
 
-First install the module, preferably in a your project virtual environment::
+First install the module, preferably in a your project virtual environment
 
     pip install https://github.com/Excentrics/publication-backbone.git
 
@@ -17,7 +17,7 @@ The main dependencies will be automatically installed.
 Configuration
 -------------
 
-To have a standard setup with publication-backbone, use::
+To have a standard setup with publication-backbone, use
 
 In ``settings.py``::
 
@@ -217,7 +217,8 @@ In ``settings.py``::
     }
 
 
-In ``urls.py``::
+In ``urls.py``
+
     ...
     from django.contrib import admin
     from django.contrib.sites.models import Site
