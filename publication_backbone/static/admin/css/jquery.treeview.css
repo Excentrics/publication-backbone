@@ -1,0 +1,95 @@
+.tree-container {
+    display: inline-block;
+    height: 600px;
+    width: 50%;
+    min-width: 250px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-left: 7px;
+    padding-top: 2px;
+    border: 1px solid #CCC;
+    padding-right: 7px;
+}
+
+.treeview, .treeview ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.treeview ul {
+	margin-top: 4px;
+}
+
+.treeview .hitarea {
+	height: 16px;
+	width: 16px;
+	margin-left: -16px;
+	float: left;
+	cursor: pointer;
+}
+/* fix for IE6 */
+* html .hitarea {
+	display: inline;
+	float:none;
+}
+
+.treeview li {
+	margin: 0;
+	padding: 3px 0pt 3px 16px;
+}
+
+.treeview a.selected {
+	background-color: #eee;
+}
+
+.treeview li label {
+    color: #1C4257;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.treeview .hover {
+    cursor: pointer;
+}
+
+.treeview .expandable-hitarea:after {
+    font-family: FontAwesome;
+    content: "\f0da";
+    font-size: 16px;
+    text-align: center;
+    line-height: 16px;
+}
+
+.treeview .collapsable-hitarea:after {
+    font-family: FontAwesome;
+    content: "\f0d7";
+    font-size: 14px;
+    text-align: center;
+    line-height: 14px;
+}
+
+.manage-treeview li {
+    list-style: none;
+}
+
+.manage-treeview input {
+  margin-left: -2px;
+  margin-top: -2px;
+}
+
+form .aligned ul.manage-treeview, form .aligned ul.manage-treeview ul {
+    padding: 0;
+    margin: 0;
+}
+
+.manage-treeview label .ex-characteristic {
+    padding-left: 2px;
+    color: #000066;
+}
+
+.manage-treeview label .ex-mark {
+    padding-left: 2px;
+    color: orange;
+}

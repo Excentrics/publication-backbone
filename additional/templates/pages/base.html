@@ -1,0 +1,21 @@
+{% extends "publication_backbone/layout_2_col_aside_right.html" %}
+{% load i18n placeholder_tags fluent_pages_tags publication_backbone_tags compress %}
+
+{% block canonical %}{% site_domain as domain %}<link rel="canonical" href="http://{{ domain }}{{ page.url }}" />{% endblock %}
+{% block title %}{% if page.meta_title %}{{ page.meta_title }}{% else %}{{ page.title }}. {% site_name %}{% endif %}{% endblock %}
+{% block keywords %}{{ page.meta_keywords }}{% endblock %}
+{% block description %}{{ page.meta_description }}{% endblock %}
+
+ {% block breadcrumbs %}
+{% render_breadcrumb template="parts/breadcrumb.html" %}
+{% endblock %}
+
+{% block headertext %}{{ page.title }}{% endblock %}
+
+{% block column_center %}
+    {% page_placeholder "main" role='m' %}
+{% endblock %}
+
+{% block column_right %}
+   {% page_placeholder "sidebar" role='s' %}
+{% endblock %}

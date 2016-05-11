@@ -1,0 +1,34 @@
+{% load i18n publication_backbone_pagination_tags publication_backbone_utils_tags %}{% spaceless %}
+{% with all_catalog_items=category.get_catalog_items.active.order_by_last_modified_desc.try_merge_to_group %}
+{% paginate all_catalog_items per_page=catalog_per_page_items_count as raw_catalog_items %}
+{% with catalog_items=raw_catalog_items.model|select_method:'try_format_values_query_set'|call_method_with_arg:raw_catalog_items obj_count=raw_catalog_items_page_obj.paginator.count %}
+<div class="ex-seo-wrapper ex-state-collapsed">
+{% if raw_catalog_items_is_paginated %}
+{% with last_index=raw_catalog_items_page_obj.offset|add:raw_catalog_items_page_obj.limit %}
+<h3><a href="{{ category.get_catalog_url }}" title="{{ category.name }}">{{ category.name }}</a>&nbsp; &nbsp;<small class="ex-seo-detail"><i class="ex-icon-details ex-expand"></i>{% trans 'items' %} {{ raw_catalog_items_page_obj.offset|add:1 }} - {% if last_index < obj_count %}{{ last_index }}{% else %}{{ obj_count }}{% endif %} {% trans 'of' %} {{ raw_catalog_items_page_obj.paginator.count }}</small></h3>
+{% endwith %}
+{% else %}
+<h3><a href="{{ category.get_catalog_url }}" title="{{ category.name }}">{{ category.name }}</a>{% if catalog_items %}&nbsp; &nbsp;<small class="ex-seo-detail"><i class="ex-icon-details ex-expand"></i>{% trans 'items' %} {{ obj_count }} {% trans 'of' %} {{ obj_count }}</small>{% endif %}</h3>
+{% endif %}
+{% if catalog_items %}
+    <div class="ex-seo-content">
+        <ul class="ex-catalog-items">
+{% for obj in catalog_items %}
+<li>
+{% if obj.num_objects > 1 %}
+    <a href="{% url 'publication_list' path=category.path %}group/{{ obj.group.get_product_reference }}/">{{ category.name }}: {{ obj.group.get_name }}</a>
+{% else %}
+    <a href="{{ obj.get_absolute_url }}">{{ obj.name }}</a>
+{% endif %}
+</li>
+{% endfor %}
+        </ul>
+{% if raw_catalog_items_is_paginated %}
+{% url 'publication_list' path=category.path as url_root %}
+{% paginator page_obj=raw_catalog_items_page_obj url_root=url_root %}
+{% endif %}
+    </div>
+{% endif %}
+
+</div>
+{% endwith %}{% endwith %}{% endspaceless %}

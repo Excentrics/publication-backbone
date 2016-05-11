@@ -1,0 +1,10 @@
+.block-style ul.jqtree-tree .jqtree-element {
+    padding: 0 10px;
+    background-color: transparent;
+    margin-bottom: -2px;
+    margin-top: -2px;
+}
+
+.block-style ul.jqtree-tree .jqtree-element:hover {
+    background-color: #eee;
+}

@@ -1,0 +1,6 @@
+{% templatetag openbrace %}
+"id": {{ object.id }},
+"interviewed": true,
+"interviewedCount": {{ interviewed_count }},
+"question_list": [{% for object in questions %}{% templatetag openbrace %}"id": {{ object.pk }}, "name": "{{ object.name }}", "count": {{ object.perset_count }}, "is_right": {% if object.is_right %}true{% else %}false{% endif %}{% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}]
+{% templatetag closebrace %}

@@ -1,0 +1,30 @@
+{% comment %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="{{ lang|default:"en-us" }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="{{ lang|default:"en-us" }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="{{ lang|default:"en-us" }}" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ lang|default:"en-us" }}" class="no-js"> <!--<![endif]-->
+    <head>
+        <title>Rubrics list</title>
+    </head>
+    <body>
+ <code>
+
+
+
+{% load publication_backbone_utils_tags %}{% templatetag openbrace %}{% block default %}
+{% with level=0 objects=''|make_list %}
+{% with meta_tree_nodes_template_name='publication_backbone/rubricator/_meta_tree_nodes.json' object_template_name='publication_backbone/rubricator/_meta_tree_object.json' %}
+{% include meta_tree_nodes_template_name with rubrics=object_list tagged_rubrics=root.get_children_dict rubrics_parent=root.rubric template_name=meta_tree_nodes_template_name level=level objects=objects attrs=root.attrs only %}
+"objects": [{% for object in objects %}{% include object_template_name with object=object only %}{% if not forloop.last %}, {% endif %}{% endfor %}]
+{% endwith %}
+{% endwith %}{% endblock %}{% templatetag closebrace %}
+
+
+
+ </code>
+    </body>
+</html>
+
+{% endcomment %}

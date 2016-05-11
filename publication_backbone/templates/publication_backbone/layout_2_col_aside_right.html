@@ -1,0 +1,19 @@
+{% extends "publication_backbone/layout.html" %}{% load publication_backbone_utils_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% with col_md=8 tag_name='div' %}{{ request|select_attr:'col_md'|set_attr:col_md|empty_str }}{{ request|select_attr:'tag_name'|set_attr:tag_name|empty_str }}
+            <{{ tag_name }} class="col-md-{{ col_md }}">
+            {% block column_center %}{% endblock %}
+            </{{ tag_name }}>
+            {% endwith %}
+            {% with col_md=12 tag_name='aside' %}{{ request|select_attr:'col_md'|set_attr:col_md|empty_str }}{{ request|select_attr:'tag_name'|set_attr:tag_name|empty_str }}
+            <{{ tag_name }} class="col-md-4">
+                {% block column_right %}{% endblock %}
+            </{{ tag_name }}>
+            {% endwith %}
+            <div class="bottom-padding"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "publication_backbone/layout.html" %}
+{% load i18n staticfiles publication_backbone_tags compress %}
+
+{% block title %}
+    {{ category.name }} — {{ block.super }}
+{% endblock %}
+
+
+{% block breadcrumbs %}{% get_config as config %}
+{% include "publication_backbone/category/_category_breadcrumbs.html" with name='breadcrumbs' category_key=config.PUBLICATION_BACKBONE_CATEGORY_KEY catalog_key='publication' only %}
+{% endblock %}
+
+
+{% block content %}{% with category_title_app_name='category_title' statistic_app_name='statistic' pagination_app_name='pagination' %}
+
+<!-- TEMPLATES -->
+<!-- Category Title Templates -->
+<script type="text/template" id="{{ category_title_app_name }}-app-template">
+{% include "publication_backbone/promotion/partials/category_title.html" %}
+</script>
+
+<!-- Statistic Templates -->
+<script type="text/template" id="{{ statistic_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/stat.html" %}
+</script>
+
+<!-- Pagination template -->
+<script type="text/template" id="{{ pagination_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/paginator.html" %}
+</script>
+
+<!-- Catalog Item Template -->
+<script type="text/template" id="{{ name }}-item-template">
+{% include "publication_backbone/catalog/partials/item.html" %}
+</script><!-- /Catalog Item Template -->
+<!-- /TEMPLATES -->
+
+    <!-- Promotion app container -->
+    <div id="{{ name }}-app" class="ex-promotion">
+        <header>
+            <div class="ex-promotion-title">
+            <!-- Category title container -->
+            {% include "publication_backbone/promotion/partials/_category_title_container.html" with app_name=category_title_app_name catalog_key=name only %}
+            <!-- /Category title container -->
+            </div>
+            <div class="ex-promotion-statistic">
+            <!-- Statistic container -->
+            {% include "publication_backbone/promotion/partials/_statistic_container.html" with app_name=statistic_app_name catalog_key=name only %}
+            <!-- /Statistic container -->
+            </div>
+            <div class="ex-promotion-pagination">
+            <!-- Pagination container  -->
+            <ul class="js-{{ pagination_app_name }}-{{ name }}-app ex-pagination"></ul>
+            <!-- /Pagination container  -->
+            </div>
+        </header>
+        <section>
+            <ul class="ex-js-{{ name }}-list ex-promotion-list"></ul>
+        </section>
+
+    </div><!-- /.{{ name }}-app -->
+
+<!-- APPICATIONS -->
+{% compress js %}
+<!-- Category Title app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/promotion/_app_category_title.js' with name=category_title_app_name catalog_key=name only %}
+</script>
+<!-- /Category Title app js -->
+
+<!-- Statistic app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_statistic.js' with name=statistic_app_name catalog_key=name only %}
+</script>
+<!-- /Statistic app js -->
+
+<!-- Pagination app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_pagination.js' with name=pagination_app_name catalog_key=name only %}
+</script>
+<!-- /Pagination app js -->
+{% endcompress %}
+
+
+<!-- '{{ app_name }}' application -->
+<script type="text/javascript" src="{% include 'publication_backbone/catalog/_js_url.html' with view_name='publication_promotion_list_js' category=category publication_group=publication_group set=set subj=subj rel=rel only %}"></script>
+<!-- /'{{ app_name }}' application -->
+<!-- /APPICATIONS -->
+
+{% endwith %}{% endblock %}
+
+
+
+

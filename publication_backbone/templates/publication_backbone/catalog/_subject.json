@@ -1,0 +1,18 @@
+{% extends 'publication_backbone/catalog/_object.json' %}
+
+{% block default %}{{ block.super }}{% if object.sub_name or object.get_description %},
+"short_lead": {% if object.sub_name %}"{{ object.sub_name|truncatewords:12|truncatechars:120|escapejs }}"{% else %}"{{ object.get_description|truncatewords:12|truncatechars:120|escapejs }}"{% endif %}{% endif %}{% with characteristics=object.get_characteristics|slice:":3" marks=object.get_marks|slice:":5" %}{% if characteristics %},
+"short_characteristics": {% templatetag openbrace %}
+{% for characteristic in characteristics %}"{{ characteristic.path|escapejs }}": {% templatetag openbrace %}
+    "k": "{{ characteristic.name.strip|escapejs }}",
+    "v": {% if characteristic.values|length == 1 %}"{{ characteristic.values.0|escapejs }}"{% else %}[{% for value in characteristic.values %}"{{ value|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %},
+    "t": "{{ characteristic.tags|join:' '|escapejs }}"
+    {% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% templatetag closebrace %}{% endif %}{% if marks %},
+"short_marks": {% templatetag openbrace %}
+{% for mark in marks %}"{{ mark.path|escapejs }}": {% templatetag openbrace %}
+    "k": "{{ mark.name.strip|escapejs }}",
+    "v": {% if mark.values|length == 1 %}"{{ mark.values.0|escapejs }}"{% else %}[{% for value in mark.values %}"{{ value|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %},
+    "t": "{{ mark.tags|join:' '|escapejs }}"
+    {% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% templatetag closebrace %}{% endif %}{% endwith %}{% endblock %}

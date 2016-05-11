@@ -1,0 +1,197 @@
+{% extends "publication_backbone/base.html" %}{% load i18n publication_backbone_utils_tags publication_backbone_tags fluent_pages_tags %}
+
+
+<!-- Header -->
+{% block layout %}
+{% block header %}
+    <header id="header" class="header">
+
+        <!-- StaticPlaceholder  Header -->
+        <div class="top-header-placeholder">
+            <div class="container">
+                <div class="row">
+                    {% with col_md=12 tag_name='div' %}{{ request|select_attr:'col_md'|set_attr:col_md|empty_str }}{{ request|select_attr:'tag_name'|set_attr:tag_name|empty_str }}
+                    <{{ tag_name }} class="col-md-{{ col_md }}">
+                    {% block header_placeholder %}
+                        {% render_pl 'header_placeholder' %}
+                    {% endblock %}
+                    </{{ tag_name }}>
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+        <!-- ENDStaticPlaceholder Header -->
+
+        <div class="header-info">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-2 left-col">
+                        <div class="status-ico">
+                            <a href="/city-first-salute/" title="Город первого салюта"><img src="/static/img/status-1.png" data-placement="right" data-toggle="tooltip" title="Город первого салюта" alt="Город первого салюта"></a>
+                            <a href="/city-of-military-glory/" title="Город воинской славы"><img src="/static/img/status-2.png" data-placement="right" data-toggle="tooltip" title="Город воинской славы" alt="Город воинской славы"></a>
+
+                        </div>
+                        <div class="logo">
+                            <a href="/" title="Перейти на главную"><img src="/static/img/logo.png" alt="Сайт органов местного самоуправления города Белгорода"></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 right-col">
+                        <div class="top-header">
+                            <div class="brand">
+                                <h1>Сайт органов местного самоуправления<small>города Белгорода</small></h1>
+                            </div>
+                            <div class="spec-icons">
+                                <div class="top-block">
+                                    <ul>
+                                        <li class="portals">
+                                            <a class="city-portals-toggle" data-toggle="collapse" href="#city-portals" data-target=".city-portals" aria-expanded="false" title="Городские порталы"><i class="fa fa-globe"></i></a>&nbsp;&nbsp;<a class="city-portals-toggle" data-toggle="collapse" href="#city-portals" data-target=".city-portals" aria-expanded="false" title="Городские порталы">Городские порталы</a>
+                                        </li>
+                                        <li class="special adapted-version">
+                                            <a href="#" title="Версия для слабовидящих"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;<a href="#" title="Версия для слабовидящих">Версия для слабовидящих</a>
+                                        </li>
+                                        <li><a href="/" title="На главную"><i class="fa fa-home"></i></a></li>
+                                        <li><a href="/sitemap/" title="Карта сайта"><i class="fa fa-sitemap"></i></a></li>
+                                        <li><a href="{% url 'rss_feed' %}" title="RSS лента"><i class="fa fa-rss"></i></a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="bottom-block">
+                                    <ul>
+                                        <li><a href="https://www.facebook.com/ps.beladm" title="Фейсбук"><img src="/static/img/fb.png" alt="Фейсбук"></a></li>
+                                        <li><a href="https://vk.com/psbeladm" title="ВКонтакте"><img src="/static/img/vk.png" alt="ВКонтакте"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bottom-header">
+                            {% block header_search %}
+                                {% include "search/search_form.html" %}
+                            {% endblock %}
+
+                            <div class="call-btn">
+                                <a class="btn btn-primary" href="#myModalinternetpriemnaja" data-toggle="modal" id="myModalinternetpriemnaja_link" data-target="#myModalinternetpriemnaja">Интернет-приёмная</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-menu">
+            {% block main_menu %}
+            <div class="container">
+                {% include "publication_backbone/partials/nav_primary.html" %}
+            </div>
+            {% endblock %}
+        </div>
+    </header>
+{% endblock %}
+
+<!-- Content -->
+{% block content_wrapper %}
+    <div class="wrapper-top">
+    {% block breadcrumbs %}
+        <div class="container">
+            <ol class="ex-breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i></a><i class="ex-divider"></i></li>
+                <li><a href="#1">Category #1</a><i class="ex-divider"></i></li>
+                <li><a href="#2">Category #2</a><i class="ex-divider"></i></li>
+                <li class="ex-active">Page Title</li>{% comment %}<!-- .ex-active { display: none; } -->{% endcomment %}
+            </ol>
+        </div>
+    {% endblock %}
+    {% block page_title %}
+        <div class="container page-title">
+            <h1 itemprop="name">{% block headertext %}Page Title{% endblock %}</h1>
+        </div>
+    {% endblock %}
+    {% block content %}
+        <div>
+            <div class="container">
+                <div class="row">
+                    {% with col_md=12 tag_name='div' %}{{ request|select_attr:'col_md'|set_attr:col_md|empty_str }}{{ request|select_attr:'tag_name'|set_attr:tag_name|empty_str }}
+                    <{{ tag_name }} class="col-md-{{ col_md }}">
+                    {% block column_center %}
+                        <!-- Text Plugin --->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ...</p>
+                        <!-- /Text Plugin --->
+                    {% endblock %}
+                    </{{ tag_name }}>
+                    {% endwith %}
+                    <div class="bottom-padding"></div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    </div>
+{% endblock content_wrapper %}
+
+
+<!-- Footer -->
+{% block footer %}
+    <footer id="footer" class="footer">
+
+        <div class="top-footer">
+            <div class="container">
+                <!-- CMS MENU-->
+                {% render_menu max_depth=2 template="publication_backbone/partials/nav_footer.html" %}
+            </div>
+        </div>
+
+        <div class="middle-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 item col_1">
+                        {% render_pl 'middle_footer_row_1_column_1' %}
+                    </div>
+
+                    <div class="col-sm-4 item col_2">
+                        {% render_pl 'middle_footer_row_1_column_2' %}
+                    </div>
+
+                    <div class="col-sm-4 item col_3 social">
+                        {% render_pl 'middle_footer_row_1_column_3' %}
+                    </div>
+                </div>
+
+                <div class="row last">
+                    <div class="col-sm-4 item col_1">
+                        {% render_pl 'middle_footer_row_2_column_1' %}
+                    </div>
+
+                    <div class="col-sm-4 item col_2">
+                        {% render_pl 'middle_footer_row_2_column_2' %}
+                    </div>
+
+                    <div class="col-sm-4 item col_3 dev">
+                        {% render_pl 'middle_footer_row_2_column_3' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% block sub_menu %}{% endblock %}
+
+        <!-- StaticPlaceholder  footer -->
+        <div class="bottom-footer">
+            <div class="container">
+                <div class="row">
+                    {% with col_md=12 tag_name='div' %}{{ request|select_attr:'col_md'|set_attr:col_md|empty_str }}{{ request|select_attr:'tag_name'|set_attr:tag_name|empty_str }}
+                    <{{ tag_name }} class="col-md-{{ col_md }}">
+                    {% block footer_placeholder %}
+                        {% render_pl 'footer_placeholder' %}
+                    {% endblock %}
+                    </{{ tag_name }}>
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+        <!-- ENDStaticPlaceholder  footer -->
+
+        <a class="up-button btn btn-lg" href="#top" title="Вверх"><i class="fa fa-chevron-up"></i></a>
+    </footer>
+{% endblock %}
+{% endblock layout %}

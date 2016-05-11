@@ -1,0 +1,43 @@
+{% load i18n %}
+
+<div class="catalog-item__block votes">
+    <% if ((upToDate)&&(!interviewed)) { %>
+    <div class="questions">
+        <% for(var i=0; i<question_list.length; i++) {%>
+        <div class="radio">
+            <label for="answer-<%= question_list[i].id %>">
+                <input type="radio" class="js-vote-select" name="question<%- name %>" id="answer-<%= question_list[i].id %>" value="<%= question_list[i].id %>"<% if ( answerId == question_list[i].id ) { %> checked="checked"<% } %>>
+                <%= question_list[i].name %>
+            </label>
+        </div>
+        <% }
+        var btnName = is_quiz ? "{% trans "Answer" %}" : "{% trans "Vote" %}"
+        if ( _.isNull(answerId) ) { %>
+        <button type="button" class="btn btn-info" disabled="disabled"><%= btnName %></button>
+        <% } else { %>
+        <button type="button" class="js-vote btn btn-info"><%= btnName %></button>
+        <% } %>
+    </div>
+    <% } else { %>
+    <div class="questions">
+        <ul class="list-unstyled">
+            <% for(var i=0; i < question_list.length; i++) {%>
+            <li>
+                <%= question_list[i].name %>
+                <div class="progress">
+                    <div class="progress-bar<%
+                    if ( question_list[i].is_right ) {
+                        %> progress-bar-success<%
+                    } else if ( is_quiz && !_.isNull(chooseId) && chooseId==question_list[i].id ) {
+                        %> progress-bar-danger<%
+                    } %>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= question_list[i].count %>&#037;">
+                        <span class="sr-only"><%= question_list[i].count %>&#037;</span>
+                    </div>
+                </div>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+    <% } %>
+    <div class="total-counter">{% trans "Total votes:" %}&nbsp;<span><%- interviewedCount %></span></div>
+</div>

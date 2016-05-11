@@ -1,0 +1,50 @@
+<!-- Category Sitemap -->
+{% load mptt_tags publication_backbone_utils_tags cache publication_backbone_caching_tags publication_backbone_tags %}{% spaceless %}
+{{ request|select_attr:'excluded_page_nodes'|set_attr:excluded_page_nodes|empty_str }}
+{% recursetree nodes %}{% if node.get_catalog_url or node.get_url %}
+        <li>
+        {% if node.get_catalog_url %}
+            {% if request.tmp_sitemap_current_category_index %}
+                {% with new_index=request.tmp_sitemap_current_category_index|add:1 %}{{ request|select_attr:'tmp_sitemap_current_category_index'|set_attr:new_index|empty_str }}{% endwith %}
+            {% else %}
+                {{ request|select_attr:'tmp_sitemap_current_category_index'|set_attr:1|empty_str }}
+            {% endif %}
+            {% get_cache 'catalog_last_update_category_seo' node.id as sitemap_category_seo_cache  %}
+            {% if sitemap_category_seo_cache %}
+                {{ sitemap_category_seo_cache }}
+            {% else %}
+                {% if request.tmp_sitemap_current_category_index < category_rnd_index or request.tmp_freeze_sitemap_category_seo %}
+                    {% get_cache 'catalog_category_seo' node.id 0 as catalog_category_seo_cache  %}
+                    {% if catalog_category_seo_cache %}
+                        {{ catalog_category_seo_cache }}
+                    {% else %}
+                        <a href="{{ node.get_catalog_url }}" title="{% if node.description %}{{ node.description|truncatewords:10|truncatechars:80 }}{% else %}{{ node.name }}{% endif %}">{{ node.name }}</a>
+                    {% endif %}
+                {% else %}
+                    {% cache 86400 catalog_last_update_category_seo node.id %}{% get_config as config %}
+                    {% include 'publication_backbone/seo/publication_detail/_category_seo.html' with category=node catalog_per_page_items_count=config.PUBLICATION_BACKBONE_CATALOG_PER_PAGE_ITEMS_COUNT only %}
+                    {{ request|select_attr:'tmp_freeze_sitemap_category_seo'|set_attr:1|empty_str }}
+                    {% endcache %}
+                {% endif %}
+            {% endif %}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        {% else %}
+            <a href="{{ node.get_url }}"{% if node.is_external %} rel="nofollow"{% endif %} title="{% if node.description %}{{ node.description|truncatewords:10|truncatechars:80 }}{% else %}{{ node.name }}{% endif %}">{{ node.name }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                    {% with root_node=node %}{% include "publication_backbone/plugins/sitemap/partials/_render_external_nodes.html" %}{% endwith %}
+                </ul>
+            {% else %}
+                {% with root_node=node %}{% include "publication_backbone/plugins/sitemap/partials/_render_external_nodes.html" %}{% endwith %}
+            {% endif %}
+        {% endif %}
+        </li>
+{% endif %}{% endrecursetree %}
+{% include "publication_backbone/plugins/sitemap/partials/_render_external_nodes.html" %}
+{% endspaceless %}
+<!-- /Category Sitemap -->

@@ -1,0 +1,9 @@
+{% load i18n %}
+<div class="submit-row">
+    {% if include_change_type_link %}
+        <p class="deletelink-box"><a href="delete/" class="deletelink btn btn-danger">{% trans "Delete" %}</a></p>
+        <button type="submit" class="btn btn-default" name="_addanother" {{ onclick_attrib }}>{% trans 'Save and add another' %}</button>
+        <button class="btn btn-default" type="submit" name="_continue" {{ onclick_attrib }}>{% trans 'Save and continue editing' %}</button>
+    {% endif %}
+    <button class="btn btn-primary default" type="submit" name="_save" {{ onclick_attrib }}>{% trans 'Save' %}</button>
+</div>

@@ -1,0 +1,64 @@
+{% extends 'publication_backbone/catalog/_object.json' %}
+{% load thumbnail publication_backbone_utils_tags beautiful_fields_tags %}
+
+{% block default %}{% if not object.num_objects %}{{ object|select_attr:'num_objects'|set_attr:1|empty_str }}{% endif %}{{ block.super }},
+"position": {{ position }}{% if object.sub_name or object.get_description %},
+"short_lead": {% if object.sub_name %}"{{ object.sub_name|truncatewords:12|truncatechars:120|escapejs }}"{% else %}"{{ object.get_description|truncatewords:12|truncatechars:120|escapejs }}"{% endif %}{% endif %}{% if object.num_objects > 1 %}{% with characteristics=object.group.get_characteristics|slice:":3" marks=object.group.get_marks|slice:":5" %}{% if characteristics %},
+"short_characteristics": {% templatetag openbrace %}
+{% for characteristic in characteristics %}"{{ characteristic.path|escapejs }}": {% templatetag openbrace %}
+    "k": "{{ characteristic.name.strip|escapejs }}",
+    "v": {% if characteristic.values|length == 1 %}"{{ characteristic.values.0|escapejs }}"{% else %}[{% for value in characteristic.values %}"{{ value|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %},
+    "t": "{{ characteristic.tags|join:' '|escapejs }}"
+    {% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% templatetag closebrace %}{% endif %}{% if marks %},
+"short_marks": {% templatetag openbrace %}
+{% for mark in marks %}"{{ mark.path|escapejs }}": {% templatetag openbrace %}
+    "k": "{{ mark.name.strip|escapejs }}",
+    "v": {% if mark.values|length == 1 %}"{{ mark.values.0|escapejs }}"{% else %}[{% for value in mark.values %}"{{ value|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %},
+    "t": "{{ mark.tags|join:' '|escapejs }}"
+    {% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% templatetag closebrace %}{% endif %}{% endwith %},
+"variants": {{ object.num_objects }},
+"catalog_base_uri": {% if category %}{% comment %}
+{% endcomment %}{% if set %}"{% url 'publication_list' path=category.path group_id=object.group.get_publication_reference set=set|join:';' %}"{% else %}"{% url 'publication_list' path=category.path group_id=object.group.get_publication_reference %}"{% endif %}{% comment %}
+{% endcomment %}{% else %}{% comment %}
+{% endcomment %}{% if set %}"{% url 'publication_list' group_id=object.group.get_publication_reference set=set|join:';' %}"{% else %}"{% url 'publication_list' group_id=object.group.get_publication_reference %}"{% endif %}{% comment %}
+{% endcomment %}{% endif %}{% else %}
+{% with characteristics=object.get_characteristics|slice:":3" marks=object.get_marks|slice:":5" %}{% if characteristics %},
+"short_characteristics": {% templatetag openbrace %}
+{% for characteristic in characteristics %}"{{ characteristic.path|escapejs }}": {% templatetag openbrace %}
+    "k": "{{ characteristic.name.strip|escapejs }}",
+    "v": {% if characteristic.values|length == 1 %}"{{ characteristic.values.0|escapejs }}"{% else %}[{% for value in characteristic.values %}"{{ value|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %},
+    "t": "{{ characteristic.tags|join:' '|escapejs }}"
+    {% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% templatetag closebrace %}{% endif %}{% if marks %},
+"short_marks": {% templatetag openbrace %}
+{% for mark in marks %}"{{ mark.path|escapejs }}": {% templatetag openbrace %}
+    "k": "{{ mark.name.strip|escapejs }}",
+    "v": {% if mark.values|length == 1 %}"{{ mark.values.0|escapejs }}"{% else %}[{% for value in mark.values %}"{{ value|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %},
+    "t": "{{ mark.tags|join:' '|escapejs }}"
+    {% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% templatetag closebrace %}{% endif %}{% endwith %}{% endif %}{% endblock %}
+
+
+{% block id %}{% if object.num_objects > 1 %}"{{ object.group.get_publication_reference }}"{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+
+{% block date %}{% if object.num_objects > 1 %}["{{ object.group.get_date_added.0|date:"d M Y" }}", "{{ object.group.get_date_added.1|date:"d M Y" }}"]{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+
+{% block name %}{% if object.num_objects > 1 %}"{{ object.group.get_name|escapejs }}"{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+
+{% block uri %}{% if object.num_objects > 1 %}"{{ object.group.get_absolute_url }}"{% else %}{{ block.super }}{% endif %}{% endblock %}
+
+
+{% block img %}{% if object.num_objects > 1 %}{% with image=object.group.get_image %}{% if image %}{% thumbnail image thumbnail_geometry upscale='True' background=thumbnail_background as im %}{% templatetag openbrace %}
+    "src": "{{ im.url }}",
+    "w": {{ im.width }},
+    "h": {{ im.height }}
+{% templatetag closebrace %}{% empty %}null{% endthumbnail %}{% else %}{% thumbnail object.group.get_placeholder_image thumbnail_geometry crop='center' background=thumbnail_background upscale='True' as im %}{% templatetag openbrace %}
+    "src": "{{ im.url }}",
+    "w": {{ im.width }},
+    "h": {{ im.height }}
+{% templatetag closebrace %}{% empty %}null{% endthumbnail %}{% endif %}{% endwith %}{% else %}{{ block.super }}{% endif %}{% endblock %}

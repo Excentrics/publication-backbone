@@ -1,0 +1,18 @@
+{% load thumbnail beautiful_fields_tags %}{% templatetag openbrace %}
+{% block default %}"id": {% block id %}"{{ object.get_publication_reference }}"{% endblock %},
+"resource_uri": {% block uri %}"{% if category %}{% url 'publication_detail' path=category.path slug=object.slug %}{% else %}{{ object.get_absolute_url }}{% endif %}"{% endblock %},
+"show_date": {% block show_date %}"{{ object.show_date }}"{% endblock %},
+"is_main": "{{ object.is_main }}",
+"name": {% block name %}"{{ object.get_name|escapejs }}"{% endblock %},
+"author": {% block author %}"{{ object.get_author|escapejs }}"{% endblock %},
+"img": {% block img %}{% with image=object.get_image %}{% if image %}{% thumbnail image thumbnail_geometry upscale='True' background=thumbnail_background as im %}{% templatetag openbrace %}
+    "src": "{{ im.url }}",
+    "w": {{ im.width }},
+    "h": {{ im.height }}
+{% templatetag closebrace %}{% empty %}null{% endthumbnail %}{% else %}{% thumbnail object.get_placeholder_image thumbnail_geometry crop='center' upscale='True' background=thumbnail_background as im %}{% templatetag openbrace %}
+    "src": "{{ im.url }}",
+    "w": {{ im.width }},
+    "h": {{ im.height }}
+{% templatetag closebrace %}{% empty %}null{% endthumbnail %}{% endif %}{% endwith %}{% endblock %},
+"creation_date": {% block date %}"{{ object.date_added|date:"d M Y H:m" }}"{% endblock %}{% endblock %}
+{% templatetag closebrace %}

@@ -1,0 +1,14 @@
+<%  var img_src
+    ,   img_ratio = null
+    ,   thumbnail_ratio = thumbnail_height / thumbnail_width
+    if ( _.isObject(img) ) {
+        img_src = img.src
+        img_ratio = img.h / img.w
+    } else {
+        img_src = img
+    }
+    if ( variants > 1 ) { %>
+{% include "publication_backbone/catalog/partials/_item_variants.html" %}
+<%  } else { %>
+{% include "publication_backbone/catalog/partials/_item.html" %}
+<%  } %>

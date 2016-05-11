@@ -1,0 +1,113 @@
+
+
+div.inline-group, div.tabular {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    background: white;
+    display: block;
+    min-width: -webkit-min-content;
+}
+
+div.inline-group.collapsed h2, div.tabular.collapsed h2 {
+    background-image: url(../img/nav-bg.gif);
+    background-position: bottom left;
+    color: #999;
+}
+
+div.inline-group.collapsed h2, div.inline-group.collapsed, div.tabular.collapsed h2, div.tabular.collapsed {
+    display: block !important;
+}
+
+div.inline-group.collapsed .collapse-toggle, div.tabular.collapsed .collapse-toggle {
+    background: transparent;
+    display: inline !important;
+}
+
+div.inline-group.collapsed *, div.inline-group.collapsed * {
+    display: none;
+}
+
+select {
+    min-width: 400px;
+    width: auto;
+    overflow: overlay;
+}
+
+.tree-container {
+    height: 400px;
+    min-width: 243px;
+    border: none;
+}
+
+#manage-treeview-filter {
+    margin-left: 18px;
+}
+
+#clear_rubric_filter {
+    position: absolute;
+    right: 5px;
+}
+.treeview .hitarea {
+    height: 14px;
+    width: 14px;
+    margin-left: -14px;
+    margin-top: -2px;
+    float: left;
+    cursor: pointer;
+}
+
+.treeview .li {
+    padding: 0;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+#manage-treeview-filter ul {
+    margin-bottom: 0!important;
+}
+
+#manage-treeview-filter ul li {
+    margin-bottom: 0!important;
+}
+
+.change-list #changelist #changelist-filter {
+    min-height: 0!important;
+    border-top: 0!important;
+    width: 264px;
+}
+
+.change-list #changelist #changelist-filter h2 {
+    margin-bottom: 0!important;
+}
+
+#clear_rubric_filter, #fieldsetcollapser0 {
+    color: #029eee!important;
+    font-size: 11px;
+}
+
+.change-list .filtered .paginator, .change-list .filtered .results {
+    margin-right: 0!important;
+}
+
+#changelist-filter {
+    border-top: 0 none;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom-right-radius: 0!important;
+}
+
+#changelist-filter .tree-container {
+    padding-left: 14px;
+    border-bottom: 1px solid #ccc;
+}
+
+#changelist-filter .tree-container label {
+    padding-left: 3px;
+}
+
+#changelist-filter.collapsed {
+    border-bottom: 0;
+}

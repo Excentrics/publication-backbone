@@ -1,0 +1,65 @@
+/*
+==================== Sitemap Page Styles ====================
+*/
+.sitemap {
+    padding: 14px 0 30px;
+}
+
+.sitemap span a:before {
+    content: "\f015";
+    display: inline-block;
+    font-family: "FontAwesome";
+    font-size: 20px;
+}
+
+.sitemap ul.tree {
+    margin-bottom: 0;
+}
+
+.sitemap ul, .sitemap li {
+    list-style: none;
+    margin-left: -37px;
+}
+
+.sitemap ul.tree {
+    padding-left: 34px;
+    margin-left: -37px;
+}
+
+.sitemap ul.tree li {
+    margin: 0 0 0 2px;
+    padding: 5px 0 0 22px;
+    border-left: 1px solid #e3d4c1;
+    background: url(/static/publication_backbone/images/sitemap-horizontal.png) no-repeat left 15px transparent;
+}
+
+.sitemap ul.tree > li {
+    margin: 0 0 0 11px;
+}
+
+.sitemap ul li:last-child {
+    border: medium none;
+    background: url(/static/publication_backbone/images/sitemap-last.png) no-repeat 0 -4px transparent;
+}
+
+.sitemap ul.tree .ex-seo-wrapper h3 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 15px;
+}
+
+.sitemap ul.tree .ex-seo-wrapper .ex-catalog-items {
+    margin-top: 4px;
+}
+
+.sitemap ul.tree .ex-pagination {
+    margin-left: 28px;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.sitemap ul.tree .ex-pagination li {
+    border: 0 none;
+    background: none;
+}

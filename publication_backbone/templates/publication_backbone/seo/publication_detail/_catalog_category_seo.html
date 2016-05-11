@@ -1,0 +1,8 @@
+{% load i18n publication_backbone_utils_tags publication_backbone_tags cache %}{% if category %}
+<div class="ex-collapse">
+{% cache 86400 catalog_last_update_category_seo category.id %}{% get_config as config %}
+{% include 'publication_backbone/seo/publication_detail/_category_seo.html' with category=category catalog_per_page_items_count=config.PUBLICATION_BACKBONE_CATALOG_PER_PAGE_ITEMS_COUNT only %}
+{{ request|select_attr:'tmp_freeze_sitemap_category_seo'|set_attr:1|empty_str }}
+{% endcache %}
+</div>
+{% endif %}

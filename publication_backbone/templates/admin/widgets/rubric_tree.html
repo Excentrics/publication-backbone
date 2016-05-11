@@ -1,0 +1,7 @@
+{% load mptt_tags i18n %}
+
+<div class="clear tree-container">
+    <ul id="manage-treeview-widget" class="manage-treeview">
+        {% include "admin/includes/_treeview.html" with queryset=queryset expanded_rubrics=expanded_rubrics attrs=attrs value=value name=name is_characteristic=is_characteristic is_mark=is_mark is_relation=is_relation %}
+    </ul>
+</div>

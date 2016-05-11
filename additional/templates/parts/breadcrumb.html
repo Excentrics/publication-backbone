@@ -1,0 +1,11 @@
+{% load i18n %}
+{% if breadcrumb %}
+    <div class="container">
+        <ol class="ex-breadcrumb in-page">
+           {% include 'publication_backbone/category/partials/_breadcrumb_prefix.html' %}
+          {% for item in breadcrumb %}
+            <li {% if forloop.last %}class="ex-title"{% endif %}>{% if not forloop.last %}<a href="{{ item.url }}">{{ item.title }}</a><i class="ex-divider"></i>{% else %}{{ item.title }}{% endif %}</li>
+          {% endfor %}
+        </ol>
+    </div>
+{% endif %}

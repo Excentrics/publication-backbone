@@ -1,0 +1,14 @@
+{% load i18n %}<%
+    var rightFactor = rightCount / allCount
+    ,   appearance = 'label-danger'
+
+    if ( rightFactor >= 0.8 ) {
+        appearance = 'label-success'
+    } else if ( rightFactor >= 0.6 ) {
+        appearance = 'label-info'
+    } else if ( rightFactor >= 0.4 ) {
+        appearance = 'label-warning'
+    }
+
+%><h3><span class="label <%- appearance %>"><%= rightCount %> {% trans 'from' %} <%= allCount %></span></h3>
+<h4 class="bordered-title"><%= mark.text %></h4>

@@ -1,0 +1,16 @@
+{% extends "publication_backbone/layout.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Terms of service' %} — {{ block.super }}
+{% endblock %}
+
+{% block headertext %}
+    {% trans 'Terms of service' %}
+{% endblock %}
+
+{% block content %}
+    <article>
+        {% include "publication_backbone/partials/terms_of_service_article.html" %}
+    </article>
+{% endblock %}

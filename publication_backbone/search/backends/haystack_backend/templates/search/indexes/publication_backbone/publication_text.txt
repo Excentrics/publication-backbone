@@ -1,0 +1,20 @@
+{% load i18n %}{{ object.get_name }}.{% comment %}
+{% endcomment %}{% if object.get_sub_name %} {{ object.get_sub_name }}.{% endif %}{% comment %}
+{% endcomment %}{% if object.get_description %} {{ object.get_description }}{% endif %}{% comment %}
+{% endcomment %}{% if object.get_tags %} {{ object.get_tags }}.{% endif %}{% comment %}
+{% endcomment %}{% if object.get_author %} {{ object.get_author }}{% endif %}{% comment %}
+{% endcomment %}{% with category=object.get_category %}{% if category %} {{ category.name }}.{% endif %}{% endwith %}{% comment %}
+{% endcomment %}{% if content_data.text %} {% for plugin in content_data.text %}{{ plugin.text|striptags|safe }}{% endfor %}{% endif %}{% comment %}
+{% endcomment %}{% if content_data.file %} {% for plugin in content_data.file %}{{ plugin.caption|striptags|safe }}.{% endfor %}{% endif %}{% comment %}
+{% endcomment %}{% if content_data.picture %} {% for plugin in content_data.picture %}{{ picture.caption|striptags|safe }} {{ picture.author|striptags|safe }}.{% endfor %}{% endif %}{% comment %}
+{% endcomment %}{% with characteristics=object.get_characteristics.all %}{% comment %}
+{% endcomment %}{% if characteristics %} {% for characteristic in characteristics %}{% comment %}
+{% endcomment %} {{ characteristic.name|striptags|safe }}: {% for value in characteristic.values %}{{ value|lower|striptags|safe }}{% if not forloop.last %}, {% endif %}{% endfor %}.{% comment %}
+{% endcomment %}{% if not forloop.last %} {% endif %}{% endfor %}{% endif %}{% comment %}
+{% endcomment %}{% endwith %}{% comment %}
+{% endcomment %}{% with marks=object.get_marks.all %}{% comment %}
+{% endcomment %}{% if marks %} {% for mark in marks %}{% comment %}
+{% endcomment %}{{ mark.name|striptags|safe }}: {% for value in mark.values %}{{ value|lower|striptags|safe }}{% if not forloop.last %}, {% endif %}{% endfor %}.{% comment %}
+{% endcomment %}{% if not forloop.last %} {% endif %}{% endfor %}{% endif %}{% comment %}
+{% endcomment %}{% endwith %}{% comment %}
+{% endcomment %} {{ object.date_added|date:'d.m.Y H:m' }}

@@ -1,0 +1,130 @@
+{% load i18n friendly widget_type %}
+{% if form_definition.title %}<div class="well"><a href="#" class="btn btn-primary" data-toggle="modal" id="myModal{{ form_definition.name }}_link" data-target="#myModal{{ form_definition.name }}">{{ form_definition.title }}</a></div><div class="bottom-padding"></div>{% endif %}
+{% if form %}
+    <!-- Modal -->
+    <div class="modal fade" id="myModal{{ form_definition.name }}" tabindex="-1" role="dialog" aria-labelledby="myModal{{ form_definition.name }}Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {% if form_definition.title %}
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3 class="modal-title" id="myModal{{ form_definition.name }}Label">{{ form_definition.title|linebreaksbr }}</h3>
+                    </div>
+                {% endif %}
+                <form id="form_{{ form_definition.name }}" class="form-horizontal designer_form" name="{{ form_definition.name }}" action="{% if form_definition.action %}{{ form_definition.action }}{% else %}#{% endif %}" method="{{ form_definition.method }}" enctype="multipart/form-data">
+                    <div class="modal-body form-body" id="form-body">
+                        {% if form_definition.body %}
+                        <div class="form-description">
+                            <p>{{ form_definition.body|linebreaksbr }}</p>
+                        </div>
+                        {% endif %}
+                        {% if form_error %}
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>{% trans "Warning!" %}</strong> {{ form_definition.error_message }}
+                            </div>
+                        {% elif form_success %}
+                            <h5>{{ form_definition.success_message }}</h5>
+                        {% endif %}
+
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>{% trans "Warning!" %}</strong> {{ error }}
+                            </div>
+                        {% endfor %}
+                        {% if not form_success %}
+                        {% for field in form %}
+                            {% if not field.is_hidden %}
+                                <div class="form-group{% if field.errors %} has-error{% elif form.is_bound %} has-success{% endif %} has-feedback">
+                                    {% if field.field|field_type != 'BooleanField' %}
+                                        <label class="col-sm-4 control-label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<small>*</small>{% endif %}</label>
+                                        <div class="col-sm-8">
+                                        {% if field.field.widget.input_type == 'text' %}
+                                            <input class="form-control" type="text" id="{{ field.id_for_label }}" name="{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name }}" placeholder="{{ field.label }}"{% if field.value %} value="{{ field.value }}"{% endif %}>
+                                            <span class="fa{% if field.errors %} fa-warning{% elif billing_address.is_bound %} fa-check{% endif %} form-control-feedback"></span>
+                                        {% elif field.field.widget.choices %}
+                                            <select class="form-control"  id="{{ field.id_for_label }}" name="{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name }}">
+                                            {% for choice in field.field.widget.choices %}
+                                                <option value="{{ choice.0 }}"{% ifequal field.value|stringformat:"s" choice.0|stringformat:"s" %} selected="selected"{% endifequal %}>{{ choice.1 }}</option>
+                                            {% endfor %}
+                                            </select>
+                                        {% elif field.field|field_type == 'FileField' %}
+                                            <input class="btn btn-default btn-md" type="file" id="{{ field.id_for_label }}" name="{{ field.html_name }}" {% if field.value %} value="{{ field.value }}"{% endif %}>
+                                        {% elif field.field.widget.attrs %}
+                                            <textarea style="width: 100%"id="{{ field.id_for_label }}" name="{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name }}" rows="4">{% if field.value %}{{ field.value }}{% endif %}</textarea>
+                                        {% else %}
+                                            {{ field }}
+                                        {% endif %}
+                                        {% if field.errors %}
+                                            <span class="help-block">{{ field.errors.0 }}</span>
+                                        {% else %}
+                                            {% if field.help_text %}<span class="help-block">{{ field.help_text|safe }}</span>{% endif %}
+                                        {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <div class="col-sm-offset-4 col-sm-8">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox"id="{{ field.id_for_label }}" name="{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name|random }}{{ field.html_name }}">&nbsp;{{ field.label }}</label>
+                                                {% if field.errors %}
+                                                    <span class="help-block">{{ field.errors.0 }}</span>
+                                                {% else %}
+                                                    {% if field.help_text %}<span class="help-block">{{ field.help_text|safe }}</span>{% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        {% if not form_success %}
+                        {% include "html/formdefinition/forms/includes/submit.html" %}
+                        {% else %}
+                        <input type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" value="{% trans "Close" %}" />
+                        {% endif %}
+                    </div>
+                    {% for field in form.hidden_fields %}
+                        {{ field }}
+                    {% endfor %}
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+    <script type="text/javascript">
+        $(function() {
+        // fill form input
+        var $ipn = $('input[name^="page_name"]')
+        ,	$ipu = $('input[name^="page_url"]')
+        ,	$dlh = document.location.protocol +"//"+ document.location.hostname + document.location.pathname
+        ,	$pt = $('title').text().trim()
+        $ipn.val($pt)
+        $ipu.val($dlh)
+        });
+    </script>
+    {% if form_error or form_success %}
+        <script type="text/javascript">
+            $(function() {
+                $('#myModal{{ form_definition.name }}').modal('show')
+            });
+        </script>
+    {% endif %}
+{% endif %}
+
+<script>
+$(function() {
+    "use strict";
+
+    _.delay(function() {
+        var form_id = "form_{{ form_definition.name }}"
+        ,   $si = $('#' + form_id + ' input[class="form-control"], #' + form_id + ' textarea')
+        $si.each(function() {
+            var $el = $(this)
+            $el.attr("name", $el.attr("name").substring(4))
+        })
+    }, 1000)
+});
+</script>

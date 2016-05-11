@@ -1,0 +1,43 @@
+{% extends "publication_backbone/plugins/promo/promo_default.html" %}
+{% load publication_backbone_utils_tags %}{% block ex-promotion-plugin %}bottom{% endblock %}
+
+{% block category_title_app_template %}
+    <!-- Categories Title Templates -->
+    <script type="text/template" id="{{ categories_title_app_name }}-app-template">
+        {% include "publication_backbone/promotion/partials/categories_title.html" %}
+    </script>
+    <!-- Category Title Templates -->
+    <script type="text/template" id="{{ category_title_app_name }}-app-template">
+        {% include "publication_backbone/promotion/partials/category_title.html" %}
+    </script>
+{% endblock %}
+
+{% block ex-promotion-top-titles %}
+    <div class="ex-promotion-header-title">
+        <!-- Category title container -->
+        {% include "publication_backbone/promotion/partials/_category_title_container.html" with app_name=category_title_app_name catalog_key=name category=category only %}
+        <!-- /Category title container -->
+    </div>
+{% endblock %}
+
+{% block ex-promotion-footer %}
+    <footer class="ex-promotion-title" data-categories-length="{{ categories|length }}">
+        <!-- Categories title container -->
+        {% include "publication_backbone/promotion/partials/_categories_bottom_title_container.html" with app_name=categories_title_app_name catalog_key=name category=category only %}
+        <!-- /Categories title container -->
+    </footer>
+{% endblock %}
+
+{% block category_title_app_js %}
+    <!-- Categories Title app js -->
+    <script type="text/javascript">
+        {% include 'publication_backbone/promotion/_app_categories_title.js' with name=categories_title_app_name catalog_key=name categories_list=categories category_template_name='publication_backbone/category/_object.json' only %}
+    </script>
+    <!-- /Categories Title app js -->
+
+    <!-- Category Title app js -->
+    <script type="text/javascript">
+        {% include 'publication_backbone/promotion/_app_category_title.js' with name=category_title_app_name catalog_key=name only %}
+    </script>
+    <!-- /Category Title app js -->
+{% endblock %}

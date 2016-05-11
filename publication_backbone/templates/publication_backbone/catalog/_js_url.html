@@ -1,0 +1,4 @@
+{% load publication_backbone_utils_tags %}{% with subj_ids=""|make_list rel_ids=""|make_list %}{% comment %}
+{% endcomment %}{% for subj_item in subj %}{{ subj_ids|append_value:subj_item.id|empty_str }}{% endfor %}{% comment %}
+{% endcomment %}{% for rel_item in rel %}{% if rel_item.direction and rel_item.direction != "b" %}{% with rel_id=rel_item.id|stringformat:"s"|add:rel_item.direction %}{{ rel_ids|append_value:rel_id|empty_str }}{% endwith %}{% else %}{{ rel_ids|append_value:rel_item.id|empty_str }}{% endif %}{% endfor %}{% comment %}
+{% endcomment %}{% url_by_not_empty_kwargs view_name path=category.path group_id=publication_group.get_publication_reference set=set|join:';' subj=subj_ids|join:';' rel=rel_ids|join:';' order_by=order_by %}{% endwith %}

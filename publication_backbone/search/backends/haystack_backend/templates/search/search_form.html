@@ -1,0 +1,125 @@
+{% load i18n publication_backbone_tags %}{% site_domain as domain %}
+<script type="text/javascript">
+    $(function(){
+        $("#search-button").click(function(){
+            $query_box = $("#search_form").find('input[name=q]')
+            query = $query_box.val()
+            if(query.length < 3) {
+                $query_box.focus();
+                return false
+            } else {
+                $("#search_form").submit();
+                return false;
+            }
+        });
+    });
+
+    var Autocomplete = function(options) {
+      this.form_selector = options.form_selector
+      this.url = options.url || 'http://{{ domain }}/search/haystacksearch/autocomplete/'
+      this.delay = parseInt(options.delay || 300)
+      this.minimum_length = parseInt(options.minimum_length || 3)
+      this.form_elem = null
+      this.query_box = null
+    }
+
+    Autocomplete.prototype.setup = function() {
+      var self = this
+      this.form_elem = $(this.form_selector)
+      this.query_box = this.form_elem.find('input[name=q]')
+      $erase_btn = $('.erase')
+      this.query_box.on('keyup', function() {
+        var query = self.query_box.val()
+        if(query.length > 0) {
+            $erase_btn.removeClass('hide')
+        } else {
+            $erase_btn.addClass('hide')
+        }
+        if(query.length < self.minimum_length) {
+            $('.ac-results').remove()
+            return false
+        }
+        self.fetch(query)
+      })
+      this.query_box.on('focus', function() {
+        $('.ac-results').removeClass('hide')
+      })
+      this.form_elem.on('click', '.erase', function(ev) {
+        self.query_box.val('')
+        $('.ac-results').remove()
+        $erase_btn.addClass('hide')
+        $('input[name=q]').focus();
+        return false
+      })
+    }
+
+    Autocomplete.prototype.fetch = function(query) {
+      var self = this
+      $.ajax({
+        url: this.url
+      , data: {
+          'q': query
+        }
+      , success: function(data) {
+          self.show_results(data)
+        }
+      })
+    }
+
+    Autocomplete.prototype.show_results = function(data) {
+      $('.ac-results').remove()
+      var results = data.results || []
+      var results_wrapper = $('<div class="ac-results"></div>')
+      var base_elem = $('<div class="result-wrapper"><a href="#" class="ac-result"></a></div>')
+      if(results.length > 0) {
+        for(var res_offset in results) {
+          var elem = base_elem.clone()
+          ,   ac_result = elem.find('.ac-result')
+          ac_result.text(results[res_offset]['title'])
+          ac_result.attr('href', 'http://{{ domain }}' + results[res_offset]['url'])
+          results_wrapper.append(elem)
+        }
+      }
+      else {
+        var elem = base_elem.clone()
+        elem.text('{% trans "No results for search" %}')
+        results_wrapper.append(elem)
+      }
+      this.query_box.after(results_wrapper)
+    }
+
+    $(document).ready(function() {
+      window.autocomplete = new Autocomplete({
+        form_selector: '.form-search'
+      })
+      window.autocomplete.setup()
+    })
+</script>
+
+<div class="search">
+    <form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" id="search_form" class="form-search" method="get" action="{% url 'haystacksearch' %}">
+        <meta itemprop="target" content="http://{{ domain }}/search/haystacksearch/?q={q}"/>
+        <div class="input-group stylish-input-group">
+            <span class="input-group-addon search-button">
+                <a id="search-button" title="{% trans 'Search' %}" href="#">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
+            <input autocomplete="off" itemprop="query-input" id="query-input" name="q" type="text" required class="form-control" placeholder="{% trans 'Search' %}">
+            <span class="erase fa fa-times-circle hide input-group-addon"></span>
+        </div>
+        <span class="message-helper">{% trans 'For example:' %}&nbsp;<a href="#">{% trans 'resolution №123' %}{# постановление №123 #}</a>,&nbsp;&nbsp;&nbsp;<a href="#">{% trans 'mayor of the city' %}{# мэр города #}</a>,&nbsp;&nbsp;&nbsp;<a href="#">{% trans 'honorary citizens' %}{# почетные граждане #}</a></span>
+    </form>
+
+</div>
+<div class="ac-results" style="display: none"></div>
+
+<script>
+$(function() {
+    "use strict";
+    $('.message-helper a').click(function(e){
+        $('input[name="q"]', $(this).closest('form')).val($(e.currentTarget).text())
+        return false
+    })
+});
+</script>

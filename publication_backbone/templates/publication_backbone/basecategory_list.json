@@ -1,0 +1,6 @@
+{% templatetag openbrace %}{% with object_template_name='publication_backbone/category/_meta_object.json' %}{% comment %}
+{% endcomment %}"meta": {
+"catalog_base_uri": "{% url 'publication_list' %}"
+},
+"objects": [{% for object in object_list %}{% include object_template_name with object=object %}{% if not forloop.last %}, {% endif %}{% endfor %}]
+{% endwith %}{% templatetag closebrace %}

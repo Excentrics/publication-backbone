@@ -1,0 +1,5 @@
+{% load publication_backbone_utils_tags %}{% templatetag openbrace %}{% block default %}{% comment %}
+{% endcomment %}{% with level=0 objects=''|make_list %}{% with meta_tree_nodes_template_name='publication_backbone/rubricator/_meta_tree_nodes.json' object_template_name='publication_backbone/rubricator/_meta_tree_object.json' %}{% comment %}
+{% endcomment %}{% include meta_tree_nodes_template_name with rubrics=object_list tagged_rubrics=root.get_children_dict rubrics_parent=root.rubric template_name=meta_tree_nodes_template_name level=level objects=objects attrs=root.attrs only %}
+"objects": [{% for object in objects %}{% include object_template_name with object=object only %}{% if not forloop.last %}, {% endif %}{% endfor %}]
+{% endwith %}{% endwith %}{% endblock %}{% templatetag closebrace %}

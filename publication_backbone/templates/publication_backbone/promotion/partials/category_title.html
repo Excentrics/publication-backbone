@@ -1,0 +1,47 @@
+{% load i18n %}<%
+    var pretty_concat = function( items ) {
+            return  _.map(items, function(item) { return item.name }).join(" {% trans 'or' %} ")
+        }
+    ,   subj_and_rel
+    if ( subjects.length ) {
+        if ( relations.length ) {
+            var f_rels = _.filter(relations, function(obj) {
+                    return obj.direction == "b" || obj.direction == "f"
+                })
+            ,   r_rels = _.filter(relations, function(obj) {
+                    return obj.direction == "b" || obj.direction == "r"
+                })
+            subj_and_rel = pretty_concat(subjects)
+            if ( r_rels.length ) {
+                subj_and_rel = pretty_concat(r_rels) + " → " + subj_and_rel
+            }
+            if ( f_rels.length ) {
+                subj_and_rel = subj_and_rel + " → " + pretty_concat(f_rels)
+            }
+        } else {
+            subj_and_rel = "{% trans 'subject' %}" + ": " + pretty_concat(subjects)
+        }
+    } else if ( relations.length ) {
+        subj_and_rel = "{% trans 'relation' %}" + ": " + pretty_concat(relations)
+    } else {
+        subj_and_rel = ""
+    }
+    {% block navigation %}
+    if ( category ) {
+        var uri_tail = ""
+        if ( subjects.length ) {
+            uri_tail += "subj/" + _.pluck(subjects, 'id').join(';') + "/"
+        }
+        if ( relations.length ) {
+            uri_tail += "rel/" + _.pluck(relations, 'id').join(';') + "/"
+        }
+        if ( orderingAlgorithm ) {
+            uri_tail += "?order_by=" + orderingAlgorithm.id
+        }
+        %><a href="<%- category.catalog_resource_uri + uri_tail %>" title="<%- subj_and_rel %>"><%= category.name %></a>&nbsp;<a class="link-icon" href="<%- category.catalog_resource_uri + uri_tail %>" title="<%- category.name %>"><i class="fa fa-external-link-square"></i></a><%
+        if ( group ) {
+            %><i class="ex-divider"></i><%= group.name %><%
+        }
+    }
+    {% endblock %}
+%>

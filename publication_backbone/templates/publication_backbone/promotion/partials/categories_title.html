@@ -1,0 +1,18 @@
+{% extends "publication_backbone/promotion/partials/category_title.html" %}
+{% block navigation %}
+    if ( is_single ) {
+        var uri_tail = ""
+        if ( subjects.length ) {
+            uri_tail += "subj/" + _.pluck(subjects, 'id').join(';') + "/"
+        }
+        if ( relations.length ) {
+            uri_tail += "rel/" + _.pluck(relations, 'id').join(';') + "/"
+        }
+        if ( orderingAlgorithm ) {
+            uri_tail += "?order_by=" + orderingAlgorithm.id
+        }
+        %><a href="<%= catalog_resource_uri + uri_tail %>" title="<%= subj_and_rel %>" class="ex-js-open-category"><%= name %></a>&nbsp;<a class="link-icon ex-js-open-category" href="<%= catalog_resource_uri + uri_tail %>" title="<%= name %>"><i class="fa fa-external-link-square"></i></a><%
+    } else {
+        %><span class="ex-js-open-category"><%= name %></span><%
+    }
+{% endblock %}

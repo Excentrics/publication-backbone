@@ -1,0 +1,9 @@
+{% load thumbnail %}{% templatetag openbrace %}
+{% block default %}"id": {% block object_id %}{{ object.id }}{% endblock %},
+"resource_uri": "{{ object.get_absolute_url }}",
+"name": "{{ object.get_name|escapejs }}",
+"slug": "{{ object.slug|escapejs }}",
+"method": "{{ object.get_classification_method }}",{% if object.tags %}
+"tags": "{{ object.tags|escapejs }}",{% endif %}
+"parent_id": {% if object.parent_id %}{{ object.parent_id }}{% else %}null{% endif %}{% endblock %}
+{% templatetag closebrace %}

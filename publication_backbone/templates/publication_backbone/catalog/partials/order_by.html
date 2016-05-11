@@ -1,0 +1,22 @@
+{% load i18n %}
+<% if ( algorithms.length > 1 ) {
+    var key = null %>
+    <ul class="ex-inline">
+		<li>
+			<span>{% trans 'Sort:' %}</span>
+		</li>
+		<li>
+			<div class="ex-sort-dropdown">
+		        <a href="#" class="ex-btn ex-btn-default ex-js-dropdown-toggle"><% if ( orderBy ){
+		            key = orderBy.id %><%= orderBy.name %><% } %>&nbsp;<span class="ex-icon-caret-down"></span></a>
+		        <ul class="ex-dropdown-menu2">
+		        <% _.each(algorithms, function( algorithm ) { %>
+		            <% if ( algorithm.id != key ){ %>
+		            <li><a href="#" class="ex-js-order-by" data-algorithm="<%= algorithm.id %>"><%= algorithm.name %></a></li>
+		            <% } %>
+		        <% }) %>
+		        </ul>
+		    </div>
+		</li>
+	</ul>
+<% } %>

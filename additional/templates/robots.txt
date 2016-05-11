@@ -1,0 +1,38 @@
+User-agent: Yandex
+Allow: /publications/feed/
+Allow: /
+Disallow: /admin/
+Disallow: /public/
+Disallow: /accounts/
+Disallow: /publication/captcha/
+Disallow: /publication/ckeditor/
+Disallow: /publication/category/
+Disallow: /publication/publication_group/
+Disallow: /publication/rubricator/
+Host: {{ domain }}
+Crawl-delay: 4.5
+Sitemap: http://{{ domain }}/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /public/
+Disallow: /accounts/
+Disallow: /publication/captcha/
+Disallow: /publication/ckeditor/
+Disallow: /publication/category/
+Disallow: /publication/publication_group/
+Disallow: /publication/rubricator/
+Sitemap: http://{{ domain }}/sitemap.xml
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /public/
+Disallow: /accounts/
+Disallow: /publication/captcha/
+Disallow: /publication/ckeditor/
+Disallow: /publication/category/
+Disallow: /publication/publication_group/
+Disallow: /publication/rubricator/
+Sitemap: http://{{ domain }}/sitemap.xml

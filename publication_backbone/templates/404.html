@@ -1,0 +1,5 @@
+{% extends "publication_backbone/404.html" %}
+{% load publication_backbone_tags %}
+
+{% block canonical %}{% site_domain as domain %}<link rel="canonical" href="http://{{ domain }}/404/"/>{% endblock %}
+

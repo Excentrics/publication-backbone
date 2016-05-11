@@ -1,0 +1,72 @@
+{% extends "admin/change_form.html" %}
+{% load i18n l10n staticfiles admin_urls %}
+{% load url from future %}
+
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        &rsaquo; <a href="{% url 'admin:app_list' app_label=app_label %}">{% trans app_label|capfirst|escape %}</a>
+        &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+        &rsaquo; {% trans 'Make sub rubrics structure by additional publications attributes' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+<form action="" method="post">{% csrf_token %}
+    {% block submit_buttons_top %}{% include 'publication_backbone/admin/actions/_submit_row.html' %}{% endblock %}
+
+    {% if error_message %}<p class="errornote"><strong>{{ error_message }}</strong></p>{% endif %}
+
+    {% if form.fields %}
+
+    <fieldset class="module aligned">
+        {% comment %}<div class="description">Some description here...</div>{% endcomment %}
+
+        <div class="form-row{% if form.fields|length_is:'1' and form.errors %} errors{% endif %}{% for field in form %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
+            {% if form.fields|length_is:'1' %}{{ form.errors }}{% endif %}
+            {% for field in form %}
+                <div{% if not form.fields|length_is:'1' %} class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}"{% endif %}>
+                    {% if not form.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                    {% if field.is_checkbox %}
+                        {{ field.field }}{{ field.label_tag }}
+                    {% else %}
+                        {{ field.label_tag }}
+                        {% if field.is_readonly %}
+                            <p>{{ field.contents|linebreaksbr }}</p>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endif %}
+                    {% if field.field.help_text %}
+                        <p class="help">{{ field.field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </fieldset>
+
+    {% endif %}
+
+    <div>
+        <fieldset class="module aligned">
+            <h2>{% blocktrans %}Selected {{ objects_name }}{% endblocktrans %}</h2>
+            <div class="form-row field-publication">
+                {% for object in to_proceed %}
+                    {{ object|unordered_list|safe }}
+                {% endfor %}
+            </div>
+            {% for obj in queryset %}
+                <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
+            {% endfor %}
+        </fieldset>
+    </div>
+
+    <input type="hidden" name="action" value="make_rubrics_by_publications_attributes" />
+    <input type="hidden" name="post" value="yes" />
+
+    {% block submit_buttons_bottom %}{% include 'publication_backbone/admin/actions/_submit_row.html' %}{% endblock %}
+</form>
+</div>
+{% endblock %}

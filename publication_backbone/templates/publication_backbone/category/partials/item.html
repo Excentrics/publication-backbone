@@ -1,0 +1,20 @@
+<% if ( parent ) {
+    if ( class_name == 'categorydivider' ) { %>
+    <div class="ex-js-menu-item-container ex-menu-item-container ex-divider">&nbsp;</div><%
+    } else { %>
+    <div class="ex-js-menu-item-container ex-menu-item-container"><span class="ex-link"><i class="ex-icon-slug"></i><%
+        if ( class_name == 'category' ) {
+            %><a href="<%= catalog_resource_uri %>" class="ex-name"><%- name %></a><%
+        } else if ( class_name == 'categorylink' ) {
+            %><a href="<%= href %>" class="ex-name"><%- name %></a><%
+        } else {
+            %><span class="ex-name"><%- name %></span><%
+        }
+        if ( children.length ) {
+            %>&nbsp;<i class="ex-icon-caret"></i><%
+        } %></span></div><%
+        if ( children.length ) { %>
+    <ul class="ex-js-details ex-category-navbar-subitems"></ul><%
+        }
+    }
+} %>

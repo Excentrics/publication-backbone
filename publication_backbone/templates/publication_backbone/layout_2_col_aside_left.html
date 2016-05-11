@@ -1,0 +1,26 @@
+{% extends "publication_backbone/layout.html" %}{% load publication_backbone_utils_tags %}
+
+{% comment %} 
+Keep the same header and footer as the standard layout template but override the 
+main content area to split it into a sidebar and a content block
+{% endcomment %}
+
+
+{% block content %}
+    <div>
+        <div class="container">
+            <div class="row">
+                {% with col_md=12 tag_name='aside' %}{{ request|select_attr:'col_md'|set_attr:col_md|empty_str }}{{ request|select_attr:'tag_name'|set_attr:tag_name|empty_str }}
+                <{{ tag_name }} class="col-md-3">
+                    {% block column_left %}{% endblock %}
+                </{{ tag_name }}>
+                {% endwith %}
+                {% with col_md=9 tag_name='div' %}{{ request|select_attr:'col_md'|set_attr:col_md|empty_str }}{{ request|select_attr:'tag_name'|set_attr:tag_name|empty_str }}
+                <{{ tag_name }} class="col-md-{{ col_md }}">
+                {% block column_center %}{% endblock %}
+                </{{ tag_name }}>
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

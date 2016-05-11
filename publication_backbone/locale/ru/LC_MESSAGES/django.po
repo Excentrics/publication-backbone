@@ -1,0 +1,1683 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Publication Backbone\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-31 18:16+0300\n"
+"PO-Revision-Date: 2016-04-01 12:01+0300\n"
+"Last-Translator: 1 <1>\n"
+"Language-Team: Excentrics <info@excentrics.ru>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: admin/actions.py:71 admin/actions.py:138 admin/actions.py:206
+#: admin/actions.py:275 admin/actions.py:347 admin/actions.py:411
+#, python-format
+msgid "Successfully proceed %(count)d %(items)s."
+msgstr "Успешно обработано %(count)d %(items)s."
+
+#: admin/actions.py:84 admin/actions.py:151 admin/actions.py:219
+#: admin/actions.py:288
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: admin/actions.py:99
+#, python-format
+msgid "Set or unset rubrics for selected %(verbose_name_plural)s"
+msgstr "Установить или убрать рубрики для выбранных %(verbose_name_plural)s"
+
+#: admin/actions.py:167
+#, python-format
+msgid "Set description for selected %(verbose_name_plural)s"
+msgstr "Установить описание для выбранных %(verbose_name_plural)s"
+
+#: admin/actions.py:234
+#, python-format
+msgid "Set group for selected %(verbose_name_plural)s"
+msgstr "Установить группу для выбранных %(verbose_name_plural)s"
+
+#: admin/actions.py:303
+#, python-format
+msgid "Set estimated delivery for selected %(verbose_name_plural)s"
+msgstr "Установить срок поставки для выбраных %(verbose_name_plural)s"
+
+#: admin/actions.py:357
+#: templates/publication_backbone/admin/actions/merge_rubrics.html:11
+msgid "Merging rubrics"
+msgstr "Объединяемые рубрики"
+
+#: admin/actions.py:370
+#, python-format
+msgid "Merge selected %(verbose_name_plural)s with %(verbose_name)s"
+msgstr "Объединить выбранные %(verbose_name_plural)s с %(verbose_name)s"
+
+#: admin/actions.py:421
+msgid "Making sub rubrics structure by additional publications attributes"
+msgstr "Создаем структуру подрубрик по дополнительным атрибутам публикаций"
+
+#: admin/actions.py:434
+#: templates/publication_backbone/admin/actions/make_rubrics_by_publications_attibutes.html:11
+msgid "Make sub rubrics structure by additional publications attributes"
+msgstr "Создать структуру подрубрик по дополнительным атрибутам публикаций"
+
+#: admin/actions.py:445
+#, python-format
+msgid "Set rubrics from attributes for %s publications"
+msgstr "Были установлены рубрики для %s публикаций"
+
+#: admin/actions.py:452
+msgid "Set rubrics to publication by additional attributes"
+msgstr "Установить рубрики в публикации по его дополнительным атрибутам"
+
+#: admin/categoryadmin.py:97
+msgid "Rebuild categories"
+msgstr "Исправить внутреннюю структуру категорий"
+
+#: admin/changerubrictypeadmin.py:71 admin/changerubrictypeadmin.py:202
+#: admin/changerubrictypeadmin.py:203
+msgid "Change type"
+msgstr "Изменить тип"
+
+#: admin/changerubrictypeadmin.py:271 admin/modelcloneadmin.py:75
+msgid "{name} object with primary key {key} does not exist."
+msgstr "объект {name} с первичным ключом {key} не существует."
+
+#: admin/changerubrictypeadmin.py:352
+#, python-format
+msgid "Change %s type"
+msgstr "Изменить %s тип"
+
+#: admin/configadmin.py:36
+msgid "Constance doesn't support "
+msgstr "Constance не поддерживает"
+
+#: admin/configadmin.py:58 admin/configadmin.py:59
+msgid "Config"
+msgstr "Настройки"
+
+#: admin/configadmin.py:99
+msgid "Live settings updated successfully."
+msgstr "Настройки обновлены успешно."
+
+#: admin/configadmin.py:104
+msgid "PublicationBackbone config"
+msgstr "Настройки"
+
+#: admin/forms.py:29 admin/forms.py:40 admin/publicationadmin.py:45
+msgid "Rubrics"
+msgstr "Рубрики"
+
+#: admin/forms.py:44 admin/forms.py:55
+msgid "Parent"
+msgstr "Родитель"
+
+#: admin/forms.py:76
+msgid "Characteristic or mark"
+msgstr "Характеристика или метка"
+
+#: admin/forms.py:85
+msgid "Relation"
+msgstr "Отношение"
+
+#: admin/forms.py:89
+msgid "Target"
+msgstr "Цель"
+
+#: admin/forms.py:99
+msgid "Relation filter"
+msgstr "фильтр"
+
+#: admin/forms.py:108
+msgid "Category"
+msgstr "Категория"
+
+#: admin/forms.py:116
+msgid "Rubrics to set"
+msgstr "Рубрики для установки"
+
+#: admin/forms.py:117 admin/forms.py:120
+msgid "Use \"ctrl\" key for choose multiple rubrics"
+msgstr "Используйте клавишу \"ctrl\" для выбора нескольких рубрик"
+
+#: admin/forms.py:119
+msgid "Rubrics to unset"
+msgstr "Рубрики для снятия"
+
+#: admin/forms.py:134
+msgid "Description"
+msgstr "Описание"
+
+#: admin/forms.py:142
+msgid "Group"
+msgstr "Группа"
+
+#: admin/forms.py:149
+msgid "estimated delivery"
+msgstr "срок поставки"
+
+#: admin/forms.py:159
+msgid "Destination rubric"
+msgstr "Рубрика приемник"
+
+#: admin/forms.py:160
+msgid "Select destination rubric to merge"
+msgstr "Выбранная рубрика назначения для объединяемых рубрик"
+
+#: admin/modelcloneadmin.py:26
+msgid "Duplicate"
+msgstr "Дублировать"
+
+#: admin/publication_detail_template_admin.py:34
+#: admin/publication_detail_template_admin.py:170
+#: admin/publication_detail_template_admin.py:174
+msgid "Publication detail template"
+msgstr "Шаблона публикации по-умолчанию (только для чтения)"
+
+#: admin/publication_detail_template_admin.py:104
+msgid "Error! Permission denied!"
+msgstr "Доступ запрещен!"
+
+#: admin/publication_detail_template_admin.py:132
+msgid "Success. Publication template was saved."
+msgstr "Шаблон публикации успешно охранен."
+
+#: admin/publication_detail_template_admin.py:139 admin/styles_admin.py:134
+msgid "Nothing has changed."
+msgstr "Ни одно поле не изменено."
+
+#: admin/publication_detail_template_admin.py:144
+msgid "Publication detail template editor"
+msgstr "Редактор шаблона публикации"
+
+#: admin/publicationadmin.py:208 admin/staticplaceholderadmin.py:36
+msgid "Contents"
+msgstr "Содержимое"
+
+#: admin/rubricatoradmin.py:100
+msgid "Rebuild rubricator"
+msgstr "Исправить внутреннюю структуру рубрикатора"
+
+#: admin/styles_admin.py:40
+msgid "Custom"
+msgstr "Стили"
+
+#: admin/styles_admin.py:91
+msgid "Compile are not required into debug mode."
+msgstr "Компиляция не требуется поскольку включен режим отладки."
+
+#: admin/styles_admin.py:96
+msgid "Styles updated successfully."
+msgstr "Стили успешно обновлены."
+
+#: admin/styles_admin.py:138
+msgid "Styles editor"
+msgstr "Редактирование стилей"
+
+#: admin/styles_admin.py:164 admin/styles_admin.py:168
+msgid "styles"
+msgstr "Стили"
+
+#: apps.py:8
+msgid "Publication backbone"
+msgstr "Управление публикациями"
+
+#: apps.py:17
+msgid "Interview designer"
+msgstr "Конструктор викторин и опросов"
+
+#: apps.py:22
+msgid "Quiz designer"
+msgstr "Конструктор викторин"
+
+#: apps.py:26
+msgid "now"
+msgstr "сегодня"
+
+#: apps.py:27
+msgid "week"
+msgstr "неделя"
+
+#: apps.py:28
+msgid "week ago"
+msgstr "неделю назад"
+
+#: apps.py:29
+msgid "month"
+msgstr "месяц"
+
+#: apps.py:30
+msgid "month ago"
+msgstr "месяц назад"
+
+#: apps.py:31
+msgid "year"
+msgstr "год"
+
+#: apps.py:32
+msgid "year ago"
+msgstr "год назад"
+
+#: apps.py:33
+msgid "past"
+msgstr "прошлое"
+
+#: config/settings.py:8
+msgid "Count of items in catalog"
+msgstr "Количество показываемых публикаций каталога по-умолчанию"
+
+#: config/settings.py:9
+msgid "Item ordering: date_added_desc, name_asc, price_asc, price_desc"
+msgstr "Порядок сортировки: date_added_desc, name_asc, price_asc, price_desc"
+
+#: config/settings.py:10
+msgid "Count of items in promotion"
+msgstr ""
+"Количество выводимых публикаций на одной странице в слайдере публикаций"
+
+#: config/settings.py:11
+msgid ""
+"Item ordering in promotion: date_added_desc, name_asc, price_asc, price_desc"
+msgstr ""
+"Порядок сортировки публикаций в слайдере публикаций: date_added_desc (по "
+"дате добавления по убыванию), name_asc (по имени по возрастанию), price_asc "
+"(по цене по возрастанию), price_desc (по цене по убыванию)"
+
+#: config/settings.py:12
+msgid "Publication thumbnail image width, for example: 200"
+msgstr "Ширина миниатюры для публикации, например: 200"
+
+#: config/settings.py:13
+msgid "Publication thumbnail image height, for example: 200"
+msgstr "Высота миниатюры для каталога публикаций, например: 200"
+
+#: config/settings.py:14
+msgid "Publication thumbnail image background, for example: #ffffff"
+msgstr ""
+"Цвет заливки фона миниатюр публикаций для PNG файлов с прозрачным фоном, "
+"например: #ffffff"
+
+#: config/settings.py:15
+msgid "Default catalog title"
+msgstr "Заголовок каталога по умолчанию"
+
+#: config/settings.py:16
+msgid "Category menu orientation: horizontal, vertical"
+msgstr "Вид меню категорий: horizontal, vertical"
+
+#: config/settings.py:17
+msgid "Keyword for linking category widget elements"
+msgstr "Ключевое слово для привязки элементов виджета категорий"
+
+#: config/settings.py:18
+msgid "Number of results displayed in Live search"
+msgstr "Количество результатов выводимых при \"живом поиске\""
+
+#: config/settings.py:19
+msgid "Count of items in RSS feed"
+msgstr "Количество новостей для RSS ленты"
+
+#: management/commands/make_rubrics_by_publications_attributes.py:22
+msgid "Make sub rubrics structure by additional publications attributes."
+msgstr "Создать структуру подрубрик по дополнительным атрибутам публикаций"
+
+#: management/commands/make_rubrics_by_publications_attributes.py:30
+msgid "Target rubric id"
+msgstr "ID рубрики приемника"
+
+#: management/commands/make_rubrics_by_publications_attributes.py:38
+#: management/commands/set_publication_rubrics_by_attributes.py:33
+#, python-format
+msgid "No %(model)s matches the given `id`=`%(id)s`."
+msgstr "Нет %(model)s соответствующих `id`=`%(id)s`."
+
+#: management/commands/make_rubrics_by_publications_attributes.py:45
+msgid "Expected target `rubric`.`id`."
+msgstr "Ожидается в качестве назначения `rubric`.`id`."
+
+#: management/commands/make_rubrics_by_publications_attributes.py:49
+msgid "Target `rubric`.`attribute_mode` is not \"characteristic\" or \"mark\"."
+msgstr "Атрибут целевой рубрики не является характеристикой или меткой."
+
+#: management/commands/merge_rubrics.py:19
+msgid "Merge two rubrics in one."
+msgstr "Слияние двух рубрик в одну."
+
+#: management/commands/merge_rubrics.py:27
+msgid "Destination rubric id"
+msgstr "ID рубрики приемника"
+
+#: management/commands/merge_rubrics.py:34
+msgid "Source rubric id"
+msgstr "ID рубрики источника"
+
+#: management/commands/merge_rubrics.py:42
+#, python-format
+msgid "No %(model)s matches the given `id`=`%(id)d`."
+msgstr "Нет %(model)s у которых `id`=`%(id)d`."
+
+#: management/commands/merge_rubrics.py:49
+msgid "Expected destination `rubric`.`id`."
+msgstr "Ожидается в качестве назначения `rubric`.`id`."
+
+#: management/commands/merge_rubrics.py:51
+msgid "Expected source `rubric`.`id`."
+msgstr "Ожидается в качестве источника `rubric`.`id`."
+
+#: management/commands/merge_rubrics.py:53
+msgid "Can't merge `rubric` with itself."
+msgstr "Нельзя объединять рубрику с самой собой"
+
+#: management/commands/merge_rubrics.py:64
+msgid ""
+"A destination `rubric` may not be made a child of any of its descendants."
+msgstr "Рубрика назначения не может быть дочерней самой себе"
+
+#: management/commands/set_publication_rubrics_by_attributes.py:14
+msgid "Set rubrics for publication by it's additional attributes."
+msgstr "Установить рубрики в публикации по ее дополнительным атрибутам"
+
+#: management/commands/set_publication_rubrics_by_attributes.py:22
+msgid "Publication id"
+msgstr "ID публикации"
+
+#: management/commands/set_publication_rubrics_by_attributes.py:52
+msgid "Expected publication `publication`.`id`."
+msgstr "Ожидается `publication`.`id`."
+
+#: management/commands/set_publication_rubrics_by_attributes.py:66
+#, python-format
+msgid ""
+"Cant add rubric with id=%(rubric_id)s to publication id = %(publication_id)s."
+msgstr ""
+"Невозможно добавить рубрику с id=%(rubric_id)s в публикацию с id = "
+"%(publication_id)s."
+
+#: management/commands/set_publication_rubrics_by_attributes.py:75
+msgid ""
+"Cant delete additional attribute with id = %s to rubric with id=%(rubric_id)."
+msgstr ""
+"Невозможно удалить дополнительную характеристику id = %s для рубрики с id="
+"%(rubric_id)."
+
+#: models/defaults/category/base_category.py:22
+msgid "base category"
+msgstr "категория"
+
+#: models/defaults/category/base_category.py:23
+msgid "base categories"
+msgstr "категории"
+
+#: models/defaults/category/category.py:19 models_bases/publication.py:713
+#: models_bases/publication.py:743
+msgid "category"
+msgstr "категория"
+
+#: models/defaults/category/category.py:20
+msgid "publication categories"
+msgstr "категории"
+
+#: models/defaults/category/category_divider.py:19
+msgid "divider"
+msgstr "разделитель"
+
+#: models/defaults/category/category_divider.py:20
+msgid "categories dividers"
+msgstr "разделитель категорий"
+
+#: models/defaults/category/category_divider.py:26
+msgid "_"
+msgstr "_"
+
+#: models/defaults/category/category_link.py:17
+msgid "link"
+msgstr "ссылка"
+
+#: models/defaults/category/category_link.py:18
+msgid "links"
+msgstr "ссылки"
+
+#: models/defaults/category_publication_relation.py:15
+msgid "category publication relation"
+msgstr "отношение"
+
+#: models/defaults/category_publication_relation.py:16
+msgid "category publication relations"
+msgstr "отношения"
+
+#: models/defaults/publication.py:20 models/defaults/publication_group.py:14
+#: models/defaults/rubricator/rubric.py:17
+msgid "image"
+msgstr "изображение"
+
+#: models/defaults/publication.py:20
+msgid "This image used in publication list as main image of publication"
+msgstr ""
+"Это изображение используется как основное в списке публикаций. Если оно "
+"отсутствует будет использоваться первое изображение из галереи."
+
+#: models/defaults/publication.py:27 models_bases/publication.py:314
+#: models_bases/publication.py:315 models_bases/publication.py:772
+msgid "publication"
+msgstr "публикация"
+
+#: models/defaults/publication.py:28
+msgid "Publications"
+msgstr "Публикации"
+
+#: models/defaults/publication_characteristic_or_mark.py:14
+msgid "additional publication charsc or mark"
+msgstr "дополнительная характеристика или метка"
+
+#: models/defaults/publication_characteristic_or_mark.py:15
+msgid "additional publication chars or marks"
+msgstr "дополнительные характеристики или метки"
+
+#: models/defaults/publication_group.py:21
+msgid "publication group"
+msgstr "Группа"
+
+#: models/defaults/publication_group.py:22
+msgid "publication groups"
+msgstr "Группы"
+
+#: models/defaults/publication_image.py:14
+msgid "publication image"
+msgstr "изображение"
+
+#: models/defaults/publication_image.py:15
+msgid "publication images"
+msgstr "изображения"
+
+#: models/defaults/publication_related_category.py:15
+#: plugins/promo/models.py:21
+msgid "Display Order"
+msgstr "Порядок сортировки"
+
+#: models/defaults/publication_related_category.py:21
+msgid "publication related category"
+msgstr "категория связанных публикаций"
+
+#: models/defaults/publication_related_category.py:22
+msgid "publication related categories"
+msgstr "категории связанных публикаций"
+
+#: models/defaults/publication_relation.py:14 models_bases/publication.py:815
+msgid "publication relation"
+msgstr "отношение"
+
+#: models/defaults/publication_relation.py:15 models_bases/publication.py:816
+msgid "publication relations"
+msgstr "отношения"
+
+#: models/defaults/rubricator/determinant.py:17 models_bases/rubricator.py:272
+msgid "determinant"
+msgstr "детерминант"
+
+#: models/defaults/rubricator/determinant.py:18
+msgid "determinant rubricator"
+msgstr "рубрикатор детерминанты"
+
+#: models/defaults/rubricator/facet.py:17 models_bases/rubricator.py:254
+msgid "facet"
+msgstr "фасета"
+
+#: models/defaults/rubricator/facet.py:18
+msgid "facet rubricator"
+msgstr "рубрикатор фасеты"
+
+#: models/defaults/rubricator/hierarchy.py:19 models_bases/rubricator.py:263
+msgid "hierarchy"
+msgstr "иерархия"
+
+#: models/defaults/rubricator/hierarchy.py:20
+msgid "hierarchy rubricator"
+msgstr "рубрикатор иерархии"
+
+#: models/defaults/rubricator/rubric.py:27 models_bases/publication.py:773
+#: models_bases/publication.py:810
+msgid "rubric"
+msgstr "рубрика"
+
+#: models/defaults/rubricator/rubric.py:28
+msgid "publication rubricator"
+msgstr "рубрики"
+
+#: models/static_placeholder.py:14
+msgid "Placeholder title"
+msgstr "Заголовок"
+
+#: models/static_placeholder.py:15
+msgid "Placeholder name"
+msgstr "Имя"
+
+#: models/static_placeholder.py:15
+msgid "Only in latin charset a-z"
+msgstr "Используйте только латинские символы"
+
+#: models/static_placeholder.py:16
+msgid "site"
+msgstr "сайт"
+
+#: models/static_placeholder.py:17
+msgid "content"
+msgstr "содержимое"
+
+#: models/static_placeholder.py:22
+msgid "placeholder"
+msgstr "местозаполнитель"
+
+#: models/static_placeholder.py:23
+msgid "placeholders"
+msgstr "местозаполнители"
+
+#: models_bases/category.py:39 models_bases/rubricator.py:69
+#: models_bases/rubricator.py:74
+msgid "parent"
+msgstr "родитель"
+
+#: models_bases/category.py:41 models_bases/publication.py:277
+#: models_bases/rubricator.py:71
+msgid "name"
+msgstr "наименование"
+
+#: models_bases/category.py:43 models_bases/rubricator.py:86
+msgid "description"
+msgstr "описание"
+
+#: models_bases/category.py:44 models_bases/publication.py:279
+#: models_bases/rubricator.py:72
+msgid "slug"
+msgstr "синоним"
+
+#: models_bases/category.py:44 models_bases/rubricator.py:72
+msgid "Used for URLs, auto-generated from name if blank"
+msgstr "Используется авто-генерация URL, если это поле пустое"
+
+#: models_bases/category.py:45 models_bases/rubricator.py:76
+msgid "creation date"
+msgstr "дата создания"
+
+#: models_bases/category.py:47
+msgid "visible"
+msgstr "отображать в меню"
+
+#: models_bases/category.py:48 models_bases/rubricator.py:73
+msgid "path"
+msgstr "путь"
+
+#: models_bases/category.py:129 models_bases/publication.py:305
+msgid "rubrics"
+msgstr "рубрики"
+
+#: models_bases/category.py:193 plugins/picture/models.py:22
+msgid "URL"
+msgstr "URL"
+
+#: models_bases/category.py:193
+msgid "Universal Resource Locator"
+msgstr ""
+"Единый указатель ресурсов — единообразный локатор (определитель "
+"местонахождения) ресурса."
+
+#: models_bases/managers.py:174
+msgid "Alphabetical"
+msgstr "алфавиту"
+
+#: models_bases/managers.py:175
+msgid "Alphabetical: descending"
+msgstr "алфавиту по-убыванию"
+
+#: models_bases/managers.py:176
+msgid "Date Added: old first"
+msgstr "дате: сначала старые"
+
+#: models_bases/managers.py:177
+msgid "Date Added: new first"
+msgstr "дате: сначала новые"
+
+#: models_bases/mixins.py:62 models_bases/polymorphic_mptt/models.py:131
+msgid "type"
+msgstr "тип"
+
+#: models_bases/polymorphic_mptt/models.py:48
+msgid "The selected node cannot have child nodes."
+msgstr "Выбраный узел не может иметь дочерних узлов"
+
+#: models_bases/polymorphic_mptt/models.py:49
+msgid "A node may not be made a child of itself."
+msgstr "Узел не может быть дочерним сам себе"
+
+#: models_bases/publication.py:258
+msgid "added year"
+msgstr "Год добавления"
+
+#: models_bases/publication.py:261
+msgid "added month"
+msgstr "месяц"
+
+#: models_bases/publication.py:264
+msgid "added day"
+msgstr "день"
+
+#: models_bases/publication.py:278
+msgid "sub name"
+msgstr "подзаголовок"
+
+#: models_bases/publication.py:279
+msgid "For use into URL"
+msgstr "Используется при формировании URL данной публикации"
+
+#: models_bases/publication.py:280 plugins/video/models.py:16
+msgid "author"
+msgstr "источник / автор / фио"
+
+#: models_bases/publication.py:281
+msgid "lead"
+msgstr "ЛИД"
+
+#: models_bases/publication.py:282 models_bases/publication.py:776
+#: models_bases/rubricator.py:84
+msgid "tags"
+msgstr "Теги"
+
+#: models_bases/publication.py:282
+msgid "use semicolon as tag divider"
+msgstr "используйте точку с запятой в качестве разделителя тегов"
+
+#: models_bases/publication.py:283 models_bases/rubricator.py:80
+msgid "active"
+msgstr "активен"
+
+#: models_bases/publication.py:283
+msgid "If this flag disable the publication not show anywhere"
+msgstr ""
+"Если этот флаг не установлен публикация не будет отображаться в каталоге на "
+"сайте."
+
+#: models_bases/publication.py:285
+msgid "Comments enabled"
+msgstr "Разрешить комментарии"
+
+#: models_bases/publication.py:286
+msgid "Main material"
+msgstr "Основной материал"
+
+#: models_bases/publication.py:289
+msgid "group"
+msgstr "группа"
+
+#: models_bases/publication.py:290
+msgid "coalesce group id"
+msgstr "ID группы"
+
+#: models_bases/publication.py:292
+msgid "Content"
+msgstr "Содержимое"
+
+#: models_bases/publication.py:295
+msgid "date added"
+msgstr "дата создания"
+
+#: models_bases/publication.py:297
+msgid "Show date"
+msgstr "Выводить дату"
+
+#: models_bases/publication.py:300
+msgid "last modified"
+msgstr "дата изменения"
+
+#: models_bases/publication.py:484
+msgid "Group name"
+msgstr "Группа"
+
+#: models_bases/publication.py:596
+msgid "Number of rubrics"
+msgstr "Число рубрик"
+
+#: models_bases/publication.py:691 plugins/picture/models.py:25
+msgid "Picture"
+msgstr "Изображение"
+
+#: models_bases/publication.py:692
+msgid "Optional caption"
+msgstr "Заголовок"
+
+#: models_bases/publication.py:693
+msgid "Sort Order"
+msgstr "Порядок вывода"
+
+#: models_bases/publication.py:697 models_bases/publication.py:699
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: models_bases/publication.py:738
+msgid "bidirectional"
+msgstr "двунаправленный"
+
+#: models_bases/publication.py:739
+msgid "forward"
+msgstr "прямой"
+
+#: models_bases/publication.py:740
+msgid "reverse"
+msgstr "обратный"
+
+#: models_bases/publication.py:744
+#: templates/publication_backbone/category/partials/breadcrumb.html:32
+#: templates/publication_backbone/promotion/partials/category_title.html:25
+msgid "relation"
+msgstr "отношение"
+
+#: models_bases/publication.py:745
+msgid "Defines the relation using for filtering"
+msgstr "Отношение используемое для фильтрации"
+
+#: models_bases/publication.py:746
+msgid "relation direction"
+msgstr "тип направления связи"
+
+#: models_bases/publication.py:748
+msgid "Defines the direction of relation on which selection is carried out"
+msgstr "Определяет направление связи по которому осуществляется отбор"
+
+#: models_bases/publication.py:775
+msgid "value"
+msgstr "значение"
+
+#: models_bases/publication.py:777 models_bases/rubricator.py:85
+msgid "Space delimited tags, for example: \"red strikethrough\""
+msgstr "Теги разделенные пробелом, например: \"red strikethrough\""
+
+#: models_bases/publication.py:781
+msgid "additional publ. chars or mark"
+msgstr "дополнительная характеристика или метка"
+
+#: models_bases/publication.py:782
+msgid "additional publ. chars or marks"
+msgstr "дополнительные характеристики или метки"
+
+#: models_bases/publication.py:805
+msgid "from publication"
+msgstr "from publication"
+
+#: models_bases/publication.py:808 plugins/promo/models.py:24
+msgid "to publication"
+msgstr "to publication"
+
+#: models_bases/publication_group.py:24
+msgid "Name"
+msgstr "Наименование"
+
+#: models_bases/publication_group.py:25
+msgid "Slug"
+msgstr "Синоним"
+
+#: models_bases/publication_group.py:26
+msgid "Date added"
+msgstr "Дата создания"
+
+#: models_bases/publication_group.py:27
+msgid "Last modified"
+msgstr "Дата изменения"
+
+#: models_bases/publication_group.py:32
+msgid "Publication Group"
+msgstr "Группа"
+
+#: models_bases/publication_group.py:33
+msgid "Publication Groups"
+msgstr "Группы"
+
+#: models_bases/rubricator.py:43
+msgid "standard"
+msgstr "обычный"
+
+#: models_bases/rubricator.py:44
+msgid "show extra"
+msgstr "разворачивать при выводе"
+
+#: models_bases/rubricator.py:45
+msgid "show collapsed"
+msgstr "сворачивать при выводе"
+
+#: models_bases/rubricator.py:54
+msgid "none"
+msgstr "нет"
+
+#: models_bases/rubricator.py:55
+msgid "is characteristic"
+msgstr "характеристика"
+
+#: models_bases/rubricator.py:56
+msgid "is mark"
+msgstr "метка"
+
+#: models_bases/rubricator.py:57
+msgid "is relation"
+msgstr "отношение"
+
+#: models_bases/rubricator.py:61
+msgid "Delete restriction"
+msgstr "Ограничение на удаление"
+
+#: models_bases/rubricator.py:62
+msgid "Change parent restriction"
+msgstr "Ограничение на изменение родителя"
+
+#: models_bases/rubricator.py:63
+msgid "Change slug restriction"
+msgstr "Ограничение на изменение синонима"
+
+#: models_bases/rubricator.py:64
+msgid "Change subclass restriction"
+msgstr "Ограничение на изменение типа рубрики"
+
+#: models_bases/rubricator.py:65
+msgid "Has child restriction"
+msgstr "Ограничение на добавление потомков"
+
+#: models_bases/rubricator.py:66
+msgid "Tagged restriction"
+msgstr "Ограничение на использование в публикации"
+
+#: models_bases/rubricator.py:78
+msgid "display mode"
+msgstr "режим отображения"
+
+#: models_bases/rubricator.py:81
+msgid "attribute mode"
+msgstr "атрибут"
+
+#: models_bases/rubricator.py:83
+msgid "Specifying mode of getting attributes for publication"
+msgstr "Задает режим поведения атрибута публикации"
+
+#: models_bases/rubricator.py:87
+msgid "system flags"
+msgstr "системные флаги"
+
+#: models_bases/rubricator.py:190
+msgid "classification method"
+msgstr "метод классификации"
+
+#: plugins/content_gap/content_plugins.py:12
+#: plugins/form_designer_plugin/content_plugins.py:31
+#: plugins/promo/content_plugins.py:11 plugins/sitemap/content_plugins.py:15
+#: plugins/snippet/content_plugins.py:30 plugins/video/content_plugins.py:12
+#: plugins/yandex_map/content_plugins.py:12
+msgid "Advanced"
+msgstr "Продвинутые"
+
+#: plugins/content_gap/models.py:14
+msgid "CSS class"
+msgstr "CSS класс"
+
+#: plugins/content_gap/models.py:14
+msgid "CSS class for container"
+msgstr "CSS класс"
+
+#: plugins/content_gap/models.py:15
+msgid "Attributes"
+msgstr "Атрибуты"
+
+#: plugins/content_gap/models.py:15
+msgid "Attributes for container"
+msgstr "Cтрока атрибутов для контейнера начавшегося с этого разрыва"
+
+#: plugins/content_gap/models.py:16
+msgid "Background image"
+msgstr "Фоновое изображение"
+
+#: plugins/content_gap/models.py:16
+msgid "Image for container background"
+msgstr "Изображение для фона контейнера начавшегося с этого разрыва"
+
+#: plugins/content_gap/models.py:19
+msgid "Content gap"
+msgstr "Разрыв содержимого"
+
+#: plugins/content_gap/models.py:20
+msgid "Content gaps"
+msgstr "Разрывы содержимого"
+
+#: plugins/file/appsettings.py:6
+msgid "Default file"
+msgstr "По-умолчанию"
+
+#: plugins/file/appsettings.py:7
+msgid "Hidden file"
+msgstr "Скрытый"
+
+#: plugins/file/content_plugins.py:14 plugins/picture/content_plugins.py:13
+#: plugins/sub_menu/content_plugins.py:13 plugins/text/content_plugins.py:14
+msgid "Main"
+msgstr "Основные"
+
+#: plugins/file/models.py:18 plugins/file/models.py:25
+msgid "File"
+msgstr "Файл"
+
+#: plugins/file/models.py:19 plugins/picture/models.py:19
+msgid "Caption"
+msgstr "Заголовок"
+
+#: plugins/file/models.py:20 plugins/picture/models.py:21
+#: plugins/promo/models.py:25 plugins/sitemap/models.py:14
+#: plugins/sub_menu/models.py:14 plugins/yandex_map/models.py:22
+msgid "Template"
+msgstr "Шаблон"
+
+#: plugins/file/models.py:26
+msgid "Files"
+msgstr "Файлы"
+
+#: plugins/file/templates/publication_backbone/plugins/file/default.html:8
+#: plugins/file/templates/publication_backbone/plugins/file/default.html:16
+#: plugins/file/templates/publication_backbone/plugins/file/hidden.html:5
+msgid "File does not exist"
+msgstr "Файл не существует!"
+
+#: plugins/form_designer_plugin/models.py:10
+msgid "Form"
+msgstr "Форма"
+
+#: plugins/form_designer_plugin/models.py:13
+msgid "Form link"
+msgstr "Форма"
+
+#: plugins/form_designer_plugin/models.py:14
+msgid "Form links"
+msgstr "Формы"
+
+#: plugins/picture/appsettings.py:6
+msgid "Thumbnail picture / Gallery"
+msgstr "Масштабируемое изображение / Галерея"
+
+#: plugins/picture/appsettings.py:7
+msgid "Simple picture / Slider"
+msgstr "Простое изображение / Слайдер"
+
+#: plugins/picture/models.py:18
+msgid "Image"
+msgstr "Изображение"
+
+#: plugins/picture/models.py:20
+msgid "Author"
+msgstr "Источник / Автор / ФИО"
+
+#: plugins/picture/models.py:26
+msgid "Pictures"
+msgstr "Изображения"
+
+#: plugins/promo/appsettings.py:6
+msgid "Default promo"
+msgstr "По-умолчанию"
+
+#: plugins/promo/appsettings.py:7
+msgid "List promo"
+msgstr "В виде списка"
+
+#: plugins/promo/appsettings.py:8
+msgid "Top links promo"
+msgstr "Первая публикация с большой миниатюрой остальные списком"
+
+#: plugins/promo/appsettings.py:9
+msgid "Bottom links promo"
+msgstr "Первая публикация с большой миниатюрой остальные с маленькими"
+
+#: plugins/promo/forms.py:17
+msgid "Related publication"
+msgstr "Связанная публикация"
+
+#: plugins/promo/models.py:18
+msgid "categories"
+msgstr "категории"
+
+#: plugins/promo/models.py:20
+msgid "Display count"
+msgstr "Количество публикаций для отображения"
+
+#: plugins/promo/models.py:30
+msgid "Promo Plugin"
+msgstr "Промо"
+
+#: plugins/promo/models.py:31
+msgid "Promo Plugins"
+msgstr "Промо"
+
+#: plugins/sitemap/appsettings.py:6
+msgid "Default sitemap"
+msgstr "По-умолчанию"
+
+#: plugins/sitemap/models.py:17
+msgid "Sitemap"
+msgstr "Карта сайта"
+
+#: plugins/sitemap/models.py:18
+msgid "Sitemaps"
+msgstr "Карты сайта"
+
+#: plugins/snippet/content_plugins.py:16 plugins/snippet/models.py:10
+#: plugins/snippet/models.py:13 plugins/snippet/models.py:14
+msgid "HTML code"
+msgstr "HTML текст"
+
+#: plugins/snippet/content_plugins.py:17 plugins/snippet/models.py:10
+msgid ""
+"Enter the HTML code to display, like the embed code of an online widget."
+msgstr "Введите HTML код, например код встройки онлайн виджета."
+
+#: plugins/sub_menu/appsettings.py:6
+msgid "Default sub menu"
+msgstr "По-умолчанию"
+
+#: plugins/sub_menu/appsettings.py:7
+msgid "As string submenu"
+msgstr "В строку"
+
+#: plugins/sub_menu/models.py:13
+msgid "Max depth"
+msgstr "Максимальное количество уровней"
+
+#: plugins/sub_menu/models.py:19
+msgid "Sub menu"
+msgstr "Подменю"
+
+#: plugins/sub_menu/models.py:20
+msgid "Sub menus"
+msgstr "Подменю"
+
+#: plugins/text/models.py:16
+msgid "text"
+msgstr "текст"
+
+#: plugins/text/models.py:19 plugins/text/models.py:20
+msgid "Text"
+msgstr "Текст"
+
+#: plugins/video/models.py:12
+msgid "Youtube video code"
+msgstr "Код видео Youtube"
+
+#: plugins/video/models.py:12
+msgid "For example: 0PJBSRAzQKs"
+msgstr "Например: 0PJBSRAzQKs"
+
+#: plugins/video/models.py:13
+msgid "Video width"
+msgstr "Ширина контейнера"
+
+#: plugins/video/models.py:14
+msgid "Video height"
+msgstr "Высота контейнера"
+
+#: plugins/video/models.py:15
+msgid "title"
+msgstr "заголовок"
+
+#: plugins/video/models.py:18 plugins/video/models.py:24
+msgid "Video"
+msgstr "Видео"
+
+#: plugins/video/models.py:19
+msgid "Videos"
+msgstr "Видео"
+
+#: plugins/yandex_map/appsettings.py:6
+msgid "Default yandex map template"
+msgstr "шаблон яндекс-карты по умолчанию"
+
+#: plugins/yandex_map/appsettings.py:14
+msgid "public map"
+msgstr "народная карта"
+
+#: plugins/yandex_map/appsettings.py:15
+msgid "schema map"
+msgstr "схема"
+
+#: plugins/yandex_map/appsettings.py:16
+msgid "satellite map"
+msgstr "спутник"
+
+#: plugins/yandex_map/appsettings.py:17
+msgid "hybrid map"
+msgstr "гибрид"
+
+#: plugins/yandex_map/appsettings.py:21
+msgid "red"
+msgstr "красный"
+
+#: plugins/yandex_map/appsettings.py:22
+msgid "green"
+msgstr "зеленый"
+
+#: plugins/yandex_map/appsettings.py:23
+msgid "blue"
+msgstr "синий"
+
+#: plugins/yandex_map/appsettings.py:24
+msgid "yellow"
+msgstr "желтый"
+
+#: plugins/yandex_map/models.py:15
+msgid "caption"
+msgstr "заголовок"
+
+#: plugins/yandex_map/models.py:16
+msgid "address"
+msgstr "адрес"
+
+#: plugins/yandex_map/models.py:17
+msgid "latitude"
+msgstr "широта"
+
+#: plugins/yandex_map/models.py:18
+msgid "longitude"
+msgstr "долгота"
+
+#: plugins/yandex_map/models.py:19
+msgid "zoom"
+msgstr "масштаб"
+
+#: plugins/yandex_map/models.py:20
+msgid "map_type"
+msgstr "тип карты"
+
+#: plugins/yandex_map/models.py:21
+msgid "marker color"
+msgstr "цвет маркера"
+
+#: plugins/yandex_map/models.py:26
+msgid "Yandex Map"
+msgstr "Яндекс-карта"
+
+#: plugins/yandex_map/models.py:27
+msgid "Yandex Maps"
+msgstr "Яндекс-карты"
+
+#: search/backends/haystack_backend/forms.py:8
+msgid "Order by Relevance"
+msgstr "По релевантности"
+
+#: search/backends/haystack_backend/forms.py:9
+msgid "Order by Date"
+msgstr "По дате"
+
+#: search/backends/haystack_backend/forms.py:17
+msgid "Sort order"
+msgstr "Порядок сортировки"
+
+#: search/backends/haystack_backend/haystack_search.py:12
+msgid "Haystack Search"
+msgstr "Haystack Поиск"
+
+#: search/backends/haystack_backend/templates/search/search.html:6
+#: search/backends/haystack_backend/templates/search/search.html:19
+#: search/backends/haystack_backend/templates/search/search.html:30
+#: search/backends/haystack_backend/templates/search/search_form.html:104
+#: search/backends/haystack_backend/templates/search/search_form.html:108
+msgid "Search"
+msgstr "Поиск"
+
+#: search/backends/haystack_backend/templates/search/search.html:11
+msgid "Search for:"
+msgstr "Результаты поиска по запросу:"
+
+#: search/backends/haystack_backend/templates/search/search.html:74
+#: search/backends/haystack_backend/templates/search/search_form.html:85
+msgid "No results for search"
+msgstr "Нет результатов по запросу"
+
+#: search/backends/haystack_backend/templates/search/search.html:87
+#: templates/publication_backbone/templatetags/pagination/paginator.html:9
+#: templates/publication_backbone/templatetags/pagination/paginator.html:16
+#: templates/publication_backbone/templatetags/pagination/paginator.html:21
+msgid "Page"
+msgstr "Страница"
+
+#: search/backends/haystack_backend/templates/search/search.html:87
+#: templates/publication_backbone/catalog/partials/seo.html:33
+#: templates/publication_backbone/catalog/partials/stat.html:4
+#: templates/publication_backbone/seo/publication_detail/_category_seo.html:8
+#: templates/publication_backbone/seo/publication_detail/_category_seo.html:11
+#: templates/publication_backbone/seo/publication_list/_catalog_category_seo.html:27
+#: templates/publication_backbone/templatetags/pagination/paginator.html:9
+#: templates/publication_backbone/templatetags/pagination/paginator.html:16
+#: templates/publication_backbone/templatetags/pagination/paginator.html:21
+msgid "of"
+msgstr "из"
+
+#: search/backends/haystack_backend/templates/search/search_form.html:111
+msgid "For example:"
+msgstr "Например:"
+
+#: search/backends/haystack_backend/templates/search/search_form.html:111
+msgid "resolution №123"
+msgstr "постановление № 123"
+
+#: search/backends/haystack_backend/templates/search/search_form.html:111
+msgid "mayor of the city"
+msgstr "мэр города"
+
+#: search/backends/haystack_backend/templates/search/search_form.html:111
+msgid "honorary citizens"
+msgstr "почетные граждане"
+
+#: templates/admin/filters/rubric_tree.html:4
+msgid "Clear filter"
+msgstr "Сбросить фильтр"
+
+#: templates/admin/model_change_type/submit_line.html:4
+#: templates/admin/modelclone/submit_line.html:4
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/admin/model_change_type/submit_line.html:5
+#: templates/admin/modelclone/submit_line.html:5
+msgid "Save and add another"
+msgstr "Сохранить и добавить другой объект"
+
+#: templates/admin/model_change_type/submit_line.html:6
+#: templates/admin/modelclone/submit_line.html:6
+msgid "Save and continue editing"
+msgstr "Сохранить и продолжить редактирование"
+
+#: templates/admin/model_change_type/submit_line.html:8
+#: templates/admin/modelclone/submit_line.html:8
+#: templates/publication_backbone/admin/actions/_submit_row.html:3
+msgid "Save"
+msgstr "Сохранить"
+
+#: templates/publication_backbone/403.html:5
+#: templates/publication_backbone/403.html:9
+msgid "Permission denied!"
+msgstr "Доступ запрещен!"
+
+#: templates/publication_backbone/403.html:13
+msgid "We're sorry but you are not permitted to access this page."
+msgstr "Извините, доступ на эту страницу запрещен."
+
+#: templates/publication_backbone/404.html:5
+msgid "Page not found"
+msgstr "Страница не существует<br> или не найдена"
+
+#: templates/publication_backbone/404.html:9
+msgid "Page not found!"
+msgstr "Страница не найдена!"
+
+#: templates/publication_backbone/404.html:13
+msgid "We're sorry but the page you are looking for can't be found."
+msgstr "Извините, запрашиваемая страница не найдена."
+
+#: templates/publication_backbone/500.html:5
+#: templates/publication_backbone/500.html:9
+msgid "Server error!"
+msgstr "Серверная ошибка!"
+
+#: templates/publication_backbone/500.html:13
+msgid "We're sorry but something went terribly wrong."
+msgstr "Произошла непредвиденная ошибка."
+
+#: templates/publication_backbone/500.html:14
+msgid ""
+"This incident has been logged and will be addressed by an engineer as soon "
+"as possible."
+msgstr "Ошибка записана и будет сообщена администратору максимально быстро."
+
+#: templates/publication_backbone/admin/actions/make_rubrics_by_publications_attibutes.html:8
+#: templates/publication_backbone/admin/actions/merge_rubrics.html:8
+#: templates/publication_backbone/admin/actions/set_description.html:9
+#: templates/publication_backbone/admin/actions/set_estimated_delivery.html:9
+#: templates/publication_backbone/admin/actions/set_group.html:15
+#: templates/publication_backbone/admin/actions/set_selected_rubrics.html:8
+#: templates/publication_backbone/admin/stylesadmin/styles_change.html:94
+#: templates/publication_backbone/admin/templatesadmin/publication_detail_change.html:83
+msgid "Home"
+msgstr "Начало"
+
+#: templates/publication_backbone/admin/actions/make_rubrics_by_publications_attibutes.html:55
+#: templates/publication_backbone/admin/actions/merge_rubrics.html:55
+#, python-format
+msgid "Selected %(objects_name)s"
+msgstr "Выбранная(ые) %(objects_name)s"
+
+#: templates/publication_backbone/admin/actions/set_description.html:12
+#: templates/publication_backbone/admin/actions/set_estimated_delivery.html:12
+msgid "Set description for multiple publications"
+msgstr "Установить или убрать описание для нескольких публикаций"
+
+#: templates/publication_backbone/admin/actions/set_description.html:30
+#: templates/publication_backbone/admin/actions/set_estimated_delivery.html:30
+#: templates/publication_backbone/admin/actions/set_group.html:36
+msgid "Selected publications"
+msgstr "Выбраные публикации"
+
+#: templates/publication_backbone/admin/actions/set_group.html:18
+msgid "Set group for multiple publications"
+msgstr "Установить группу для нескольких публикаций"
+
+#: templates/publication_backbone/admin/actions/set_selected_rubrics.html:11
+msgid "Set rubrics for multiple objects"
+msgstr "Установить рубрики в нескольких объектах"
+
+#: templates/publication_backbone/admin/actions/set_selected_rubrics.html:23
+msgid "Make youre choice"
+msgstr "Выберите "
+
+#: templates/publication_backbone/admin/actions/set_selected_rubrics.html:27
+msgid "Select rubrics to set:"
+msgstr "Рубрики для установки:"
+
+#: templates/publication_backbone/admin/actions/set_selected_rubrics.html:28
+msgid "Select rubrics to unset:"
+msgstr "Рубрики для снятия:"
+
+#: templates/publication_backbone/admin/actions/set_selected_rubrics.html:29
+msgid "Publications to set or unset:"
+msgstr "Публикация для установки или снятия рубрик:"
+
+#: templates/publication_backbone/admin/stylesadmin/styles_change.html:75
+msgid "Edit values"
+msgstr "Редактируемые данные"
+
+#: templates/publication_backbone/admin/stylesadmin/styles_change.html:79
+msgid "Default values (readonly)"
+msgstr "Значение по-умолчанию (только чтение)"
+
+#: templates/publication_backbone/admin/templatesadmin/publication_detail_change.html:69
+msgid "Default publication detail template (readonly)"
+msgstr "Шаблон публикации по-умолчанию (только для чтения)"
+
+#: templates/publication_backbone/admin/templatesadmin/publication_detail_change.html:71
+msgid ""
+"To override default template, copy this text into edit field of template "
+"publication detail."
+msgstr ""
+"Для переопределения шаблона по-умолчанию скопируйте его текст в поле "
+"редактирования шаблона публикации."
+
+#: templates/publication_backbone/catalog/partials/howmany.html:4
+msgid "Quantity:"
+msgstr "Количество&nbsp;"
+
+#: templates/publication_backbone/catalog/partials/order_by.html:6
+msgid "Sort:"
+msgstr "Сортировать по&nbsp;"
+
+#: templates/publication_backbone/catalog/partials/seo.html:29
+#: templates/publication_backbone/templatetags/pagination/paginator.html:4
+msgid "Previous"
+msgstr "Предыдущее"
+
+#: templates/publication_backbone/catalog/partials/seo.html:33
+#: templates/publication_backbone/seo/publication_detail/_category_seo.html:8
+#: templates/publication_backbone/seo/publication_detail/_category_seo.html:11
+#: templates/publication_backbone/seo/publication_list/_catalog_category_seo.html:27
+msgid "items"
+msgstr "элемент(ы)"
+
+#: templates/publication_backbone/catalog/partials/seo.html:37
+#: templates/publication_backbone/templatetags/pagination/paginator.html:24
+msgid "Next"
+msgstr "Следующее"
+
+#: templates/publication_backbone/catalog/partials/stat.html:4
+msgid "Items"
+msgstr "Элемент(ы)"
+
+#: templates/publication_backbone/category/partials/breadcrumb.html:4
+#: templates/publication_backbone/category/partials/breadcrumb.html:28
+#: templates/publication_backbone/promotion/partials/category_title.html:3
+msgid "or"
+msgstr "или"
+
+#: templates/publication_backbone/category/partials/breadcrumb.html:23
+#: templates/publication_backbone/promotion/partials/category_title.html:22
+msgid "subject"
+msgstr "субъект"
+
+#: templates/publication_backbone/default_publication_detail.html:210
+msgid "More by theme"
+msgstr "Еще по теме"
+
+#: templates/publication_backbone/error.html:11
+msgid "Sorry!"
+msgstr "Ошибка!"
+
+#: templates/publication_backbone/error.html:14
+msgid "Return to previous page"
+msgstr "Вернуться назад"
+
+#: templates/publication_backbone/error.html:15
+msgid "Go to homepage"
+msgstr "Перейти на главную"
+
+#: templates/publication_backbone/partials/footer.html:24
+msgid "Terms of use"
+msgstr "Правила использования"
+
+#: templates/publication_backbone/partials/footer.html:32
+msgid "all prices are specified in rubles"
+msgstr "все цены указаны в рублях"
+
+#: templates/publication_backbone/partials/footer.html:39
+msgid "Develop by interactive agancy Excentrics"
+msgstr "Разработано в интерактивном агентстве «Excentrics®»"
+
+#: templates/publication_backbone/partials/footer.html:40
+msgid "Developed by"
+msgstr "Сделано в"
+
+#: templates/publication_backbone/partials/footer.html:40
+msgid "Develop of internet shop Excentrics"
+msgstr "Cоздание сайта «Excentrics®»"
+
+#: templates/publication_backbone/partials/footer.html:40
+msgid "Excentrics"
+msgstr "Эксцентрикс"
+
+#: templates/publication_backbone/ranges/_date.html:6
+msgid "Date"
+msgstr "Дата"
+
+#: templates/publication_backbone/ranges/_price.html:6
+msgid "Price"
+msgstr "Цена"
+
+#: templates/publication_backbone/rubricator/partials/rubric.html:24
+msgid "Info"
+msgstr "Информация"
+
+#: templates/publication_backbone/rubricator/partials/rubric.html:33
+msgid "Reset filter"
+msgstr "Сбросить фильтр"
+
+#: templates/publication_backbone/rubricator/partials/rubric.html:40
+msgid "All"
+msgstr "Все"
+
+#: templates/publication_backbone/seo/publication_detail/_description.html:5
+msgid "SKU"
+msgstr "Артикул"
+
+#: templates/publication_backbone/seo/publication_detail/_h1.html:39
+msgid "buy"
+msgstr "Купить"
+
+#: templates/publication_backbone/seo/publication_detail/_h1.html:39
+msgid "to order"
+msgstr "заказать"
+
+#: templates/publication_backbone/seo/publication_detail/_microdata.html:15
+msgid "In stock"
+msgstr "Есть в наличии"
+
+#: templates/publication_backbone/seo/publication_detail/_microdata.html:17
+msgid "Out of stock"
+msgstr "Не продается"
+
+#: templates/publication_backbone/seo/publication_list/_description.html:6
+msgid "page"
+msgstr "страница"
+
+#: templates/publication_backbone/terms_of_service.html:5
+#: templates/publication_backbone/terms_of_service.html:9
+msgid "Terms of service"
+msgstr "Условия использования"
+
+#: utils/contrib.py:104
+msgid "Error import customer name from address!"
+msgstr "Ошибка получения имени из адресных данных!"
+
+#: views/mixins.py:150
+#, python-format
+msgid "Empty list and '%(class_name)s.allow_empty' is False."
+msgstr "Пустой список, а '%(class_name)s.allow_empty' не установлено."
+
+#: views/publication.py:423
+msgid "RSS Feed title"
+msgstr "Сайт органов местного самоуправления города Белгорода. Новости."
+
+#: views/publication.py:425
+msgid "RSS Description title"
+msgstr ""
+"Лента новостей «Сайта органов местного самоуправления города Белгорода»"
+
+#~ msgid ""
+#~ "The method of sorting search results. If left empty, the results are "
+#~ "sorted by relevance. Possible values are: 'title', 'description', "
+#~ "'last_modified'."
+#~ msgstr ""
+#~ "Метод сортировки результатов поиска. Если оставить пустым, результаты "
+#~ "сортируются по релевантности. Возможные значения:: 'title', "
+#~ "'description', 'date_added'."
+
+#~| msgid "Order by date"
+#~ msgid "Order by Author"
+#~ msgstr "По автору"
+
+#~| msgid "Order by date"
+#~ msgid "Order by Title"
+#~ msgstr "По заголовку"
+
+#~| msgid "Order by date"
+#~ msgid "Order by Subname"
+#~ msgstr "По подзаголовку"
+
+#~ msgid "Sort by Date"
+#~ msgstr "По дате"
+
+#~ msgid "Sort by Relevance"
+#~ msgstr "По релевантности"
+
+#~ msgid "My orders"
+#~ msgstr "Мои заказы"
+
+#~ msgid "Change password"
+#~ msgstr "Изменить пароль"
+
+#~ msgid "Log out"
+#~ msgstr "Выйти"
+
+#~ msgid "Log in"
+#~ msgstr "Войти"
+
+#~ msgid "E-mail"
+#~ msgstr "Электронная почта"
+
+#~ msgid "Password"
+#~ msgstr "Пароль"
+
+#~ msgid "Login"
+#~ msgstr "Войти"
+
+#~ msgid "Register"
+#~ msgstr "Зарегистрироваться"
+
+#~ msgid "Home page"
+#~ msgstr "Перейти на главную"
+
+#~ msgid "<i class=\"icon-home\"></i>"
+#~ msgstr "<i class=\"icon-home\"></i>"
+
+#~ msgid "Previous page"
+#~ msgstr "Назад"
+
+#~ msgid "Next page"
+#~ msgstr "Вперед"
+
+#~ msgid "Is up to date"
+#~ msgstr "Актуален"
+
+#~ msgid "Question"
+#~ msgstr "Вопрос"
+
+#~ msgid "Date end"
+#~ msgstr "Дата окончания"
+
+#~ msgid "interview"
+#~ msgstr "Опрос"
+
+#~ msgid "interviews"
+#~ msgstr "Опросы"
+
+#~ msgid "Possible answer"
+#~ msgstr "Вариант ответа"
+
+#~ msgid "Answers count"
+#~ msgstr "Количество голосов"
+
+#~ msgid "interview answer"
+#~ msgstr "вариант ответа"
+
+#~ msgid "interview answers"
+#~ msgstr "варианты ответа"
+
+#~ msgid "Vote"
+#~ msgstr "Голосовать"
+
+#~ msgid "Total votes:"
+#~ msgstr "Проголосовало человек:"
+
+#, fuzzy
+#~| msgid "interview"
+#~ msgid "Interview"
+#~ msgstr "Опрос"
+
+#~ msgid "question"
+#~ msgstr "вопрос"
+
+#~ msgid "interview questions"
+#~ msgstr "вопросы"
+
+#~ msgid ""
+#~ "Managers email list for send order status. Use semi-colon for divide "
+#~ "emails."
+#~ msgstr ""
+#~ "Список адресов электронной почты менеджеров, которым будет приходить "
+#~ "уведомления об изменении статусов заказов. Используйте точку с запятой "
+#~ "для разделения адресов."
+
+#~ msgid "Catalog"
+#~ msgstr "Каталог"
+
+#~ msgid "Estimated delivery"
+#~ msgstr "Ожидается поставка"
+
+#~ msgid "Sold out"
+#~ msgstr "Нет в наличии"
+
+#~ msgid "Add to Cart"
+#~ msgstr "Добавить в корзину"
+
+#~ msgid "to"
+#~ msgstr "по"

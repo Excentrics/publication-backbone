@@ -1,0 +1,103 @@
+{% extends "admin/base_site.html" %}
+{% load admin_list admin_modify static i18n %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    {{ media.css }}
+    <style>
+        div.inline-group, div.tabular {
+            border: none; !important;
+        }
+        .django-ace-toolbar {
+            display: none !important;
+        }
+        .django-ace-editor {
+            float: left;
+            width: 100%;!important;
+        }
+        .inline-group .module h2 {
+            margin-bottom: 0!important;
+            padding-top: 0!important;
+            padding-bottom: 0!important;
+        }
+        .editor-row {
+            padding-bottom: 10px;
+            -webkit-box-shadow: #fff 0 0 2px inset !important;
+            -moz-box-shadow: #fff 0 0 2px inset !important;
+            box-shadow: #fff 0 0 2px inset !important;
+            background: #f1f1f1;background:rgba(255,255,255,0.2) !important;
+            text-align: right;
+            padding: 10px;
+        }
+        .editor-row input {
+            margin-left: 10px;
+        }
+        .one_panel {
+            margin: 0;
+            height: 100%;
+            width: 50%;
+            float: left;
+        }
+        .grey_panel {
+            margin: 0;
+            padding: 0;
+            height: 500px;
+            width: 100%;
+            background: #efefef;
+            overflow-x: hidden;
+            border-radius: 0;
+            border: none;
+            font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+            font-size: 12px;
+        }
+    </style>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
+{% endblock %}
+
+{% block bodyclass %}change-list{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <form id="styles-form" action="" method="post">{% csrf_token %}
+            {% include 'publication_backbone/admin/actions/_submit_row.html' %}
+            {% for field in styles_form %}
+                <div class="inline-group" id="site_preview">
+                    <div class="tabular inline-related">
+                        <fieldset class="module">
+                            <h2>{{ field.label }}</h2>
+                            <div class="one_panel">
+                                <h3>{% trans 'Edit values' %}</h3>
+                                {{ field }}
+                            </div>
+                            <div class="one_panel">
+                                <h3>{% trans 'Default values (readonly)' %}</h3>
+                                <textarea readonly=readonly rows="60" cols="80" class="grey_panel">{% for key, value in default_less.items %}{% if key == field.name %}{{ value }}{% endif %}{% endfor %}</textarea>
+                            </div>
+                       </fieldset>
+                    </div>
+                </div>
+            {% endfor %}
+            {% include 'publication_backbone/admin/actions/_submit_row.html' %}
+        </form>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <a href="../../">
+    {% trans "Home" %}
+  </a>
+   &rsaquo; 
+   <a href="../">
+     {%  trans app_label|capfirst|escape %}
+  </a>
+  &rsaquo; 
+  {{ opts.verbose_name_plural|capfirst }}
+</div>
+{% endblock %}

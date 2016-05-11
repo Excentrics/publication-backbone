@@ -1,0 +1,84 @@
+{% if in_group %}
+    {% if is_first %}
+        <div>
+    {% endif %}
+
+    <div class="placemark" style="display: none" data-latitude="{{ instance.latitude }}" data-longitude="{{ instance.longitude }}" data-color="{{ instance.color }}" data-zoom="{{ instance.zoom }}" data-map_type="{{ instance.map_type }}"{% if instance.caption %} data-caption="{{ instance.caption }}"{% endif %}{% if instance.address %} data-address="{{ instance.address }}"{% endif %}></div>
+
+    {% if is_last %}
+            <div class="yandexmap" id="yandex-map-{{ instance.id }}" data-mapid="{{ instance.id }}" style="width: 100%; height: 350px;"></div>
+            </div>
+
+            <script type="text/javascript">
+                $(function() {
+                var YandexMap{{ instance.id }};
+                ymaps.ready(init_map_{{ instance.id }});
+
+                function init_map_{{ instance.id }} () {
+                   var map_id = "yandex-map-{{ instance.id }}",
+                       $map = $("#"+map_id),
+                       placemarks = $map.siblings(".placemark");
+
+                    if (placemarks!=null){
+                        var first_pl = $(placemarks[0]).data();
+
+                        YandexMap{{ instance.id }} = new ymaps.Map(map_id, {
+                            center: [first_pl['latitude'], first_pl['longitude']],
+                            zoom: first_pl['zoom'],
+                            type: first_pl['map_type'],
+                            controls: ['smallMapDefaultSet']});
+
+                        for (index = 0; index < placemarks.length; ++index) {
+                            var pl_data = $(placemarks[index]).data(),
+                                pl_attr = {},
+                                pl_content = {};
+
+                            pl_attr.preset = 'islands#dotIcon';
+                            pl_attr.iconColor = pl_data['color'];
+
+                            if (pl_data['caption']!= undefined){
+                                pl_content.balloonContentHeader = pl_data['caption'];
+                                pl_content.hintContent = pl_data['caption'];
+                            }
+                            if (pl_data['address']!= undefined){
+                                pl_content.balloonContentBody = pl_data['address'];
+                            }
+
+                            var myPlacemark = new ymaps.Placemark([pl_data['latitude'], pl_data['longitude']], pl_content, pl_attr);
+                            YandexMap{{ instance.id }}.geoObjects.add(myPlacemark);
+                        }
+                    }
+                }
+            });
+            </script>
+    {% endif %}
+
+{% else %}
+
+    <div class="yandexmap" id="yandex-map-{{ instance.id }}" style="width: 100%; height: 350px;"></div>
+
+    <script type="text/javascript">
+        $(function() {
+        var YandexMap{{ instance.id }};
+        ymaps.ready(init_map_{{ instance.id }});
+
+        function init_map_{{ instance.id }} () {
+            YandexMap{{ instance.id }} = new ymaps.Map('yandex-map-{{ instance.id }}', {
+            center: [{{ instance.latitude }}, {{ instance.longitude }}],
+            zoom: {{ instance.zoom }},
+            type: '{{ instance.map_type }}',
+            controls: ['smallMapDefaultSet']
+        });
+
+        var myPlacemark{{ instance.id }} = new ymaps.Placemark([{{ instance.latitude }}, {{ instance.longitude }}], {
+
+            {% if instance.caption %}balloonContentHeader: "{{ instance.caption }}",
+            hintContent: "{{ instance.caption }}"{% endif %}{% if instance.address %},
+            balloonContentBody: "{{ instance.address }}"{% endif %}},
+            { preset: 'islands#icon', iconColor: '{{ instance.color }}'});
+
+        YandexMap{{ instance.id }}.geoObjects.add(myPlacemark{{ instance.id }});
+    }
+            });
+    </script>
+{% endif %}

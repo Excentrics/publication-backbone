@@ -1,0 +1,20 @@
+{% extends "publication_backbone/layout.html" %}
+{% load i18n placeholder_tags fluent_pages_tags publication_backbone_tags compress %}
+
+
+{% block title %}{% if page.meta_title %}{{ page.meta_title }}{% else %}{% site_name %}{% endif %}{% endblock %}
+{% block keywords %}{{ page.meta_keywords }}{% endblock %}
+{% block description %}{{ page.meta_description }}{% endblock %}
+{% block canonical %}{% site_domain as domain %}<link rel="canonical" href="http://{{ domain }}" />{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block page_title %}
+{% endblock %}
+
+{% block headertext %}{% endblock %}
+
+{% block column_center %}
+    {% page_placeholder "main" role='m' %}
+{% endblock %}

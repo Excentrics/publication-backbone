@@ -1,0 +1,8 @@
+{% extends 'publication_backbone/category/_object.json' %}{% load publication_backbone_utils_tags %}
+
+{% block default %}{{ block.super }}{% with children_ids=''|make_list %}{% for children in object.get_visible_children %}{{ children_ids|append_value:children.id|empty_str }}{% endfor %}{% if children_ids %},
+"children_ids": [{% for id in children_ids %}{{ id }}{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %}{% if category %}{% if object == category %},
+"status": "selected"{% elif object in category.get_ancestors_list %},
+"status": "ancestor"{% endif %}{% endif %}{% if object.description %},
+"short_description": "{{ object.description|truncatewords:10|truncatechars:80|escapejs }}"{% endif %}{% endwith %}{% endblock %}
+

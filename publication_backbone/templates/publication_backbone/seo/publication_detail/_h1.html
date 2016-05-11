@@ -1,0 +1,25 @@
+{% load i18n publication_backbone_utils_tags %}{% autoescape on %}{{ object|select_attr:"seo_update_h1"|set_attr:""|empty_str }}{{ object|select_attr:"seo_append_h1"|set_attr:""|empty_str }}{{ object|select_attr:"seo_prepend_h1"|set_attr:""|empty_str }}{% comment %}
+{% endcomment %}{% with marks=object.get_marks.all %}{% for mark in marks %}{% comment %}
+    {% endcomment %}{% if 'seo-h1' in mark.tags and object.seo_update_h1 == "" %}{% with value=mark.values|join:", " %}{% comment %}
+        {% endcomment %}{{ object|select_attr:"seo_update_h1"|set_attr:value|empty_str }}{% endwith %}{% comment %}
+    {% endcomment %}{% elif 'seo-h1-append' in mark.tags %}{% with value=mark.values|join:", " %}{% comment %}
+        {% endcomment %}{% if value|make_list|first in '.,; '|make_list %}{% with to_append=object.seo_append_h1|add:value %}{% comment %}
+            {% endcomment %}{{ object|select_attr:"seo_append_h1"|set_attr:to_append|empty_str }}{% endwith %}{% comment %}
+        {% endcomment %}{% else %}{% with to_append=object.seo_append_h1|add:" "|add:value %}{% comment %}
+            {% endcomment %}{{ object|select_attr:"seo_append_h1"|set_attr:to_append|empty_str }}{% endwith %}{% comment %}
+        {% endcomment %}{% endif %}{% endwith %}{% comment %}
+    {% endcomment %}{% elif 'seo-h1-prepend' in mark.tags %}{% with value=mark.values|join:", " %}{% comment %}
+        {% endcomment %}{% with to_prepend=value|add:" "|add:object.seo_prepend_h1 %}{% comment %}
+        {% endcomment %}{{ object|select_attr:"seo_prepend_h1"|set_attr:to_prepend|empty_str }}{% endwith %}{% comment %}
+        {% endcomment %}{% endwith %}{% comment %}
+    {% endcomment %}{% endif %}{% comment %}
+    {% endcomment %}{% endfor %}{% endwith %}{% comment %}
+{% endcomment %}{% if object.seo_update_h1 %}{% comment %}
+    {% endcomment %}{{ object.seo_update_h1 }}{% comment %}
+{% endcomment %}{% elif object.seo_prepend_h1 or object.seo_append_h1 %}{% comment %}
+    {% endcomment %}{{ object.seo_prepend_h1|add:object.get_name|add:object.seo_append_h1 }}{% comment %}
+{% endcomment %}{% elif object.in_stock > 0 %}{% comment %}
+    {% endcomment %}{% if object.unit_price %}{% trans 'buy' %}{% else %}{% trans 'to order' %}{% endif %} {{ object.get_name }}{% comment %}
+{% endcomment %}{% else %}{% comment %}
+    {% endcomment %}{{ object.get_name }}{% comment %}
+{% endcomment %}{% endif %}{% endautoescape %}

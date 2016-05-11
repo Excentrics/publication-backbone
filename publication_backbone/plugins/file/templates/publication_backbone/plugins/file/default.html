@@ -1,0 +1,20 @@
+{% load i18n publication_backbone_tags %}{% spaceless %}
+    {% if in_group %}
+        {% if is_first %}
+            <div class="well characteristics">
+        {% endif %}
+                <div class="file-plugin">
+                    <i class="fa fa-file-text"></i>
+                    <a class="file-{{ext}}" href="{{ file.url }}">{{ instance }}</a><span class="file-size">{% if file|filename %}{{ file.size|filesizeformat }}{% else %}{% trans "File does not exist" %}{% endif %}</span>
+                </div>
+        {% if is_last %}
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="file-plugin">
+            <i class="fa fa-file-text"></i>
+            <a class="file-{{ext}}" href="{{ file.url }}">{{ instance }}</a><span class="file-size">{% if file|filename %}{{ file.size|filesizeformat }}{% else %}{% trans "File does not exist" %}{% endif %}</span>
+        </div>
+    {% endif %}
+{% endspaceless %}
+

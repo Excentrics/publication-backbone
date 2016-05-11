@@ -1,0 +1,1 @@
+{% load compress publication_backbone_tags %}{% get_config as config %}{% include "publication_backbone/category/_app.js" with object_list=object_list category=category name=config.PUBLICATION_BACKBONE_CATEGORY_KEY catalog_key='publication' menu_orientation=menu_orientation only %}

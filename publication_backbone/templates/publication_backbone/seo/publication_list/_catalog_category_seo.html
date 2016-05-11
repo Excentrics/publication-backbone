@@ -1,0 +1,52 @@
+{% load cache i18n publication_backbone_tags publication_backbone_pagination_tags publication_backbone_utils_tags staticfiles %}{% get_config as config %}
+<div class="ex-collapse">
+
+{% if category and category.rubrics %}
+    <dl>
+    {% for rubric in category.rubrics.active %}
+        {% if rubric.description %}
+        <dt>{{ rubric.name }}</dt>
+        <dd>{{ rubric.description }}</dd>
+        {% endif %}
+        {% for children_rubric in rubric.get_active_children %}
+            {% if children_rubric.description %}
+        <dt>{{ children_rubric.name }}</dt>
+        <dd>{{ children_rubric.description }}</dd>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </dl>
+{% endif %}
+
+
+{% with loc_cntx=''|make_dict %}{{ loc_cntx|select_value:'category_id'|set_value:'None'|empty_str }}{% if category %}{{ loc_cntx|select_value:'category_id'|set_value:category.id|empty_str }}{% endif %}
+{{ loc_cntx|select_value:'cache_timeout'|set_value:600|empty_str }}{% if page_obj.offset == 0 %}{{ loc_cntx|select_value:'cache_timeout'|set_value:86400|empty_str }}{% endif %}
+{% cache loc_cntx.cache_timeout catalog_category_seo loc_cntx.category_id page_obj.offset %}{% spaceless %}
+<div class="ex-seo-wrapper ex-state-collapsed">
+{% with last_index=page_obj.offset|add:page_obj.limit obj_count=page_obj.paginator.count %}
+    <h3>{% if category %}<a href="{% url 'publication_list' path=category.path %}" title="{{ category.name }}">{{ category.name }}</a>{% else %}{{ config.PUBLICATION_BACKBONE_DEFAULT_CATALOG_TITLE }}{% endif %}{% if publication_group %}: {{ publication_group.name }}{% endif %}{% if obj_count %}&nbsp; &nbsp;<small class="ex-seo-detail"><i class="ex-icon-details ex-expand"></i>{% trans 'items' %} {{ page_obj.offset|add:1 }} - {% if last_index < obj_count %}{{ last_index }}{% else %}{{ obj_count }}{% endif %} {% trans 'of' %} {{ obj_count }}</small>{% endif %}</h3>
+{% if obj_count %}
+    <div class="ex-seo-content">
+    <ul>
+    {% for object in object_list %}
+        <li>
+        {% if object.num_objects > 1 %}
+            <a href="{% if category %}{% url 'publication_list' path=category.path %}{% else %}{% url 'product_list' %}{% endif %}group/{{ object.group.get_product_reference }}/">{% if category %}{{ category.name }}: {% endif %}{{ object.group.get_name }}</a>
+        {% else %}
+            <a href="{{ object.get_absolute_url }}" title="{{ object.get_name }}">{{ object.get_name }}{% with characteristics=object.get_characteristics|slice:":3" %}{% if characteristics %} ({% for characteristic in characteristics %}{% if not forloop.first %}; {% endif %}{{ characteristic.name.strip|escape }}: {% for value in characteristic.values %}{{ value.strip|escape }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endfor %}){% endif %}{% endwith %}</a>
+        {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% if is_paginated %}{% url_by_not_empty_kwargs 'publication_list' path=category.path group_id=publication_group.get_product_reference as url_root %}
+{% paginator url_root=url_root %}
+{% endif %}
+    </div>
+{% endif %}
+{% endwith %}
+</div>
+{% endspaceless %}{% endcache %}{% endwith %}
+
+<script type="text/javascript" src="{% static "publication_backbone/js/seo_wrapper_toggle.js" %}"></script>
+
+</div>

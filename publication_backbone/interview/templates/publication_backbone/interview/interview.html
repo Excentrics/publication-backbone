@@ -1,0 +1,224 @@
+<div class="well vote">
+    <h2 class="bordered-title">{{ name }}</h2>
+    <div id="interview-{{ instance.pk }}-app"></div>
+    {% if instance.interview.final_text %}
+    <div id="interview-{{ instance.pk }}-info" class="interview-info ex-collapse">
+        <div class="panel panel-default">
+          <div class="panel-body">{{ instance.interview.final_text|safe }}</div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Templates -->
+<script type="text/template" id="interview-{{ instance.pk }}-item-template">
+    {% include "publication_backbone/interview/_item_interview.html" %}
+</script><!-- /#{{ name }}-item-template -->
+
+<script>
+(function($, Backbone, _) {
+
+    "use strict";
+
+
+    var name_prefix = 'interview-{{ instance.pk }}'
+    ,   urlRoot = '{% url "interview_vote" %}'
+
+
+    var InterviewView = Backbone.StatefulView.extend({
+
+        template: '#' + name_prefix + '-item-template'
+
+    ,   resultInfoSelector: '#' + name_prefix + '-info'
+
+    ,   resultInfoToggleClass: 'ex-collapse'
+
+    ,   initializeTemplate: function() {
+            this.template = _.template($(this.template).html());
+        }
+
+    ,   events: {
+            "click .js-vote": "onVote"
+        ,   "click .js-vote-select": "onVoteSelect"
+        }
+
+    ,   initialize: function(options) {
+            this.initializeTemplate()
+            this.trigger('initialized')
+        }
+
+    ,   render: function() {
+            var data = this.model.getJSON()
+            ,   showInfo = data.upToDate && !data.interviewed
+            this.$el.html(this.template(data))
+            $(this.resultInfoSelector).toggleClass( this.resultInfoToggleClass, showInfo)
+            return this
+        }
+
+    ,   onVote: function(e){
+            this.trigger("vote")
+            return false
+        }
+
+    ,   onVoteSelect: function(e){
+            this.trigger("voteselect", $(e.currentTarget).attr("value"))
+            return false
+        }
+
+
+    })
+
+    var InterviewItem = Backbone.Model.extend({
+        defaults: {
+            name: null
+        ,   count: 0
+        ,   is_right: false
+        }
+
+    })
+
+    var InterviewModel = Backbone.Model.extend({
+
+        urlRoot: urlRoot
+
+    ,   defaults: {
+            answerId: null
+        ,   interviewed: false
+        ,   upToDate: false
+        ,   interviewedCount: 0
+        }
+
+    ,   server_api: {
+            "format": "json",
+            "vote": function(){
+                return this.get('answerId')
+            }
+        }
+
+    ,   sync: function( method, model, options ) {
+            var csrf_token = BBNS.Cookie.get('csrftoken')
+            if ( csrf_token ){
+                options.headers = _.extend({'X-CSRFToken': csrf_token.get("value")}, options.headers)
+            }
+            return Backbone.Model.prototype.sync.call(this, method, model, options)
+        }
+
+    ,   parse: function(resp, options) {
+            if(_.has(resp, "question_list")){
+                if ( this.has("questions")){
+                     var questions = this.get("questions")
+                     questions.reset(resp.question_list)
+                }
+                delete(resp.question_list)
+            }
+            return Backbone.Model.prototype.parse.call(this, resp, options)
+        }
+
+    ,   getJSON: function(){
+            var data = this.toJSON()
+            _.extend(data, {
+                question_list: this.get('questions').toJSON()
+            })
+            return data
+        }
+    })
+
+    var InterviewCollection = Backbone.Collection.extend({model: InterviewItem})
+    // The Module
+    // --------------
+
+
+    var DummyQuiz = BBNS.Module.extend({
+
+        name: "Quiz"
+
+    ,   isDummy: true
+
+    ,   registerQuiz: function(options){}
+
+    })
+
+    var InterviewApp = BBNS.Module.extend({
+
+        name: "InterviewApplication"
+
+    ,   preinitialize: function(options){
+            if ( !_.has(BBNS.app.modules, "Quiz") ) {
+                var dummyQuiz = new DummyQuiz()
+            }
+            this.uses = _.union(this.uses, ["Quiz"])
+        }
+
+    ,   initialize: function(options){
+
+            var interview_cookie = BBNS.Cookie.get(this.name)
+            ,   interviewed = !!interview_cookie
+            ,   questions = options && options.interviewItems ? new InterviewCollection(options.interviewItems) : new InterviewCollection()
+            ,   is_quiz = !!questions.find(function(item){ return item.get("is_right") })
+            ,   chooseId = interviewed ? interview_cookie.get("value") : null
+            ,   upToDate = options && options.upToDate ? options.upToDate: false
+
+            this.model = new InterviewModel({
+                    id: options && options.interviewId ? options.interviewId: null
+                ,   interviewed: interviewed
+                ,   upToDate: upToDate
+                ,   questions: questions
+                ,   is_quiz: is_quiz
+                ,   chooseId: chooseId
+                ,   interviewedCount: options && options.interviewedCount ? options.interviewedCount : 0
+            })
+
+            if ( upToDate && is_quiz ) {
+                BBNS.app.modules["Quiz"].registerQuiz({model: this.model})
+            }
+
+            this.view = new InterviewView({
+                'el': "#" + name_prefix + "-app"
+            ,   model: this.model
+            })
+
+            this.view.render()
+
+            this.listenTo(this.view, "vote", this.voteEvent)
+            this.listenTo(this.view, "voteselect", this.voteselectEvent)
+            this.listenTo(this.model, "change", this.changeEvent)
+        }
+
+    ,   changeEvent: function(){
+            this.view.render()
+        }
+
+    ,   voteEvent: function(){
+            var answerId = this.model.get("answerId")
+            this.model.set({"chooseId": answerId, "interviewed": true}, {silent: true})
+            if ( this.model.get("is_quiz") ) {
+                this.model.collection.trigger("one_quiz_ready", this.model)
+            }
+
+            BBNS.Cookie.add([{
+                name: this.name
+            ,   value: answerId
+            ,   path: "/"
+            ,   days: 14
+            }])
+            this.model.save({}, {type: 'POST', wait: true})
+        }
+
+    ,   voteselectEvent: function(id){
+            this.model.set("answerId", id)
+        }
+
+    })
+
+    // Finally, we kick things off by creating the **Module**.
+    var interviewApp = new InterviewApp({
+        name: name_prefix
+    ,   interviewId: {{ instance.pk }}
+    ,   interviewedCount: {{interviewed_count}}
+    ,   upToDate: {% if is_up_to_date %}true{% else %}false{% endif %}
+    ,   interviewItems: [{% for object in questions %}{% templatetag openbrace %}"id": {{object.pk}}, "name": "{{object.name}}", "count": {{ object.perset_count }}, "is_right": {% if object.is_right %}true{% else %}false{% endif %}{% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}]
+    })
+
+
+})(jQuery, Backbone, _);
+</script>

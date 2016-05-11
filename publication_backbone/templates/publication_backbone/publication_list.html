@@ -1,0 +1,208 @@
+{% extends "publication_backbone/layout_2_col_aside_left.html" %}
+{% load i18n staticfiles compress publication_backbone_tags %}
+
+
+{% block scripts %}
+{% compress js %}
+{{ block.super }}
+    <!-- dependClass -->
+    <script type="text/javascript" src="{% static "beautiful_fields/slider/js/jquery.dependClass.js" %}"></script>
+    <!-- draggable -->
+    <script type="text/javascript" src="{% static "beautiful_fields/slider/js/draggable.js" %}"></script>
+    <!-- jslider -->
+    <script type="text/javascript" src="{% static "publication_backbone/lib/slider/js/jquery.slider.js" %}"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block canonical %}{% include 'publication_backbone/seo/publication_list/_canonical.html' %}{% endblock %}
+
+
+{% block keywords %}{% include 'publication_backbone/seo/publication_list/_keywords.html' %}{% endblock %}
+
+
+{% block description %}{% include 'publication_backbone/seo/publication_list/_description.html' %}{% endblock %}
+
+
+{% block title %}{% get_config as config %}{% comment %}
+    {% endcomment %}{% if category %}{% comment %}
+        {% endcomment %}{% with slice_param=category.name|length|stringformat:"s" %}{% if category.name != block.super|slice:slice_param  %}{{ category.name }} — {% endif %}{% endwith %}{% comment %}
+    {% endcomment %}{% else %}{% comment %}
+        {% endcomment %}{% with default_catalog_title=config.PUBLICATION_BACKBONE_DEFAULT_CATALOG_TITLE %}{% with slice_param=default_catalog_title|length|stringformat:"s" %}{% if default_catalog_title != block.super|slice:slice_param  %}{{ default_catalog_title }} — {% endif %}{% endwith %}{% endwith %}{% comment %}
+    {% endcomment %}{% endif %}{{ block.super }}
+{% endblock %}
+
+
+<!-- Header SEO -->
+{% block page_title %}<div class="ex-collapse"><h1>{{ category.name }}</h1><p>{{ category.description }}</p></div>{% endblock %}
+
+
+{% block breadcrumbs %}{% get_config as config %}
+<div class="container">{% include "publication_backbone/category/_category_breadcrumbs.html" with name='breadcrumbs' category_key=config.PUBLICATION_BACKBONE_CATEGORY_KEY catalog_key='publication' only %}</div>
+{% endblock %}
+
+
+{% block column_left %}
+
+        <div class="ex-catalog-filter">
+            <ul class="ex-catalog-filter-list">
+                <li class="ex-catalog-filter-item-block">
+                    <div class="ex-rubricator-content">
+                        {% include "publication_backbone/rubricator/_rubricator.html" with name=rubricator_name set=set category=category only %}
+                    </div>
+                </li>
+
+                <li class="ex-catalog-filter-item">
+                    {% include "publication_backbone/ranges/_date.html" %}
+                </li>
+
+            </ul>
+        </div>
+
+{% endblock %}
+
+
+{% block extrastyles %}
+{% compress css %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "beautiful_fields/slider/css/jslider.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "beautiful_fields/slider/css/jslider.blue.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "beautiful_fields/slider/css/jslider.orange.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "beautiful_fields/slider/css/jslider.round.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "beautiful_fields/slider/css/jslider.round.plastic.css" %}" type="text/css">
+{% endcompress %}
+{% endblock %}
+
+
+{% block column_center %}{% with statistic_app_name='statistic' orderby_app_name='orderby' howmany_app_name='howmany' pagination_app_name='pagination' %}
+
+<!-- TEMPLATES -->
+<!-- Statistic Template -->
+<script type="text/template" id="{{ statistic_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/stat.html" %}
+</script>
+
+<!-- Ordering template -->
+<script type="text/template" id="{{ orderby_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/order_by.html" %}
+</script>
+
+<!-- Howmany template -->
+<script type="text/template" id="{{ howmany_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/howmany.html" %}
+</script>
+
+<!-- Pagination template -->
+<script type="text/template" id="{{ pagination_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/paginator.html" %}
+</script>
+
+<!-- Catalog Item Template -->
+<script type="text/template" id="{{ name }}-item-template">
+{% include "publication_backbone/catalog/partials/item.html" %}
+</script><!-- /Catalog Item Template -->
+<!-- /TEMPLATES -->
+
+
+<!-- SCRIPTS (Statistic, Ordering, Howmany commons js) -->
+{% compress js %}
+
+<!-- Ordering -->
+<script type="text/javascript">
+// OrderingAlgorithm
+{% include "publication_backbone/catalog/models/OrderingAlgorithm.js" %}
+</script>
+
+<script type="text/javascript">
+// OrderByView
+{% include "publication_backbone/catalog/views/OrderByView.js" with name=orderby_app_name only %}
+</script>
+
+<!-- Howmany View -->
+<script type="text/javascript">
+{% include "publication_backbone/catalog/views/HowManyView.js" with name=howmany_app_name only %}
+</script>
+
+{% endcompress %}
+
+
+<!-- /SCRIPTS -->
+
+
+    <!-- Catalog app container -->
+    <div id="{{ name }}-app" class="ex-catalog">
+        <header>
+        <!-- FILTERS BLOCK -->
+            <div class="row">
+<!-- Ordering container-->
+{% include "publication_backbone/catalog/partials/_orderby_container.html" with app_name=orderby_app_name catalog_key=name only %}
+<!-- /Ordering container-->
+<!-- Howmany container -->
+{% include "publication_backbone/catalog/partials/_howmany_container.html" with app_name=howmany_app_name catalog_key=name only %}
+<!-- /Howmany container -->
+<!-- Statistic container -->
+{% include "publication_backbone/catalog/partials/_statistic_container.html" with app_name=statistic_app_name catalog_key=name only %}
+<!-- /Statistic container -->
+            </div>
+        <!--/FILTERS BLOCK -->
+        </header>
+        <section>
+            <ul class="ex-js-{{ name }}-list ex-catalog-list"></ul>
+        </section>
+        <footer>
+            <div class="ex-catalog-pagination">
+            <!-- Pagination container  -->
+                <ul class="js-{{ pagination_app_name }}-{{ name }}-app ex-pagination"></ul>
+            <!-- /Pagination container  -->
+            </div>
+        </footer>
+    </div><!-- /Catalog app container -->
+
+<!-- APPICATIONS -->
+{% compress js %}
+<!-- Ordering app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_orderby.js' with catalog_key=name name=orderby_app_name only %}
+</script>
+<!-- /Ordering app js -->
+
+<!-- Howmany  app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_howmany.js' with name=howmany_app_name catalog_key=name page_obj=page_obj only %}
+</script>
+<!-- /Howmany app js -->
+
+<!-- Statistic app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_statistic.js' with name=statistic_app_name catalog_key=name only %}
+</script>
+<!-- /Statistic app js -->
+
+<!-- Pagination app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_pagination.js' with name=pagination_app_name catalog_key=name only %}
+</script>
+<!-- /Pagination app js -->
+{% endcompress %}
+
+<!-- '{{ name }}' application -->
+<script type="text/javascript" src="{% include 'publication_backbone/catalog/_js_url.html' with view_name='publication_list_js' category=category publication_group=publication_group set=set subj=subj rel=rel only %}?order_by={{ order_by.id }}{% if page_obj.offset != 0 %}&offset={{ page_obj.offset }}{% endif %}"></script>
+<!-- /'{{ name }}' application -->
+<!-- /APPICATIONS -->
+
+{% comment %}
+<!-- Catalog SEO -->
+{% include "publication_backbone/catalog/partials/seo.html" with object_list=object_list category=category page_obj=page_obj only %}
+<!-- /Catalog SEO -->
+{% endcomment %}
+
+
+<!-- Catalog SEO -->
+{% include "publication_backbone/seo/publication_list/_catalog_category_seo.html" with object_list=object_list category=category publication_group=publication_group page_obj=page_obj is_paginated=is_paginated only %}
+<!-- /Catalog SEO -->
+
+{% endwith %}{% endblock %}
+
+
+
+

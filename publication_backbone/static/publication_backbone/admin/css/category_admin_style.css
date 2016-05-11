@@ -1,0 +1,33 @@
+.ex-category .ex-label, .ex-category.ex-label {
+    background-color: #777;
+    text-transform: capitalize;
+}
+
+.ex-category.category .ex-label {
+    background-color: #5bc0de;
+}
+
+.ex-category.categorydivider .ex-label {
+    background-color: #f0ad4e;
+}
+
+.ex-category.category .path {
+    padding: 0 0 0 5px;
+    color: #999;
+}
+
+.ex-category.categorydivider .path {
+    display: none;
+}
+
+.on .fa-eye {
+   color: #5cb85c;
+}
+
+.off .fa-eye {
+   color: #d9534f;
+}
+
+.off .fa-eye:before {
+   content: "\f070";
+}

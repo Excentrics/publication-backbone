@@ -1,0 +1,13 @@
+{% comment %}
+{% extends "publication_backbone/base.html" %}
+{% block body %}
+
+    <h1>{{object.name}}:</h1>
+    {{ object.get_real_instance_class_name_display }}<br />
+    {{object.description}}<br />
+    {{object.creation_date}}<br />
+    {{object.display_mode}}<br />
+    {{object.active}}<br />
+
+{% endblock %}
+{% endcomment %}

@@ -1,0 +1,8 @@
+
+<iframe itemprop="embedUrl" width="{{instance.width}}" height="{{instance.height}}" src="https://www.youtube.com/embed/{{instance.video_url}}" frameborder="0" allowfullscreen></iframe>
+{% if instance.author or instance.title %}
+        <div class="caption">
+            {% if instance.title %}{{ instance.title }}{% endif %}
+            {% if instance.author %}<small class="text-muted">{{instance.author}}</small>{% endif %}
+        </div>
+{% endif %}

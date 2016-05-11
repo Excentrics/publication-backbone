@@ -1,0 +1,37 @@
+{% load i18n %}<%
+if ( pageNumbers.length > 1 ) {
+
+    if ( hasPrevious ) {
+        %><li class="ex-prev"><a href="#" class="js-prev"><i class="ex-icon-chevron-left"></i></a></li><%
+    } else {
+        %><li class="ex-js-ignore ex-disabled ex-prev"><a href="#"><i class="ex-icon-chevron-left"></i></a></li><%
+    }
+
+    if ( !inLeadingRange ) {
+        _.each(pagesOutsideTrailingRange, function(n) {
+        %><li><a href="#" class="js-page" data-page="<%= n %>"><%= n %></a></li><%
+        })
+        %><li><span class="ex-separator">…</span></li><%
+    }
+
+    _.each(pageNumbers, function(n) {
+        if (currentPage == n) {
+        %><li class="ex-active"><span><%= n %></span></li><%
+        } else {
+        %><li><a href="#" class="js-page" data-page="<%= n %>"><%= n %></a></li><%
+        }
+    })
+
+    if ( !inTrailingRange ) {
+        %><li><span class="ex-separator">…</span></li><%
+        _.each(pagesOutsideLeadingRange.reverse(), function(n) {
+        %><li><a href="#" class="js-page" data-page="<%= n %>"><%= n %></a></li><%
+        })
+    }
+
+    if ( hasNext ) {
+        %><li class="ex-next"><a href="#" class="js-next"><i class="ex-icon-chevron-right"></i></a></li><%
+    } else {
+        %><li class="ex-js-ignore ex-disabled ex-next"><a href="#"><i class="ex-icon-chevron-right"></i></a></li><%
+    }
+} %>

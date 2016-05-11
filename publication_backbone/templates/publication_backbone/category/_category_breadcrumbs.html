@@ -1,0 +1,22 @@
+{% load i18n staticfiles compress %}
+<ol class="ex-breadcrumb" id="{{name}}-app"></ol>
+
+ <!-- Templates -->
+<script type="text/template" id="{{ name }}-item-template">
+    {% include 'publication_backbone/category/partials/breadcrumb.html' %}
+</script><!-- /#{{ name }}-menu-item-template -->
+<!-- /Templates -->
+
+<!-- Breadcrumbs application common requirements and app js -->
+{% compress js %}
+<!-- Breadcrumbs application common requirements js -->
+<script type="text/javascript">
+    {% include 'publication_backbone/category/views/BreadcrumbsView.js' %}
+</script>
+<!-- /Breadcrumbs application common requirements js -->
+<!-- Breadcrumbs app js -->
+<script type="text/javascript">
+    {% include 'publication_backbone/category/_app_breadcrumbs.js' with name=name category_key=category_key catalog_key=catalog_key only %}
+</script>
+<!-- /Breadcrumbs app js -->
+{% endcompress %}

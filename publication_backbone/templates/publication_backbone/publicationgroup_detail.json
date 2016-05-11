@@ -1,0 +1,24 @@
+{% extends 'publication_backbone/catalog/_object.json' %}{% load beautiful_fields_tags %}
+
+
+{% block default %}{{ block.super }}{% with characteristics=object.get_characteristics.all %}{% if characteristics %},
+"characteristics": {% templatetag openbrace %}
+{% for characteristic in characteristics %}"{{ characteristic.path|escapejs }}": {% templatetag openbrace %}
+    "k": "{{ characteristic.name.strip|escapejs }}",
+    "v": {% if characteristic.values|length == 1 %}"{{ characteristic.values.0|escapejs }}"{% else %}[{% for value in characteristic.values %}"{{ value|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %},
+    "t": "{{ characteristic.tags|join:' '|escapejs }}"
+    {% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% templatetag closebrace %}{% endif %}{% endwith %}{% with marks=object.get_marks.all %}{% if marks %},
+"marks": {% templatetag openbrace %}
+{% for mark in marks %}"{{ mark.path|escapejs }}": {% templatetag openbrace %}
+    "k": "{{ mark.name.strip|escapejs }}",
+    "v": {% if mark.values|length == 1 %}"{{ mark.values.0|escapejs }}"{% else %}[{% for value in mark.values %}"{{ value|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %},
+    "t": "{{ mark.tags|join:' '|escapejs }}"
+    {% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endfor %}
+{% templatetag closebrace %}{% endif %}{% endwith %}{% endblock %}
+
+
+{% block name %}"{{ object.get_name|escapejs }}"{% endblock %}
+
+
+{% block date %}["{{ object.get_date_added.0|date:"d M Y" }}", "{{ object.get_date_added.1|date:"d M Y" }}"]{% endblock %}

@@ -1,0 +1,239 @@
+{% extends "publication_backbone/layout_2_col_aside_right.html" %}
+{% load i18n publication_backbone_tags publication_backbone_utils_tags staticfiles thumbnail placeholder_tags compress %}
+
+{% block canonical %}{% include 'publication_backbone/seo/publication_detail/_canonical.html' %}{% endblock %}
+
+{% block keywords %}{% include 'publication_backbone/seo/publication_detail/_keywords.html' %}{% endblock %}
+
+{% block description %}{% include 'publication_backbone/seo/publication_detail/_description.html' %}{% endblock %}
+
+{% block title %}{% include 'publication_backbone/seo/publication_detail/_title.html' with base_page_title=block.super object=object only %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="container">
+        <ol class="ex-breadcrumb in-page">
+           {% include 'publication_backbone/category/partials/_breadcrumb_prefix.html' %}
+           {% if category %}
+                {% for ancestor in category.get_ancestors_list %}
+                    {% if ancestor.get_catalog_url %}
+                        <li><a href="{{ ancestor.get_catalog_url }}">{{ ancestor.name }}</a><i class="ex-divider"></i></li>
+                    {% else %}
+                        <li><a href="{{ ancestor.get_url }}"{% if ancestor.is_external %} rel="nofollow"{% endif %}>{{ ancestor.name }}</a><i class="ex-divider"></i></li>
+                    {% endif %}
+                {% endfor %}
+                {% if category.visible %}
+                    {% if category.get_catalog_url %}
+                        <li><a href="{{ category.get_catalog_url }}"><span itemprop="articleSection">{{ category.name }}</span></a><i class="ex-divider"></i></li>
+                    {% else %}
+                        <li><a href="{{ category.get_url }}"{% if category.is_external %} rel="nofollow"{% endif %}><span itemprop="articleSection">{{ category.name }}</span></a><i class="ex-divider"></i></li>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            <li class="ex-title">{{ object.get_name }}</li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block page_title %}{% endblock %}
+
+{% block column_center %}{% get_config as config %}
+    {% with marks=object.get_marks.all description=object.get_description author=object.get_author image=object.get_image publication_name=object.get_name %}
+        {% if marks %}{% with phrp=marks|check_marks_tag_on_key:"photo-reporting" %}{{ request|select_attr:'photo_reporting'|set_attr:phrp|empty_str }}{% endwith %}{% endif %}
+        <div class="{% for mark in marks %}{% for tag in mark.tags %}{% if tag and tag != 'hidden' %}{{ tag }} {% endif %}{% endfor %}{% endfor %}ex-publication">
+            {% if object.show_date %}<div class="pub-date" itemprop="datePublished" content="{{ object.date_added|date:'c' }}"><i class="fa fa-calendar"></i>&nbsp;{% if marks and marks|check_marks_tag_on_key:"news" %}{{ object.date_added|date:"d M Y H:m" }}{% else %}{{ object.date_added|date:"d M Y" }}{% endif %}</div>{% endif %}
+            <h1 itemprop="name">{% include 'publication_backbone/seo/publication_detail/_h1.html' with object=object only %}</h1>
+            {% if object.sub_name %}<h2 itemprop="alternateName" class="subhead">{{ object.sub_name|safe }}</h2>{% endif %}
+            {% if marks and marks|check_marks_tag_on_key:"person" and author %}
+                <div class="author">{{ author }}</div>
+            {% endif %}
+            {% if description %}<p itemprop="description" class="lead">{{ description }}</p>{% endif %}
+            {% if marks and image and marks|check_marks_tag_on_key:"news" %}
+                <div class="thumbnail">
+                    <img class="img-responsive" src="{% if image.width < 850 %}{{ image.url }}{% else %}{% thumbnail image '850' upscale=False background=config.PUBLICATION_BACKBONE_CATALOG_THUMBNAIL_BACKGROUND as im %}{{ im.url }}{% endthumbnail %}{% endif %}" alt="{{ object.get_name }}" title="{{ object.get_name }}">
+                </div>
+            {% endif %}
+            <div itemprop="articleBody">
+                {% with is_publication=True %}{{ request|select_attr:'is_publication'|set_attr:is_publication|empty_str }}
+                    {% render_placeholder object.content %}
+                {% endwith %}
+            </div>
+            {% if marks and not marks|check_marks_tag_on_key:"person" and author %}
+                <div class="text-right author">{{ author }}</div>
+            {% endif %}
+        </div>
+    {% endwith %}
+    <div class="bottom-padding"></div>
+{% endblock %}
+
+
+{% block content %}
+{{ block.super }}
+    {% if object.comments_enabled %}
+    <div class="hyper-comments">
+        <div class="container">
+            <div class="col-md-8">
+                {% include 'publication_backbone/partials/hyper-comments.html' %}
+            </div>
+        </div>
+    </div>
+    <div class="bottom-padding"></div>
+    {% endif %}
+    <div class="ex-related-category">
+    <div class="container">
+{% with related_categories=object.get_related_categories|to_list category_title_app_name='category_title' statistic_app_name='statistic' pagination_app_name='pagination' %}{% comment %}
+{% endcomment %}{% if not related_categories and category %}{% with dummy_related_category=''|make_dict %}{{ dummy_related_category|select_value:'category'|set_value:category|empty_str }}{{ related_categories|append_value:dummy_related_category|empty_str }}{% endwith %}{% endif %}{% comment %}
+{% endcomment %}{% if related_categories %}
+
+<!-- TEMPLATES -->
+<!-- Category Title Templates -->
+<script type="text/template" id="{{ category_title_app_name }}-app-template">
+{% include "publication_backbone/promotion/partials/category_title.html" %}
+</script>
+
+<!-- Statistic Templates -->
+<script type="text/template" id="{{ statistic_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/stat.html" %}
+</script>
+
+<!-- Pagination template -->
+<script type="text/template" id="{{ pagination_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/paginator.html" %}
+</script>
+<!-- /TEMPLATES -->
+
+        <div class="ex-related-categories-content">
+
+{% for related_category in related_categories %}{% with str_cat_id=related_category.category.id|stringformat:"s" %}{% with name=name|add:"_promotion_"|add:str_cat_id category=related_category.category publication_relations=related_category.category.publication_relations.all subj=""|make_list rel=""|make_list %}{% comment %}
+{% endcomment %}{% if publication_relations and related_category.publication %}{% for publication_relation in publication_relations %}{{ publication_relation.rubric|select_attr:"direction"|set_attr:publication_relation.relation_direction|empty_str }}{{ rel|append_value:publication_relation.rubric|empty_str }}{% endfor %}{{ subj|append_value:related_category.publication|empty_str }}{% endif %}
+
+<!-- Catalog Item Template -->
+<script type="text/template" id="{{ name }}-item-template">
+{% include "publication_backbone/catalog/partials/item.html" %}
+</script><!-- /Catalog Item Template -->
+
+    <!-- Promotion app container -->
+    <div id="{{ name }}-app" class="ex-promotion ex-promotion-plugin">
+        <header>
+            <div class="ex-promotion-title">
+            <!-- Category title container -->
+            {% include "publication_backbone/promotion/partials/_category_title_container.html" with app_name=category_title_app_name catalog_key=name only %}
+            <!-- /Category title container -->
+            </div>
+            <div class="ex-promotion-statistic">
+            <!-- Statistic container -->
+            {% include "publication_backbone/promotion/partials/_statistic_container.html" with app_name=statistic_app_name catalog_key=name only %}
+            <!-- /Statistic container -->
+            </div>
+            <div class="ex-promotion-pagination">
+            <!-- Pagination container  -->
+            <ul class="js-{{ pagination_app_name }}-{{ name }}-app ex-pagination"></ul>
+            <!-- /Pagination container  -->
+            </div>
+        </header>
+        <div>
+            {% promo_item_divider as divider %}
+            <ul class="ex-js-{{ name }}-list ex-promotion-list ex-unstyled{% if divider %} ex-catalog-grid-{{ divider }}-col{% endif %}"></ul>
+        </div>
+
+    </div><!-- /.{{ name }}-app -->
+
+<!-- APPICATIONS -->
+{% compress js %}
+<!-- Category Title app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/promotion/_app_category_title.js' with name=category_title_app_name catalog_key=name order_by=related_category.order only %}
+</script>
+<!-- /Category Title app js -->
+
+<!-- Statistic app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_statistic.js' with name=statistic_app_name catalog_key=name only %}
+</script>
+<!-- /Statistic app js -->
+
+<!-- Pagination app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_pagination.js' with name=pagination_app_name catalog_key=name only %}
+</script>
+<!-- /Pagination app js -->
+{% endcompress %}
+
+
+<!-- '{{ app_name }}' application -->
+<script type="text/javascript" src="{% include 'publication_backbone/catalog/_js_url.html' with view_name='publication_promotion_list_js' category=category publication_group=publication_group set=set subj=subj rel=rel only %}?order_by={{ related_category.order }}"></script>
+<!-- /'{{ app_name }}' application -->
+<!-- /APPICATIONS -->
+
+
+
+{% endwith %}{% endwith %}{% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        </div>
+    </div>
+
+<!-- SEO Catalog Last Updates -->
+{% block catalog_category_seo %}{% include 'publication_backbone/seo/publication_detail/_catalog_category_seo.html' %}{% endblock catalog_category_seo %}
+<!-- /SEO Catalog Last Updates -->
+
+{% endblock content %}
+
+
+{% block column_right %}{% get_config as config %}
+    {% with marks=object.get_marks.all characteristics=object.get_characteristics.all image=object.get_image publication_name=object.get_name author=object.get_author %}
+        {% if marks and image and marks|check_marks_tag_on_key:"person" %}
+            <div class="thumbnail person">
+                <img class="img-responsive" src="{% thumbnail image '600' upscale=True background=config.PUBLICATION_BACKBONE_CATALOG_THUMBNAIL_BACKGROUND as im %}{{ im.url }}{% endthumbnail %}" alt="{{ object.get_name }}" title="{{ object.get_name }}">
+                {% if author %}<div class="text-center photo-caption"><small>{{ author }}</small></div>{% endif %}
+            </div>
+        {% endif %}
+        {% if characteristics %}
+            <ul class="well characteristics">
+                {% for characteristic in characteristics %}
+                    <li>
+                        {% spaceless %}<div>{{ characteristic.name }}:&nbsp;<span>
+                            {% if "url" in characteristic.tags %}
+                                {% for value in characteristic.values %}<a href="{{ value }}" target="_blank" rel="nofollow">{{ value }}</a>&nbsp;<a href="{{ value }}" target="_blank" rel="nofollow" title="{{ value }}"><i class="fa fa-external-link"></i></a>{% if not forloop.last %}, {% endif %}{% endfor %}
+                            {% else %}
+                                {% for value in characteristic.values %}{{ value }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </span>{% endif %}
+                        </div>{% endspaceless %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% with related_by_tags_publications=object.get_related_by_tags_publications %}
+        {% if related_by_tags_publications %}
+            <div class="well more-by-tags-publications">
+                <h2 class="bordered-title">{% trans 'More by theme' %}</h2>
+                <ul class="promo-block list-unstyled">
+                    {% for related_publication in related_by_tags_publications %}
+                        {% with name=related_publication.get_name show_date=related_publication.show_date date_added=related_publication.date_added url=related_publication.get_absolute_url %}
+                        <li class="publication">
+                            <h4 class="title"><a href="{{ url }}" title="{{ name }}" alt="{{ name }}">{{ name }}</a></h4>
+                            {% if show_date %}<span class="date"><i class="fa fa-calendar"></i>&nbsp;{{ date_added|date:'d M Y' }}</span>{% endif %}
+                        </li>
+                        {% endwith %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="bottom-padding"></div>
+
+{% endblock column_right %}
+
+
+{% compress js %}
+<script type="text/javascript">
+{% block onbodyload %}
+{{ block.super }}
+    // tooltip icons
+    $('.ex-icons-content').tooltip({
+      selector: "a[data-toggle=tooltip]"
+    })
+{% endblock %}
+</script>
+{% endcompress %}

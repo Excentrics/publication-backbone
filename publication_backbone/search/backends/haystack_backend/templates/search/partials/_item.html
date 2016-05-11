@@ -1,0 +1,35 @@
+{% load i18n thumbnail publication_backbone_tags highlight %}{% get_config as config %}{% site_domain as domain %}
+<li class="media">
+    {% if item.get_image %}
+        {% thumbnail item.get_image "x120" crop="center" background=config.PUBLICATION_BACKBONE_CATALOG_THUMBNAIL_BACKGROUND as im %}
+        <a style="width: 120px" href="{{ item.get_absolute_url }}" class="pull-left" title="{{ item.get_name }}">
+            <img src="{{ im.url }}" alt="{{ item.get_name }}" title="{{ item.get_name }}" style="max-width:120px">
+        </a>
+        {% endthumbnail %}
+    {% endif %}
+    <div class="media-body">
+        <!--{% if item.get_marks %}<li>{% for mark in item.get_marks %}{% for value in mark.values %}{{ value }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if not forloop.last %}, {% endif %}{% endfor %}</li>{% endif %}-->
+        <div class="caption">
+            <h4><a href="{{ item.get_absolute_url }}" title="{{ item.get_name }}">{{ item.get_name }}</a></h4>
+            {% if item.get_author %}<span class="author">{{ item.get_author }}</span>{% endif %}
+            {% if item.get_subname %}<span class="subname">{{ item.get_subname }}</span>{% endif %}
+        </div>
+        <div class="description">
+            {% if item.get_description %}
+                {% highlight item.get_description with query html_tag "span" class "highlight" max_length 300 %}
+            {% endif %}
+        </div>
+        {% if item.show_date %}
+            <ul class="search-info list-inline">
+                <li class="date"><i class="fa fa-calendar"></i>&nbsp;{{ item.date_added|date:'d M Y H:m' }}</li>
+                {% with category=item.get_category %}
+                    {% if category and category.visible %}
+                        {% if category.get_catalog_url %}
+                            <li class="category"><i class="fa fa-tag"></i>&nbsp;<a href="{{ category.get_catalog_url }}">{{ category.name }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endwith %}
+            </ul>
+        {% endif %}
+    </div>
+</li>

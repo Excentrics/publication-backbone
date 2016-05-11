@@ -1,0 +1,10 @@
+{% templatetag openbrace %}
+{% block default %}{% with class_name=object.get_real_instance_class_name|lower %}"id": {{ object.id }},
+"resource_uri": "{{ object.get_absolute_url }}"{% if class_name == 'category' %},
+"catalog_resource_uri": "{{ object.get_catalog_url }}"{% endif %}{% if class_name == 'categorylink' %},
+"href": "{{ object.url }}"{% endif %},
+"name": "{{ object.get_name|escapejs }}",
+"slug": "{{ object.slug|escapejs }}",
+"class_name": "{{ class_name }}",
+"parent_id": {% if object.parent_id %}{{ object.parent_id }}{% else %}null{% endif %}{% endwith %}{% endblock %}
+{% templatetag closebrace %}

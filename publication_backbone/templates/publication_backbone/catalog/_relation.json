@@ -1,0 +1,6 @@
+{% extends 'publication_backbone/rubricator/_object.json' %}
+
+{% block object_id %}"{{ object.id }}{% if object.direction and object.direction != "b" %}{{ object.direction|escapejs }}{% endif %}"{% endblock %}
+
+{% block default %}{{ block.super }}{% if object.direction %},
+"direction": "{{ object.direction|escapejs }}"{% endif %}{% endblock %}

@@ -1,0 +1,1420 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Beladm\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-01 01:31+0300\n"
+"PO-Revision-Date: 2016-03-25 17:24+0300\n"
+"Last-Translator: 1 <1>\n"
+"Language-Team: Excentrics <info@excentrics.ru>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: __init__.py:5
+msgid "Advanced"
+msgstr "Продвинутые"
+
+#: __init__.py:6
+msgid "name"
+msgstr "название"
+
+#: __init__.py:7
+msgid "map"
+msgstr "Карта"
+
+#: __init__.py:8
+msgid "maps"
+msgstr "Карты"
+
+#: __init__.py:9
+msgid "Area number"
+msgstr "Номер зоны"
+
+#: __init__.py:10
+msgid "url"
+msgstr "URL-адрес"
+
+#: __init__.py:11
+msgid "Area path"
+msgstr "Путь зоны"
+
+#: __init__.py:12
+msgid "description"
+msgstr "описание"
+
+#: __init__.py:13
+msgid "map area"
+msgstr "зона карты"
+
+#: __init__.py:14
+msgid "map areas"
+msgstr "зоны карты"
+
+#: __init__.py:15
+msgid "SEO settings"
+msgstr "Настройки SEO"
+
+#: __init__.py:16
+msgid "This identifier is already used by an other page."
+msgstr "Данный URL уже используется на другой странице "
+
+#: __init__.py:17
+msgid "This URL is already taken by an other page."
+msgstr "Данный URL уже используется на другой странице "
+
+#: __init__.py:18
+msgid "This slug is already used by an other page at the same level."
+msgstr "Данный синоним уже используется на другой странице на данном уровне"
+
+#: __init__.py:19
+msgid "Menu structure"
+msgstr "Структура меню"
+
+#: __init__.py:20
+msgid "Page type"
+msgstr "Тип страницы"
+
+#: __init__.py:21
+msgid "page type"
+msgstr "тип страницы"
+
+#: __init__.py:22
+msgid "Status"
+msgstr "Статус"
+
+#: __init__.py:23
+msgid "Mark selected objects as published"
+msgstr "Сделать выделенные объекты опубликованными"
+
+#: __init__.py:24 tcg/templates/tcg/tcgmodel_list.html:54
+msgid "Page"
+msgstr "Страница"
+
+#: __init__.py:25
+msgid "Pages"
+msgstr "Страницы"
+
+#: __init__.py:26
+msgid "Published"
+msgstr "Опубликовано"
+
+#: __init__.py:27
+msgid "Draft"
+msgstr "Черновик"
+
+#: __init__.py:28
+msgid "parent"
+msgstr "родитель"
+
+#: __init__.py:29
+msgid "You can also change the parent by dragging the page in the list."
+msgstr ""
+"Вы также можете сменить родителя перетащив данную страницу в списке страниц"
+
+#: __init__.py:30
+msgid "status"
+msgstr "статус"
+
+#: __init__.py:31
+msgid "publication date"
+msgstr "дата публикации"
+
+#: __init__.py:32
+msgid "When the page should go live, status must be \"Published\"."
+msgstr ""
+"Для того чтоб страница стала видимой на сайте, статус должен быть "
+"«Опубликовано»"
+
+#: __init__.py:33
+msgid "publication end date"
+msgstr "дата окончания публикации"
+
+#: __init__.py:34
+msgid "show in navigation"
+msgstr "показывать в навигации"
+
+#: __init__.py:35
+msgid "include in search engine sitemaps"
+msgstr "включать в карту сайта поисковых систем"
+
+#: __init__.py:36
+msgid "page identifier"
+msgstr "идентификатор страницы"
+
+#: __init__.py:37
+msgid "A unique identifier that is used for linking to this page."
+msgstr "Уникальный идентификатор для ссылки на текущую страницу"
+
+#: __init__.py:38
+msgid "creation date"
+msgstr "дата создания"
+
+#: __init__.py:39
+msgid "last modification"
+msgstr "дата изменения"
+
+#: __init__.py:40
+msgid "URL Node"
+msgstr "URL узла"
+
+#: __init__.py:41
+msgid "URL Nodes"
+msgstr "URL узлов"
+
+#: __init__.py:42
+msgid "title"
+msgstr "заголовок"
+
+#: __init__.py:43
+msgid "slug"
+msgstr "синоним"
+
+#: __init__.py:44
+msgid "The slug is used in the URL of the page"
+msgstr "Синоним используемый в URL данной страницы"
+
+#: __init__.py:45
+msgid "Override URL"
+msgstr "Переписать URL"
+
+#: __init__.py:46
+msgid ""
+"Override the target URL. Be sure to include slashes at the beginning and at "
+"the end if it is a local URL. This affects both the navigation and subpages' "
+"URLs."
+msgstr ""
+"Переписать URL страницы. Убедитесь, что указали начальный и конечный слеш в "
+"случае локального адреса страницы. Применяется и в навигации и в адресации "
+"вложенных страниц."
+
+#: __init__.py:47
+msgid "keywords"
+msgstr "ключевые слова"
+
+#: __init__.py:48
+msgid "page title"
+msgstr "заголовок страницы"
+
+#: __init__.py:49
+msgid "key"
+msgstr "ключ"
+
+#: __init__.py:50
+msgid "A short name to identify the layout programmatically"
+msgstr "Краткое имя для использования шаблона в программном коде."
+
+#: __init__.py:51
+msgid "Layout"
+msgstr "Шаблон"
+
+#: __init__.py:52
+msgid "Layouts"
+msgstr "Шаблоны"
+
+#: __init__.py:53
+msgid "The selected page cannot have sub pages."
+msgstr "Выбраная страница не может содержать вложенных страниц."
+
+#: __init__.py:54
+msgid "Content"
+msgstr "Содержимое"
+
+#: __init__.py:55
+msgid "Flat Page"
+msgstr "Простая страница"
+
+#: __init__.py:56
+msgid "Flat Pages"
+msgstr "Простые страницы"
+
+#: __init__.py:57
+msgid "Redirect settings"
+msgstr "Настройки перенаправления"
+
+#: __init__.py:58
+msgid "Normal redirect"
+msgstr "Нормальное перенаправление"
+
+#: __init__.py:59
+msgid "Permanent redirect (for SEO ranking)"
+msgstr "Постоянный редирект (Для СЕО)"
+
+#: __init__.py:60
+msgid "New URL"
+msgstr "Новый URL"
+
+#: __init__.py:61
+msgid "Redirect type"
+msgstr "Тип перенаправления"
+
+#: __init__.py:62
+msgid ""
+"Use 'normal redirect' unless you want to transfer SEO ranking to the new "
+"page."
+msgstr ""
+"Использовать «нормальное перенаправление», для переноса СЕО-рейтинга на "
+"новую страницу "
+
+#: __init__.py:63
+msgid "Redirect"
+msgstr "Перенаправление"
+
+#: __init__.py:64
+msgid "Redirects"
+msgstr "Перенаправления"
+
+#: __init__.py:65
+msgid "Plain text"
+msgstr "Простой текст"
+
+#: __init__.py:66
+msgid "XML"
+msgstr "XML"
+
+#: __init__.py:67
+msgid "HTML"
+msgstr "HTML"
+
+#: __init__.py:68
+msgid "File type"
+msgstr "Тип файла"
+
+#: __init__.py:69
+msgid "File contents"
+msgstr "Содержимое файла"
+
+#: __init__.py:70
+msgid "Plain text file"
+msgstr "Текстовый файл"
+
+#: __init__.py:71
+msgid "Plain text files"
+msgstr "Текстовые файлы"
+
+#: __init__.py:72
+msgid "History"
+msgstr "История"
+
+#: __init__.py:73
+msgid "View on site"
+msgstr "Посмотреть на сайте"
+
+#: __init__.py:74
+msgid "Please correct the error below."
+msgstr "Пожалуйста, исправьте ошибку ниже."
+
+#: __init__.py:75
+msgid "Please correct the errors below."
+msgstr "Пожалуйста, исправьте ошибку ниже."
+
+#: __init__.py:76
+#, python-format
+msgid "{No rendering defined for class '%s'}"
+msgstr "{Не определен рендер для класса '%s'}"
+
+#: __init__.py:77
+msgid "Error:"
+msgstr "Ошибка:"
+
+#: __init__.py:78
+msgid "Main content"
+msgstr "Основное содержимое"
+
+#: __init__.py:79
+msgid "Sidebar content"
+msgstr "Содержимое сайдбара"
+
+#: __init__.py:80
+msgid "Related content"
+msgstr "Связанный контент"
+
+#: __init__.py:81
+msgid "Slot"
+msgstr "Слот"
+
+#: __init__.py:82
+msgid "A short name to identify the placeholder in the template code."
+msgstr "Краткое имя местозаполнителя для использования в тексте шаблона."
+
+#: __init__.py:83
+msgid "Role"
+msgstr "Роль"
+
+#: __init__.py:84
+msgid "Admin title"
+msgstr "Заголовок"
+
+#: __init__.py:85
+msgid "Placeholder"
+msgstr "Местозаполнитель"
+
+#: __init__.py:86
+msgid "Placeholders"
+msgstr "Местозаполнители"
+
+#: __init__.py:87
+msgid "Contentitem link"
+msgstr "Ссылка на тип содержимого"
+
+#: __init__.py:88
+msgid "Contentitem links"
+msgstr "Ссылки на типы содержимого"
+
+#: __init__.py:89
+msgid "Language"
+msgstr "Язык"
+
+#: __init__.py:90
+msgid "Code"
+msgstr "Код"
+
+#: __init__.py:91
+msgid "Code snippet"
+msgstr "Встраиваемый фрагмент кода"
+
+#: __init__.py:92
+msgid "Code snippets"
+msgstr "Встраиваемые фрагменты кода"
+
+#: __init__.py:93
+msgid "Allow posting new comments"
+msgstr "Разрешать комментарии"
+
+#: __init__.py:94
+msgid "Comments area"
+msgstr "Область комментариев"
+
+#: __init__.py:95
+msgid "Disqus comments area"
+msgstr "Область комментариев"
+
+#: __init__.py:96
+msgid "Disqus comments areas"
+msgstr "Области комментариев"
+
+#: __init__.py:97
+msgid "Form"
+msgstr "Форма"
+
+#: __init__.py:98
+msgid "Form link"
+msgstr "Ссылка на форму"
+
+#: __init__.py:99
+msgid "Form links"
+msgstr "Ссылки на формы"
+
+#: __init__.py:100
+msgid "Media"
+msgstr "Медиа"
+
+#: __init__.py:101
+msgid "File URL"
+msgstr "URL файла"
+
+#: __init__.py:102
+msgid "Specify the URL of an online document, for example a PDF or DOCX file."
+msgstr "Задайте URL of онлайн-документа, например PDF или DOCX файла."
+
+#: __init__.py:103
+msgid "Width"
+msgstr "Ширина"
+
+#: __init__.py:104
+msgid "Specify the size in pixels, or a percentage of the container area size."
+msgstr "Задайте размер в пикселях или в процентах от размера контейнера."
+
+#: __init__.py:105
+msgid "Height"
+msgstr "Высота"
+
+#: __init__.py:106
+msgid "Specify the size in pixels."
+msgstr "Задайте размер в пикселях."
+
+#: __init__.py:107
+msgid "Embedded document"
+msgstr "Присоединенный документ"
+
+#: __init__.py:108
+msgid "Page URL"
+msgstr "URL страницы"
+
+#: __init__.py:109
+msgid "Markup"
+msgstr "Разметка"
+
+#: __init__.py:110
+msgid "markup"
+msgstr "разметка"
+
+#: __init__.py:111
+msgid "Markup code"
+msgstr "Код разметки"
+
+#: __init__.py:112
+#, python-format
+msgid "%s items"
+msgstr "%s элемент(ы)"
+
+#: __init__.py:113
+msgid ""
+"Enter the URL of the online content to embed (e.g. a YouTube or Vimeo video, "
+"SlideShare presentation, etc..)"
+msgstr ""
+"Введите URL для включения онлайн контента (например: YouTube или Vimeo "
+"видео, SlideShare презентация, и т.п.)"
+
+#: __init__.py:114
+msgid "The URL is not valid for embedding content"
+msgstr "URL не содержит контента доступного для включения"
+
+#: __init__.py:115
+msgid "URL to embed"
+msgstr "URL для включения"
+
+#: __init__.py:116
+msgid "Max width"
+msgstr "Максимальная ширина"
+
+#: __init__.py:117
+msgid "Max height"
+msgstr "Максимальная высота"
+
+#: __init__.py:118
+msgid "Online media"
+msgstr "Онлайн медиа"
+
+#: __init__.py:119
+msgid "Max size"
+msgstr "Максимальный размер"
+
+#: __init__.py:120
+msgid "pixels"
+msgstr "пикселей"
+
+#: __init__.py:121
+msgid "Left"
+msgstr "Слева"
+
+#: __init__.py:122
+msgid "Center"
+msgstr "Центр"
+
+#: __init__.py:123
+msgid "Right"
+msgstr "Справа"
+
+#: __init__.py:124
+msgid "Image"
+msgstr "Изображение"
+
+#: __init__.py:125
+msgid "Caption"
+msgstr "Заголовок"
+
+#: __init__.py:126
+msgid "Align"
+msgstr "Выравнивание"
+
+#: __init__.py:127
+msgid "URL"
+msgstr "URL"
+
+#: __init__.py:128
+msgid "Open in a new window"
+msgstr "Открывать в новом окне"
+
+#: __init__.py:129
+msgid "Picture"
+msgstr "Изображение"
+
+#: __init__.py:130
+msgid "Pictures"
+msgstr "Изображения"
+
+#: __init__.py:131
+msgid "HTML code"
+msgstr "HTML фрагмент"
+
+#: __init__.py:132
+msgid ""
+"Enter the HTML code to display, like the embed code of an online widget."
+msgstr "Введите HTML код, например код встройки онлайн виджета."
+
+#: __init__.py:133
+msgid "Publication settings"
+msgstr "Настройки публикации"
+
+#: __init__.py:134
+msgid "Title"
+msgstr "Заголовок"
+
+#: __init__.py:135
+msgid "Contents"
+msgstr "Содержимое"
+
+#: __init__.py:136
+msgid "Shared content"
+msgstr "Содержимое секции"
+
+#: __init__.py:137
+msgid "text"
+msgstr "текст"
+
+#: __init__.py:138
+msgid "Text"
+msgstr "Текст"
+
+#: __init__.py:139
+msgid "You may use Twitter markup here, such as a #hashtag or @username."
+msgstr ""
+"Вы можете использовать разметку твитера, например:  #хэштег или "
+"@имя_пользователя."
+
+#: __init__.py:140
+msgid "Twitter user"
+msgstr "Пользователь твитера"
+
+#: __init__.py:141
+msgid "Number of results"
+msgstr "Количество результатов"
+
+#: __init__.py:142
+msgid "Footer text"
+msgstr "Текст в подвале"
+
+#: __init__.py:143
+msgid "Include retweets"
+msgstr "Включать ретвиты"
+
+#: __init__.py:144
+msgid "Include replies"
+msgstr "Включать ответы"
+
+#: __init__.py:145
+msgid "Recent twitter entries"
+msgstr "Последние твиты"
+
+#: __init__.py:146
+msgid "Search for"
+msgstr "Результаты поиска по запросу:"
+
+#: __init__.py:147
+msgid "Twitter search feed"
+msgstr "Поиск в ленте новостей"
+
+#: __init__.py:148
+msgid "loading tweets..."
+msgstr "загрузка твитов.."
+
+#: __init__.py:149
+msgid "There are no options to configure for this element."
+msgstr "Нет опций для настройки текущего элемента."
+
+#: __init__.py:150
+msgid "Loading layout data..."
+msgstr "Загрузка разметки.."
+
+#: __init__.py:151
+msgid "Orphaned content"
+msgstr "Контент без родителя"
+
+#: __init__.py:152
+msgid "There are no placeholders in this template."
+msgstr "Нет местозаполнителей в данном шаблоне."
+
+#: __init__.py:153
+msgid "Add"
+msgstr "Добавить"
+
+#: __init__.py:154
+msgid "Copy language"
+msgstr "С языка"
+
+#: __init__.py:155
+msgid "Placeholder empty"
+msgstr "Пустой контейнер"
+
+#: __init__.py:156
+msgid "This placeholder is empty"
+msgstr "Этот контейнер пуст"
+
+#: __init__.py:157
+msgid "No items added to this field yet."
+msgstr "В этот контейнер не добавлено ни одного элемента"
+
+#: __init__.py:158
+msgid "Value should be a number or percentage."
+msgstr "Значение должно быть числом или процентом."
+
+#: __init__.py:159
+msgid "fluent_pages"
+msgstr "Управление страницами"
+
+#: __init__.py:160
+msgid "Fluent_pages"
+msgstr "Управление страницами"
+
+#: __init__.py:161
+msgid "edit"
+msgstr "редактировать"
+
+#: __init__.py:162
+msgid "move failed"
+msgstr "не удалось переместить"
+
+#: __init__.py:163
+msgid "Error while loading the data from the server"
+msgstr "Ошибка при загрузке данных с сервера"
+
+#: __init__.py:164
+msgid "Grid view"
+msgstr "В виде сетки"
+
+#: __init__.py:165
+msgid "Tree view"
+msgstr "В виде дерева"
+
+#: __init__.py:166
+msgid "future"
+msgstr "будущее"
+
+#: __init__.py:167
+msgid "now"
+msgstr "сегодня"
+
+#: __init__.py:168
+msgid "month"
+msgstr "месяц"
+
+#: __init__.py:169
+msgid "year"
+msgstr "год"
+
+#: __init__.py:170
+msgid "all"
+msgstr "все"
+
+#: __init__.py:171
+msgid "past"
+msgstr "прошлое"
+
+#: __init__.py:172
+msgid "map_plugin"
+msgstr "Карты"
+
+#: __init__.py:173 apps.py:23
+msgid "Form designer"
+msgstr "Конструктор форм"
+
+#: __init__.py:174 apps.py:28
+msgid "Addition settings"
+msgstr "Дополнительные настройки"
+
+#: __init__.py:175
+msgid "template file"
+msgstr "файл шаблона"
+
+#: apps.py:8
+msgid "Fluent pages"
+msgstr "Управление страницами"
+
+#: apps.py:13
+msgid "Map plugin"
+msgstr "Конструктор карт"
+
+#: apps.py:18
+msgid "TSG"
+msgstr "УК и ТСЖ"
+
+#: settings.py:347
+msgid ""
+"List of e-mail addresses of the administrators involved in the consideration "
+"of the completed information on the MC and the HOA. Use a semicolon to "
+"separate addresses."
+msgstr ""
+"Список адресов электронной почты администраторов занимающихся рассмотрением "
+"заполненной информации по УК и ТСЖ. Используйте точку с запятой для "
+"разделения адресов."
+
+#: tcg/forms.py:16
+msgid "Email"
+msgstr "Email"
+
+#: tcg/forms.py:17
+msgid "Password"
+msgstr "Пароль"
+
+#: tcg/forms.py:18
+msgid "Confirm password"
+msgstr "Подтверждение пароля"
+
+#: tcg/forms.py:32
+msgid "A user with that email already exists."
+msgstr "Пользователь с таким email уже существует."
+
+#: tcg/forms.py:46
+msgid "The two password fields didn't match."
+msgstr "Поля паролей не совпадают."
+
+#: tcg/forms.py:51
+msgid "Empty"
+msgstr "Отсутствует"
+
+#: tcg/forms.py:52
+msgid "Form 1.2 docs"
+msgstr "Форма 1.2"
+
+#: tcg/forms.py:53
+msgid "Form 1.3 docs"
+msgstr "Форма 1.3"
+
+#: tcg/forms.py:54
+msgid "Form 1.4 docs"
+msgstr "Форма 1.4"
+
+#: tcg/forms.py:55
+msgid "Form 1.5 docs"
+msgstr "Форма 1.5"
+
+#: tcg/forms.py:60
+msgid "Form name"
+msgstr "Наименование формы"
+
+#: tcg/forms.py:60 tcg/models.py:168
+msgid "TCG form name"
+msgstr ""
+"Выберете \"Номер формы\", если файл является приложением к ней, или "
+"\"Отсутствует\" если файл является общим приложением или дополнительными "
+"сведениями к Вашему УК/ТСЖ"
+
+#: tcg/models.py:9
+msgid "user"
+msgstr "Пользователь"
+
+#: tcg/models.py:11 tcg/templates/tcg/email/notify_email.html:19
+#: tcg/templates/tcg/email/notify_email.txt:7
+msgid "tsg name"
+msgstr "Полное наименование"
+
+#: tcg/models.py:12
+msgid "TCG title"
+msgstr ""
+"Указывается фирменное наименование юридического лица согласно свидетельству "
+"о внесении записи в Единый государственный реестр юридических лиц (ЕГРЮЛ) с "
+"указанием организационно-правовой формы."
+
+#: tcg/models.py:14 tcg/templates/tcg/tcgdetail.html:36
+msgid "short name"
+msgstr "Сокращенное наименование"
+
+#: tcg/models.py:15
+msgid "TCG short Title"
+msgstr ""
+"Указывается сокращенное наименование юридического лица, организационно-"
+"правовая форма указывается аббревиатурой."
+
+#: tcg/models.py:17 tcg/templates/tcg/email/notify_email.html:20
+#: tcg/templates/tcg/email/notify_email.txt:8
+#: tcg/templates/tcg/tcgdetail.html:37
+msgid "director fio"
+msgstr "ФИО руководителя"
+
+#: tcg/models.py:18
+msgid "TCG director fio"
+msgstr ""
+"Указывается фамилия, имя, отчество руководителя управляющей организации "
+"(председателя товарищества или кооператива, индивидуального предпринимателя) "
+"в соответствии с паспортными данными физического лица."
+
+#: tcg/models.py:20 tcg/templates/tcg/email/notify_email.html:21
+#: tcg/templates/tcg/email/notify_email.txt:9
+#: tcg/templates/tcg/tcgdetail.html:38
+msgid "ogrn ogrnip"
+msgstr "ОГРН/ОГРНИП"
+
+#: tcg/models.py:21
+msgid "TCG ogrn ogrnip"
+msgstr ""
+"Указывается основной государственный регистрационный номер юридического лица "
+"или индивидуального предпринимателя."
+
+#: tcg/models.py:23 tcg/templates/tcg/email/notify_email.html:22
+#: tcg/templates/tcg/email/notify_email.txt:10
+#: tcg/templates/tcg/tcgdetail.html:39
+msgid "inn"
+msgstr "ИНН"
+
+#: tcg/models.py:24
+msgid "TCG inn"
+msgstr ""
+"Указывается идентификационный номер налогоплательщика (юридического лица или "
+"индивидуального предпринимателя)."
+
+#: tcg/models.py:26 tcg/templates/tcg/tcgdetail.html:40
+msgid "registration address"
+msgstr "Место государственной регистрации юридического лица"
+
+#: tcg/models.py:27
+msgid "TCG registration address"
+msgstr ""
+"Указывается наименование субъекта Российской Федерации, муниципального "
+"района, города, иного населенного пункта, улицы, номер дома, при "
+"необходимости указывается корпус, строение, литера или дополнительная "
+"территория. Данные указываются согласно наименованиям адресных объектов в "
+"Федеральной информационной адресной системе (ФИАС). Дополнительно может "
+"указываться комментарий. Для индивидуальных предпринимателей указывается "
+"адрес места жительства."
+
+#: tcg/models.py:29 tcg/templates/tcg/tcgdetail.html:41
+msgid "post address"
+msgstr "Почтовый адрес"
+
+#: tcg/models.py:30
+msgid "TCG post address"
+msgstr ""
+"Указывается наименование субъекта Российской Федерации, муниципального "
+"района, города, иного населенного пункта, улицы, номер дома, при "
+"необходимости указывается корпус, строение, литера или дополнительная "
+"территория. Данные указываются согласно наименованиям адресных объектов в "
+"Федеральной информационной адресной системе (ФИАС). Дополнительно может "
+"указываться комментарий."
+
+#: tcg/models.py:32 tcg/templates/tcg/tcgdetail.html:43
+msgid "site url"
+msgstr "Официальный сайт в сети Интернет"
+
+#: tcg/models.py:33
+msgid "TCG site url"
+msgstr ""
+"Указывается официальный сайт в сети Интернет управляющей организации, "
+"товарищества или кооператива, индивидуального предпринимателя."
+
+#: tcg/models.py:35 tcg/templates/tcg/tcgdetail.html:44
+msgid "address of controls"
+msgstr "Место нахождения органов управления"
+
+#: tcg/models.py:36
+msgid "TCG address of controls"
+msgstr ""
+"Указывается наименование субъекта Российской Федерации, муниципального "
+"района, города, иного населенного пункта, улицы, номер дома, при "
+"необходимости указывается корпус, строение, литера или дополнительная "
+"территория. Данные указываются согласно наименованиям адресных объектов в "
+"Федеральной информационной адресной системе (ФИАС). Дополнительно может "
+"указываться комментарий."
+
+#: tcg/models.py:38 tcg/templates/tcg/tcgdetail.html:45
+msgid "phones, fax"
+msgstr "Контактные телефоны, факс"
+
+#: tcg/models.py:39
+msgid "TCG phones, fax"
+msgstr ""
+"Указывается номер телефона главного офиса организации. Для товарищества или "
+"кооператива указывается контактный телефон председателя. Для индивидуального "
+"предпринимателя указывается его контактный телефон."
+
+#: tcg/models.py:41 tcg/templates/tcg/tcgdetail.html:46
+msgid "work time"
+msgstr "Режим работы"
+
+#: tcg/models.py:42
+msgid "TCG work time"
+msgstr ""
+"Указываются режим работы, в том числе часы личного приема граждан. По дням "
+"недели указывается время работы (с учетом перерыва на обед) либо указывается "
+"запись \"выходной день\"."
+
+#: tcg/models.py:45 tcg/templates/tcg/tcgdetail.html:47
+msgid "dispatching service address"
+msgstr "Адрес диспетчерской службы"
+
+#: tcg/models.py:46
+msgid "TCG dispatching service address"
+msgstr ""
+"Указывается наименование субъекта Российской Федерации, муниципального "
+"района, города, иного населенного пункта, улицы, номер дома, при "
+"необходимости указывается корпус, строение, литера или дополнительная "
+"территория. Данные указываются согласно наименованиям адресных объектов в "
+"Федеральной информационной адресной системе (ФИАС). Дополнительно может "
+"указываться комментарий."
+
+#: tcg/models.py:48 tcg/templates/tcg/tcgdetail.html:48
+msgid "dispatching service phones"
+msgstr "Контактные телефоны диспетчерской службы"
+
+#: tcg/models.py:49
+msgid "TCG dispatching service phones"
+msgstr "Указывается номер телефона диспетчерской службы и иные телефоны."
+
+#: tcg/models.py:51 tcg/templates/tcg/tcgdetail.html:49
+msgid "dispatching service work time"
+msgstr "Режим работы диспетчерской службы"
+
+#: tcg/models.py:52
+msgid "TCG dispatching service work time"
+msgstr "Указываются режим работы, часы приема граждан."
+
+#: tcg/models.py:54 tcg/templates/tcg/tcgdetail.html:50
+msgid "share in capital of GOS organization"
+msgstr "Доля участия субъекта РФ"
+
+#: tcg/models.py:55
+msgid "TCG Share in capital of GOS organization"
+msgstr ""
+"Указывается доля участия субъекта Российской Федерации в уставном капитале "
+"организации."
+
+#: tcg/models.py:57 tcg/templates/tcg/tcgdetail.html:51
+msgid "share in capital of MYP organization"
+msgstr "Доля участия муниципального образования"
+
+#: tcg/models.py:58
+msgid "TCG Share in capital of MYP organization"
+msgstr ""
+"Указывается доля участия муниципального образования в уставном капитале "
+"организации."
+
+#: tcg/models.py:61 tcg/templates/tcg/tcgdetail.html:52
+msgid "home count"
+msgstr "Количество домов"
+
+#: tcg/models.py:62
+msgid "TCG home count"
+msgstr "Указывается текущее количество домов, находящихся в управлении."
+
+#: tcg/models.py:64 tcg/templates/tcg/tcgdetail.html:53
+msgid "home square"
+msgstr "Площадь домов"
+
+#: tcg/models.py:65
+msgid "TCG home square"
+msgstr "Указывается общая площадь домов, находящихся в управлении."
+
+#: tcg/models.py:67 tcg/templates/tcg/tcgdetail.html:54
+msgid "all employees count"
+msgstr "Штатная численность"
+
+#: tcg/models.py:68
+msgid "TCG all employees count"
+msgstr ""
+"Указывается штатная численность сотрудников организации согласно количеству "
+"заключенных трудовых договоров."
+
+#: tcg/models.py:70 tcg/templates/tcg/tcgdetail.html:55
+msgid "administrative staff count"
+msgstr "Административный персонал"
+
+#: tcg/models.py:71
+msgid "TCG administrative staff count"
+msgstr ""
+"Указывается численность сотрудников организации, относящихся к "
+"административному персоналу, согласно количеству заключенных трудовых "
+"договоров."
+
+#: tcg/models.py:73 tcg/templates/tcg/tcgdetail.html:56
+msgid "engineers staff count"
+msgstr "Инженеры"
+
+#: tcg/models.py:74
+msgid "TCG engineers staff count"
+msgstr ""
+"Указывается численность сотрудников организации, относящихся к инженерам "
+"согласно количеству заключенных трудовых договоров."
+
+#: tcg/models.py:76 tcg/templates/tcg/tcgdetail.html:57
+msgid "working staff count"
+msgstr "Рабочие"
+
+#: tcg/models.py:77
+msgid "TCG working staff count"
+msgstr ""
+"Указывается численность сотрудников организации, относящихся к рабочему "
+"персоналу согласно количеству заключенных трудовых договоров."
+
+#: tcg/models.py:80 tcg/templates/tcg/tcgdetail.html:58
+msgid "partnership docs"
+msgstr "Устав товарищества или кооператива"
+
+#: tcg/models.py:81
+msgid "TCG partnership docs"
+msgstr ""
+"Прикладывается сканированная копия устава товарищества или кооператива в "
+"виде файла в электронной форме."
+
+#: tcg/models.py:84 tcg/templates/tcg/tcgdetail.html:60
+msgid "form 1.2 docs"
+msgstr ""
+"Сведения об основных показателях финансово-хозяйственной деятельности "
+"управляющей организации, товарищества, кооператива"
+
+#: tcg/models.py:85
+msgid "TCG form 1.2 docs"
+msgstr ""
+"Прикладывается сканированная заполненная форма 1.2. Сведения об основных "
+"показателях финансово-хозяйственной деятельности управляющей организации, "
+"товарищества, кооператива."
+
+#: tcg/models.py:87 tcg/templates/tcg/tcgdetail.html:71
+msgid "form 1.3 docs"
+msgstr ""
+"Информация о привлечении управляющей организации, товарищества, кооператива "
+"к административной ответственности за нарушения в сфере управления "
+"многоквартирными домами"
+
+#: tcg/models.py:88
+msgid "TCG form 1.3 docs"
+msgstr ""
+"Прикладывается сканированная заполненная форма 1.3. Информация о привлечении "
+"управляющей организации, товарищества, кооператива к административной "
+"ответственности за нарушения в сфере управления многоквартирными домами "
+"(заполняется по каждому факту привлечения)."
+
+#: tcg/models.py:90 tcg/templates/tcg/tcgdetail.html:82
+msgid "form 1.4 docs"
+msgstr ""
+"Перечень многоквартирных домов, управление которыми осуществляют управляющая "
+"организация, товарищество, кооператив"
+
+#: tcg/models.py:91
+msgid "TCG form 1.4 docs"
+msgstr ""
+"Прикладывается сканированная заполненная форма 1.4. Перечень многоквартирных "
+"домов, управление которыми осуществляют управляющая организация, "
+"товарищество, кооператив."
+
+#: tcg/models.py:93 tcg/templates/tcg/tcgdetail.html:93
+msgid "form 1.5 docs"
+msgstr ""
+"Перечень многоквартирных домов, в отношении которых договоры управления с "
+"управляющей организацией были расторгнуты в предыдущем календарном году, "
+"перечень многоквартирных домов, собственники помещений в которых в "
+"предыдущем календарном году на общем собрании приняли решение о прекращении "
+"их объединения в товарищества для совместного управления общим имуществом в "
+"многоквартирных домах, а также перечень многоквартирных домов, в которых "
+"членами кооперативов в предыдущем календарном году на их общем собрании "
+"приняты решения о преобразовании кооперативов в товарищества"
+
+#: tcg/models.py:94
+msgid "TCG form 1.5 docs"
+msgstr ""
+"Прикладывается сканированная заполненная форма 1.5. Перечень многоквартирных "
+"домов, в отношении которых договоры управления с управляющей организацией "
+"были расторгнуты в предыдущем календарном году, перечень многоквартирных "
+"домов, собственники помещений в которых в предыдущем календарном году на "
+"общем собрании приняли решение о прекращении их объединения в товарищества "
+"для совместного управления общим имуществом в многоквартирных домах, а также "
+"перечень многоквартирных домов, в которых членами кооперативов в предыдущем "
+"календарном году на их общем собрании приняты решения о преобразовании "
+"кооперативов в товарищества"
+
+#: tcg/models.py:96
+msgid "date added"
+msgstr "Дата создания"
+
+#: tcg/models.py:97 tcg/models.py:127 tcg/models.py:149 tcg/models.py:173
+#: tcg/templates/tcg/tcgdetail.html:64 tcg/templates/tcg/tcgdetail.html:75
+#: tcg/templates/tcg/tcgdetail.html:86 tcg/templates/tcg/tcgdetail.html:97
+#: tcg/templates/tcg/tcgdetail.html:103 tcg/templates/tcg/tcgdetail.html:115
+#: tcg/templates/tcg/tcgdetail.html:129
+msgid "date edit"
+msgstr "Дата изменения"
+
+#: tcg/models.py:101
+msgid "TCG"
+msgstr "Управляющая организация"
+
+#: tcg/models.py:102
+msgid "TCGs"
+msgstr "Управляющие организации"
+
+#: tcg/models.py:111 tcg/models.py:141 tcg/models.py:163
+msgid "tsg"
+msgstr "Управляющая организация"
+
+#: tcg/models.py:113 tcg/templates/tcg/tcgdetail.html:110
+msgid "license number"
+msgstr "Номер лицензии"
+
+#: tcg/models.py:114
+msgid "TCG license number"
+msgstr ""
+"Указывается номер лицензии на осуществление деятельности по управлению "
+"многоквартирными домами."
+
+#: tcg/models.py:116 tcg/templates/tcg/tcgdetail.html:111
+msgid "license date"
+msgstr "Дата получения"
+
+#: tcg/models.py:116
+msgid "TCG license date"
+msgstr ""
+"Указывается календарная дата получения лицензии (формат даты должен быть ДД."
+"ММ.ГГГГ, например: 01.05.2015)."
+
+#: tcg/models.py:118 tcg/templates/tcg/tcgdetail.html:112
+msgid "license issued by organisation"
+msgstr "Орган, выдавший лицензию"
+
+#: tcg/models.py:119
+msgid "TCG license issued by organisation"
+msgstr "Указывается полное наименование органа, выдавшего лицензию."
+
+#: tcg/models.py:121 tcg/templates/tcg/tcgdetail.html:113
+msgid "license file"
+msgstr "Документ лицензии"
+
+#: tcg/models.py:122
+msgid "TCG license"
+msgstr ""
+"Прикладывается сканированная копия документа лицензии в виде файла в "
+"электронной форме."
+
+#: tcg/models.py:124 tcg/templates/tcg/tcgdetail.html:114
+msgid "additional file for license"
+msgstr "Приложения к лицензии"
+
+#: tcg/models.py:125
+msgid "TCG additional file for license"
+msgstr ""
+"Прикладывается сканированная копия документа приложений к лицензии в виде "
+"файла в электронной форме."
+
+#: tcg/models.py:131
+msgid "TCG License"
+msgstr "Лицензия"
+
+#: tcg/models.py:132
+msgid "TCG Licenses"
+msgstr "Лицензии"
+
+#: tcg/models.py:142 tcg/templates/tcg/tcgdetail.html:126
+msgid "house address"
+msgstr "Адрес"
+
+#: tcg/models.py:143
+msgid "TCG house address"
+msgstr ""
+"Адрес многоквартирного дома, управление которым осуществляет управляющая "
+"организация, товарищество, кооператив."
+
+#: tcg/models.py:144 tcg/templates/tcg/tcgdetail.html:127
+msgid "house date"
+msgstr "Дата начала управления"
+
+#: tcg/models.py:144
+msgid "TCG house date"
+msgstr ""
+"Дата начала управления (формат даты должен быть ДД.ММ.ГГГГ, например: "
+"01.05.2015)"
+
+#: tcg/models.py:146 tcg/templates/tcg/tcgdetail.html:128
+msgid "house file"
+msgstr "Основание управления"
+
+#: tcg/models.py:147
+msgid "TCG house file"
+msgstr ""
+"Прикладывается сканированная заполненная форма 2 \"Сведения о "
+"многоквартирном доме, управление которым осуществляет управляющая "
+"организация, товарищество, кооператив\""
+
+#: tcg/models.py:153
+msgid "TCG House Info"
+msgstr "Многоквартирный дом"
+
+#: tcg/models.py:154
+msgid "TCG Houses Info"
+msgstr "Перечень многоквартирных домов"
+
+#: tcg/models.py:164
+msgid "file name"
+msgstr "Наименование документа"
+
+#: tcg/models.py:165
+msgid "TCG additional file name"
+msgstr ""
+"Наименование прилагаемого документа. Например: годовая бухгалтерская "
+"отчетность, смета доходов и расходов, отчет о выполнении сметы доходов и "
+"расходов, документ о применении мер административного воздействия, "
+"приложение №.. и т.п."
+
+#: tcg/models.py:167
+msgid "form name"
+msgstr "Наименование формы"
+
+#: tcg/models.py:170
+msgid "additional docs"
+msgstr "Файл с документом"
+
+#: tcg/models.py:171
+msgid "TCG additional docs file"
+msgstr ""
+"Прикладывается скан дополнительных документов на усмотрение организации."
+
+#: tcg/models.py:177
+msgid "TCG TcgAdditionalDoc"
+msgstr "Документ"
+
+#: tcg/models.py:178
+msgid "TCG Tcg Additional Doc"
+msgstr "Дополнительные документы"
+
+#: tcg/templates/tcg/email/notify_email.html:13
+#: tcg/templates/tcg/email/notify_email.txt:3
+msgid "New MC or HOA registration request on site beladm.ru successful send"
+msgstr ""
+"Заявка на регистрацию управляющей организации на сайте beladm.ru была "
+"отправлена на проверку"
+
+#: tcg/templates/tcg/email/notify_email.html:15
+#: tcg/templates/tcg/email/notify_email.txt:5
+msgid "We are recieve new MC or HOA registration request on site beladm.ru"
+msgstr ""
+"Поступила новая заявка на регистрацию управляющей организации на сайте "
+"beladm.ru"
+
+#: tcg/templates/tcg/email/notify_email.html:23
+#: tcg/templates/tcg/email/notify_email.txt:11
+msgid "management person email"
+msgstr "Адрес электронной почты"
+
+#: tcg/templates/tcg/email/notify_email_subject.txt:1
+msgid "New request of MC or HOA registration on site beladm.ru"
+msgstr "Новый запрос на регистрацию управляющей организации на сайте beladm.ru"
+
+#: tcg/templates/tcg/partials/form_fields.html:6
+#: templates/html/formdefinition/forms/bs3_horizontal.html:16
+#: templates/html/formdefinition/forms/bs3_horizontal.html:28
+#: templates/html/formdefinition/forms/bs3_horizontal_4_8.html:16
+#: templates/html/formdefinition/forms/bs3_horizontal_4_8.html:28
+#: templates/html/formdefinition/forms/bs3_horizontal_6_6.html:16
+#: templates/html/formdefinition/forms/bs3_horizontal_6_6.html:28
+#: templates/html/formdefinition/forms/bs3_modal.html:24
+#: templates/html/formdefinition/forms/bs3_modal.html:33
+#: templates/html/formdefinition/forms/custom.html:23
+#: templates/html/formdefinition/forms/custom.html:32
+msgid "Warning!"
+msgstr "Предупреждение!"
+
+#: tcg/templates/tcg/partials/form_fields.html:25
+msgid "Current file"
+msgstr "Текущий файл"
+
+#: tcg/templates/tcg/partials/nav_panel.html:5
+msgid "Edit"
+msgstr "Редактировать"
+
+#: tcg/templates/tcg/partials/nav_panel.html:7
+msgid "Logout"
+msgstr "Выход"
+
+#: tcg/templates/tcg/partials/nav_panel.html:9
+msgid "Register TCG"
+msgstr "Зарегистрировать организацию"
+
+#: tcg/templates/tcg/partials/nav_panel.html:10
+msgid "Login for edit"
+msgstr "Войти для редактирования"
+
+#: tcg/templates/tcg/registration.html:6
+#: tcg/templates/tcg/registration.html:11
+#: tcg/templates/tcg/registration.html:19
+msgid "TCGs Registration"
+msgstr "Зарегистрировать организацию"
+
+#: tcg/templates/tcg/registration.html:31
+msgid "Registrate TCG"
+msgstr "Отправить заявку"
+
+#: tcg/templates/tcg/success_registration.html:6
+#: tcg/templates/tcg/success_registration.html:11
+#: tcg/templates/tcg/success_registration.html:19
+msgid "TCG registration success"
+msgstr "Заявка успешно зарегистрирована."
+
+#: tcg/templates/tcg/tcgdetail.html:19 tcg/templates/tcg/tcgedit.html:19
+#: tcg/templates/tcg/tcgmodel_list.html:6
+#: tcg/templates/tcg/tcgmodel_list.html:11
+#: tcg/templates/tcg/tcgmodel_list.html:19
+msgid "TCGs List"
+msgstr "Раскрытие информации УК и ТСЖ"
+
+#: tcg/templates/tcg/tcgdetail.html:29 tcg/templates/tcg/tcgedit.html:31
+msgid "Main form"
+msgstr "Общая информация"
+
+#: tcg/templates/tcg/tcgdetail.html:30 tcg/templates/tcg/tcgedit.html:32
+msgid "License form"
+msgstr "Лицензии"
+
+#: tcg/templates/tcg/tcgdetail.html:31 tcg/templates/tcg/tcgedit.html:33
+msgid "House info"
+msgstr "Многоквартирные дома"
+
+#: tcg/templates/tcg/tcgdetail.html:42
+msgid "email for requests"
+msgstr "Электронная почта для официальной переписки и приема обращений"
+
+#: tcg/templates/tcg/tcgedit.html:6 tcg/templates/tcg/tcgedit.html.py:11
+#: tcg/templates/tcg/tcgedit.html:20
+msgid "Edit TCG information"
+msgstr "Изменение данных"
+
+#: tcg/templates/tcg/tcgedit.html:34
+msgid "Additional docs info"
+msgstr "Дополнительные документы"
+
+#: tcg/templates/tcg/tcgedit.html:69
+msgid "Save changes"
+msgstr "сохранить изменения"
+
+#: tcg/templates/tcg/tcglogin.html:6 tcg/templates/tcg/tcglogin.html.py:11
+#: tcg/templates/tcg/tcglogin.html:19
+msgid "TCG login"
+msgstr "Авторизация"
+
+#: tcg/templates/tcg/tcglogin.html:30
+msgid "Login TCG"
+msgstr "Войти"
+
+#: tcg/templates/tcg/tcgmodel_list.html:54
+msgid "of"
+msgstr "из"
+
+#: templates/html/formdefinition/forms/bs3_horizontal.html:21
+#: templates/html/formdefinition/forms/bs3_horizontal_4_8.html:21
+#: templates/html/formdefinition/forms/bs3_horizontal_6_6.html:21
+msgid "Success!"
+msgstr "Успешно!"
+
+#: templates/html/formdefinition/forms/bs3_modal.html:86
+#: templates/html/formdefinition/forms/custom.html:85
+msgid "Close"
+msgstr "Закрыть"
+
+#~ msgid "{count} item updated."
+#~ msgid_plural "{count} items updated."
+#~ msgstr[0] "{count} элемент обновлен."
+#~ msgstr[1] "{count} элемента обновлено."
+#~ msgstr[2] "{count} элементов обновлено."
+
+#~ msgid ""
+#~ "<a href=\"https://support.twitter.com/articles/71577\" target=\"_blank"
+#~ "\">Twitter search syntax</a> is allowed."
+#~ msgstr ""
+#~ "<a href=\"https://support.twitter.com/articles/71577\" target=\"_blank"
+#~ "\">Синтаксис поиска в твитере</a> разрешен."
+
+#~ msgid "week"
+#~ msgstr "неделя"

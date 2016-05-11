@@ -1,0 +1,4 @@
+{% templatetag openbrace %}
+{% block default %}"id": {% block id %}"{{ object.id|escapejs }}"{% endblock %},
+"name": {% block name %}"{{ object.name|escapejs }}"{% endblock %}{% endblock %}
+{% templatetag closebrace %}

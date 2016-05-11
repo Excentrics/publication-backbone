@@ -1,0 +1,83 @@
+{% load i18n publication_backbone_tags %}
+<div class="ex-catalog-item-block">
+
+<%  if ( short_characteristics || short_lead ) { %>
+            <div class="ex-description-wrapper ex-js-enter-show-description ex-js-leave-hide-description ex-js-toggle-description">
+                <div class="ex-baloon">
+                    <div class="ex-arrow"></div>
+                    <ul class="ex-attrs">
+<%
+                        var predscr = lead ? lead : short_lead
+%>
+                        <% if (predscr) { %><li class="lead"><%- predscr %></li><% } %>
+<%                          var dscr = characteristics ? characteristics : short_characteristics
+                        ,   ctx = { count: 0 }
+                        _.find(dscr, function (obj, path){
+                            var singular = !_.isArray(obj.v)
+%>
+                        <li data-path="<%- path %>"<% if ( obj.t.length ) { %> data-tags="<%- obj.t %>"<% } %>>
+                            <strong><%- obj.k %>:</strong>&nbsp;<%
+                            if ( singular ) {
+                                %><%- obj.v %><%
+                            } else {
+                                %><%- obj.v.join("; ") %><%
+                            } %>
+                        </li>
+<%                              ctx.count++
+                            return ctx.count > 6
+                        }, ctx) %>
+                    </ul>
+                </div>
+            </div>
+<%  } %>
+
+    <div class="ex-action-wrapper ex-js-enter-show-description ex-js-leave-hide-description ex-js-toggle-description ex-js-thumbnail">
+        <div class="ex-wrap-img-container">
+            <div class="ex-wrap-img-container-inner">
+                <div class="ex-wrap-img" style="padding-top: <%= Math.round(thumbnail_ratio * 100) %>%;">
+                    <a href="<%= resource_uri %>" title="<%- name %>" class="ex-js-open"<%
+                    if ( !_.isNull(img_ratio) ) {
+                        if ( thumbnail_ratio < img_ratio ) {
+                            var gap = Math.round((1 - thumbnail_ratio / img_ratio) * 50)
+                            %> style="padding-left: <%= gap %>%; padding-right: <%= gap %>%;"<%
+                        } else {
+                            %> style="padding-top: <%= Math.round((thumbnail_ratio - img_ratio) * 50) %>%;"<%
+                        }
+                    } %>><img src="<% if ( img_src ) { %><%= img_src %><% } else { %>{{ STATIC_URL }}publication_backbone/images/noimage.png<% } %>" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+<%  if ( short_marks ) {
+        %><ul class="ex-ribbons">
+<%      var mrk = marks ? marks : short_marks
+        ,   ctx = { count: 0 }
+        _.find(mrk, function (obj, path){
+            var singular = !_.isArray(obj.v)
+%>
+            <li class="ex-wrap-ribbon" data-path="<%- path %>" data-key="<%- obj.k %>"<% if ( obj.t.length ) { %> data-tags="<%- obj.t %>"<% } %>>
+                <div class="ex-ribbon"><%
+                if ( singular ) {
+                    %><%= obj.v %><%
+                } else {
+                    %><%= obj.v.join(", ") %><%
+                }
+              %></div>
+            </li>
+<%          ctx.count++
+            return ctx.count > 6
+        }, ctx) %>
+        </ul>
+<%  } %>
+
+        <div class="ex-wrap-title">
+            <h4 class="ex-title"><a href="<%= resource_uri %>" title="<%- name %>" class="ex-js-open"><%  if ( author && author != 'None' ) { var mrk = marks ? marks : short_marks, pt = 1 ? mrk && mrk['publication-type'] && mrk['publication-type']['t'] : 0 ; %><% if ( mrk && pt && mrk['publication-type']['t'].indexOf('person')+1 ) { %><span><%- author %>: </span><% } } %><%- name %></a></h4>
+        </div>
+        <% if ( show_date == 'True' ) { %>
+            <p class="date"><i class="fa fa-calendar"></i>&nbsp;<% var creation_date_array=creation_date.split(" "), mrk = marks ? marks : short_marks, pt = 1 ? mrk && mrk['publication-type'] && mrk['publication-type']['t'] : 0 %><%- creation_date_array[0] %>&nbsp;<%- creation_date_array[1] %>&nbsp;<%- creation_date_array[2] %>&nbsp;<% if ( mrk && pt && mrk['publication-type']['t'].indexOf('news')+1 ) { %><sup><%- creation_date_array[3] %></sup><% } %></p>
+        <% } %>
+
+
+    </div>
+
+</div>

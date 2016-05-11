@@ -1,0 +1,220 @@
+<div id="quiz-{{ instance.pk }}-app" class="quiz-wrapper">
+    <div class="well quiz">
+        <h2>{{ name }}</h2>
+        <div class="quiz-result"></div>
+        {% if instance.quiz.final_text %}
+        <div id="quiz-{{ instance.pk }}-info" >
+            <div class="panel panel-default">
+              <div class="panel-body">{{ instance.quiz.final_text|safe }}</div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="dev">
+        <span class="excentrics-power">Powered by</span>
+        <a class="excentrics-logo" title="Разработано в интерактивном агентстве «Excentrics&reg;»" href="http://www.excentrics.ru"><i class="ico-exc"></i></a>
+        <span class="excentrics-link"><a title="Cоздание сайтов — «Эксцентрикс&reg;»" href="http://www.excentrics.ru">Excentrics</a><sup>&reg;</sup></span>
+    </div>
+</div>
+
+<!-- Templates -->
+<script type="text/template" id="quiz-{{ instance.pk }}-result">
+    {% include "publication_backbone/quiz/_quiz_result.html" %}
+</script><!-- /#quiz-{{ instance.pk }}-result -->
+
+<script>
+(function($, Backbone, _) {
+
+    "use strict";
+
+    var name_prefix = 'quiz-{{ instance.pk }}'
+
+    var QuizResultView = Backbone.StatefulView.extend({
+
+        resultTemplate: '#' + name_prefix + '-result'
+
+    ,   quizResultSelector: ".quiz-result"
+
+    ,   initializeResultTemplate: function() {
+            this.resultTemplate = _.template($(this.resultTemplate).html());
+        }
+
+    ,   initialize: function(options) {
+            this.initializeResultTemplate()
+            this.$quizResult = this.$(this.quizResultSelector)
+            this.quizCollection = options.quizCollection
+            this.quizCollection.once("quiz_ready", function(){
+                this.trigger('quiz-result-ready')
+            }, this)
+
+            this.markCollection = options.markCollection
+            this.trigger('initialized')
+        }
+
+    ,   render: function() {
+            if ( this.currentState.indexOf('ex-state-result') != -1 ) {
+                var rightList = this.quizCollection.getRight()
+                ,   rightCount = rightList.length
+                ,   allCount = this.quizCollection.length
+                ,   mark
+
+                this.markCollection.find(function(model){
+                    if ( model.get("bound") <= rightCount ) {
+                        mark = model
+                        return false
+                    } else {
+                        return true
+                    }
+                })
+
+                var context = {
+                        rightCount: rightCount
+                    ,   allCount: allCount
+                    ,   mark: mark.toJSON()
+                    }
+
+                this.$quizResult.html(this.resultTemplate(context))
+
+
+            }
+
+            return this
+        }
+
+    ,   states: {
+            'ex-state-default': {}
+        ,   'ex-state-result': {
+                enter: ['showResult', 'focusOnContent']
+            }
+        }
+
+    ,   transitions: {
+            'init': {
+                'initialized': {enterState: 'ex-state-default'}
+            }
+        ,   'ex-state-default': {
+                'quiz-result-ready': {enterState: 'ex-state-result'}
+            }
+        }
+
+    ,   showResult: function() {
+            this.render()
+        }
+
+    ,   focusOnContent: function(){
+            var $window = $(window)
+            ,   offset = this.$el.offset()
+            ,   elTop = offset.top - $window.scrollTop()
+            ,   screenHeight = $window.height()
+            ,   elHeight = this.$el.height()
+            if ( ( elTop < 0 && elTop < 0.667 * (screenHeight - elHeight) ) || elTop > screenHeight ) {
+                var dY = Math.min(Math.round(0.25 * screenHeight), Math.abs(elTop))
+                $("html, body").animate({ scrollTop: offset.top - dY }, "slow")
+            }
+        }
+
+    })
+
+    var QuizMarkItem = Backbone.Model.extend({
+        defaults: {
+            "bound": 0
+        }
+    })
+
+    var QuizMarkCollection = Backbone.Collection.extend({
+
+        model: QuizMarkItem
+
+    ,   comparator: 'bound'
+
+    })
+
+    var QuizItem = Backbone.Model.extend({})
+
+    var QuizCollection = Backbone.Collection.extend({
+
+        model: QuizItem
+
+    ,   isReady: function(){
+            var notReady = this.find(function(model){
+                return !model.get("interviewed")
+            })
+            return this.length && !notReady
+        }
+
+    ,   getRight: function(){
+            var rightList = this.filter(function(model){
+                var questions = model.get("questions")
+                ,   chooseId = model.get("chooseId")
+                ,   rightAnswer = questions.find(function(model){
+                        return model.get("is_right") && chooseId == model.get("id")
+                    })
+                return !!rightAnswer
+            })
+            return rightList
+        }
+
+    })
+
+    var QuizSingleton = BBNS.Module.extend({
+
+        name: "Quiz"
+
+    ,   isDummy: false
+
+    ,   initialize: function(options){
+            this.quizList = new QuizCollection()
+            var testQuizFn = function(){
+                if ( this.quizList.isReady() ) {
+                    this.quizList.trigger("quiz_ready")
+                }
+            }
+            BBNS.app.events.once('init:end', testQuizFn, this)
+            this.quizList.on('one_quiz_ready', testQuizFn, this)
+        }
+
+    ,   registerQuiz: function(options){
+            var model = options.model
+            this.quizList.add(model)
+        }
+
+    })
+
+
+    var QuizApp = BBNS.Module.extend({
+
+        name: "QuizApp"
+
+    ,   preinitialize: function(options){
+            if ( _.has(BBNS.app.modules, "Quiz") && BBNS.app.modules["Quiz"].isDummy ) {
+                delete BBNS.app.modules["Quiz"]
+                var quiz = new QuizSingleton()
+            }
+            this.uses = _.union(this.uses, ["Quiz"])
+        }
+
+    ,   initialize: function(options){
+            this.quiz = BBNS.app.modules["Quiz"]
+            this.markItems = new QuizMarkCollection(options.markItems)
+
+            this.view = new QuizResultView({
+                'el': "#" + name_prefix + "-app"
+            ,   quizCollection: this.quiz.quizList
+            ,   markCollection: this.markItems
+            })
+
+            this.view.render()
+
+        }
+    })
+
+
+    // Finally, we kick things off by creating the **Module**.
+    var quizApp = new QuizApp({
+        name: name_prefix
+    ,   markItems: [{"bound": 0, "text": "{{ instance.quiz.failure_text|escapejs }}"}{% for result_item in instance.quiz.results.all %}, {"bound": {{ result_item.bound }}, "text": "{{ result_item.result_text|escapejs }}"}{% endfor %}]
+    })
+
+
+})(jQuery, Backbone, _);
+</script>

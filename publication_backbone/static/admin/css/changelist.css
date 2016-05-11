@@ -1,0 +1,28 @@
+#changelist-filter {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    background: white;
+    display: block;
+    min-width: -webkit-min-content;
+}
+
+#changelist-filter.collapsed h2 {
+    background-image: url(../img/nav-bg.gif);
+    background-position: bottom left;
+    color: #999;
+}
+
+#changelist-filter.collapsed h2, #changelist-filter.collapsed {
+    display: block !important;
+}
+
+#changelist-filter.collapsed .collapse-toggle {
+    background: transparent;
+    display: inline !important;
+}
+
+#changelist-filter.collapsed * {
+    display: none;
+}

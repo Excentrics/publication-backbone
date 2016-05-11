@@ -1,0 +1,21 @@
+{% load mptt_tags publication_backbone_tags %}
+{% with excluded_page_nodes=request.excluded_page_nodes is_exclude_nodes=request.is_exclude_nodes %}{% spaceless %}
+    {% if menu_items %}
+        {% if not is_exclude_nodes %}
+            <ul class="children">
+        {% endif %}
+            {% recursetree menu_items %}
+                {% if not is_exclude_nodes or node.url not in excluded_page_nodes and node.url != '/' %}
+                    <li>
+                      <a href="{{ node.url }}">{{ node.title }}</a>
+                      {% if children %}
+                          <ul class="children">{{ children }}</ul>
+                      {% endif %}
+                    </li>
+                {% endif %}
+            {% endrecursetree %}
+        {% if not is_exclude_nodes %}
+            </ul>
+        {% endif %}
+    {% endif %}
+{% endspaceless %}{% endwith %}

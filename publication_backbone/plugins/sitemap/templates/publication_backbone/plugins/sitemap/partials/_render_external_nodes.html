@@ -1,0 +1,23 @@
+{% load fluent_pages_tags publication_backbone_tags publication_backbone_utils_tags %}{% spaceless %}
+{% if root_node %}
+    {% if node.get_url in redirect_url_nodes %}
+        {% with parent_node=redirect_url_nodes|get_value:node.get_url %}{{ request|select_attr:'parent_node'|set_attr:parent_node|empty_str }}{% endwith %}
+    {% else %}
+        {{ request|select_attr:'parent_node'|set_attr:node.get_url|empty_str }}
+    {% endif %}
+    {% if root_node.is_leaf_node %}
+        {{ request|select_attr:'is_exclude_nodes'|set_attr:0|empty_str }}
+        {% render_menu parent=request.parent_node template="publication_backbone/plugins/sitemap/partials/_nodes.html" %}
+    {% else %}
+        {{ request|select_attr:'is_exclude_nodes'|set_attr:1|empty_str }}
+        {% render_menu parent=request.parent_node template="publication_backbone/plugins/sitemap/partials/_nodes.html" %}
+    {% endif %}
+{% else %}
+    {{ request|select_attr:'is_exclude_nodes'|set_attr:1|empty_str }}
+    {% render_menu template="publication_backbone/plugins/sitemap/partials/_nodes.html" %}
+    {% if orfans_page_nodes %}
+        {% with menu_items=orfans_page_nodes %}
+            {% include "publication_backbone/plugins/sitemap/partials/_nodes.html" %}
+        {% endwith %}
+    {% endif %}
+{% endif %}{% endspaceless %}

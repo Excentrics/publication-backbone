@@ -1,0 +1,49 @@
+{% load i18n publication_backbone_tags %}
+{% site_name as publication_name %}
+<footer class="footer">
+    {% block footer %}
+    <div class="container">
+        <div class="footer-menu">
+            <div class="row">
+                {% block footer-menu %}
+                    <div class="span3"></div>
+                    <div class="span3"></div>
+                    <div class="span3"></div>
+                    <div class="span3"></div>
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <div class="row">
+                {% block footer-info %}
+                    <div class="span4 copy">
+                        {% block copyright %}
+                            <p>
+                            &copy; {{ publication_name }}, 2016.
+                            <a href="{% url 'terms_of_service' %}" title="{% trans 'Terms of use' %}">{% trans 'Terms of use' %}</a>
+                            </p>
+                        {% endblock %}
+                    </div>
+
+                    <div class="span4">
+                        {% block currency_name %}
+                            <p class="muted">
+                                {% currency_sign %} — {% trans 'all prices are specified in rubles' %}
+                            </p>
+                        {% endblock %}
+                    </div>
+
+                    <div class="span4 dev">
+                        {% block developer %}
+                            <a href="http://www.excentrics.ru" title="{% trans 'Develop by interactive agancy Excentrics' %}" class="excentrics-logo"><i class="ico-exc"></i></a>
+                            <span class="excentrics-link">{% trans 'Developed by' %} «<a href="http://www.excentrics.ru" title="{% trans 'Develop of internet shop Excentrics' %}">{% trans 'Excentrics' %}</a><sup>®</sup>»</span>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</footer>
+

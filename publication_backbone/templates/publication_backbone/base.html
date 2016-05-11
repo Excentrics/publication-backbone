@@ -1,0 +1,259 @@
+{% extends "publication_backbone/_base.html" %}
+{% load i18n publication_backbone_tags staticfiles compressed compress fluent_contents_tags placeholder_tags %}
+
+
+{% block head %}
+    <!-- head -->{% site_name as publication_name %}
+        <title>{% block title %}{{ publication_name }}{% endblock %}</title>
+
+        {% block meta %}
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+            <meta name="description" content="{% block description %}{% endblock %}" />
+            <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+            <meta name="viewport" content="{% block viewport %}width=device-width, initial-scale=1.0{% endblock %}" />
+            <meta name='yandex-verification' content='560e694984cc31c6' />
+            {% get_config as config %}<!-- meta {{ config.META_CONTAINER|safe }}-->
+        {% endblock %}
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        {% block favicon %}
+            {% site_domain as domain %}
+            <link rel="shortcut icon" href="http://{{ domain }}{% static "publication_backbone/ico/favicon.ico" %}" type="image/x-icon">
+            <link rel="apple-touch-icon" href="http://{{ domain }}{% static "publication_backbone/images/ex-logo-152x152.png" %}">
+            <link rel="apple-touch-icon" sizes="76x76" href="http://{{ domain }}{% static "publication_backbone/images/ex-logo-152x152" %}">
+            <link rel="apple-touch-icon" sizes="120x120" href="http://{{ domain }}{% static "publication_backbone/images/ex-logo-152x152" %}">
+            <link rel="apple-touch-icon" sizes="152x152" href="http://{{ domain }}{% static "publication_backbone/images/ex-logo-152x152" %}">
+            <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+            <link href='https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+            <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        {% endblock %}
+
+        {% block styles %}
+        {% compress css %}
+            <link type="text/css" href="{% static "publication_backbone/lib/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+            <link type="text/css" href="{% static "publication_backbone/lib/owl-carousel/owl.carousel.css" %}" rel="stylesheet">
+            <link type="text/css" href="{% static "publication_backbone/lib/owl-carousel/owl.theme.css" %}" rel="stylesheet">
+            <link type="text/css" href="{% static "publication_backbone/lib/flexslider/flexslider.css" %}" rel="stylesheet">
+            <link type="text/css" href="{% static "publication_backbone/css/sitemap.css" %}" rel="stylesheet">
+        {% endcompress %}
+        {% compressed_css 'styles' %}
+        {% endblock %}
+
+
+
+        {% comment %}
+        Scripts loaded from a CDN.  These can't be wrapped by the 'compress' tag and so we
+        use a separate block for them.
+        {% endcomment %}
+        {% block cdn_scripts %}
+            <!-- jQuery -->
+            {% comment %}<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.js"></script>{% endcomment %}
+            <script>window.jQuery || document.write('<script src="{% static "publication_backbone/lib/jquery/1.8.1/jquery.min.js" %}"><\/script>')</script>
+        {% endblock %}
+
+
+        {# Local scripts #}
+        {% block scripts %}
+        {% compress js %}
+            <!-- Underscore -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/underscore/1.6.0/underscore-min.js" %}"></script>
+            <!-- Backbone -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/backbone/1.1.2/backbone-min.js" %}"></script>
+            <!-- Backbone statemachine -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/backbone/backbone.statemachine.js" %}"></script>
+            <!-- BBNS -->
+            <script type="text/javascript" src="{% static "publication_backbone/js/app.js" %}" charset="utf-8"></script>
+            <!-- jshashtable -->
+            <script type="text/javascript" src="{% static "beautiful_fields/slider/js/jshashtable-2.1_src.js" %}"></script>
+            <!-- numberformatter -->
+            <script type="text/javascript" src="{% static "beautiful_fields/slider/js/jquery.numberformatter-1.2.3.js" %}"></script>
+            <!-- scrollTo -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/scroll/jquery.scrollTo.min.js" %}"></script>
+            <!-- localScroll -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/scroll/jquery.localScroll.min.js" %}"></script>
+            <!-- stellar -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/scroll/jquery.stellar.min.js" %}"></script>
+            <!-- wow -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/wow/wow.min.js" %}"></script>
+            <!-- toggleClass -->
+            <script type="text/javascript" src="{% static "publication_backbone/js/toggle-class.js" %}"></script>
+            <!-- seo_wrapper_toggle -->
+            <script type="text/javascript" src="{% static "publication_backbone/js/seo_wrapper_toggle.js" %}"></script>
+            <!-- owl.carousel -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/owl-carousel/owl.carousel.min.js" %}"></script>
+            <!-- flexslider-min -->
+            <script type="text/javascript" src="{% static "publication_backbone/lib/flexslider/jquery.flexslider-min.js" %}"></script>
+
+
+            <!-- Catalog application common requirements js -->
+
+            <script type="text/javascript">
+            {% include 'publication_backbone/catalog/catalog_common.js' %}
+            </script>
+
+            <!-- CategoriesTitleView -->
+            <script type="text/javascript">
+            {% include "publication_backbone/promotion/views/CategoriesTitleView.js" with name="promo_categories_title_app" only %}
+            </script>
+
+            <!-- CategoryTitleView -->
+            <script type="text/javascript">
+            {% include "publication_backbone/promotion/views/CategoryTitleView.js" with name="promo_category_title_app" only %}
+            </script>
+
+            <!-- StatisticView -->
+            <script type="text/javascript">
+            {% include "publication_backbone/catalog/views/StatisticView.js" with name="promo_statistic_app" only %}
+            </script>
+
+            <!-- Pagination View -->
+            <script type="text/javascript">
+            {% include "publication_backbone/catalog/views/PaginationView.js" with name="promo_pagination_app" only %}
+            </script>
+
+            <!-- Subjects View -->
+            <script type="text/javascript">
+            {% include "publication_backbone/catalog/views/SubjectsView.js" with name="subjects_app" only %}
+            </script>
+
+        {% endcompress %}
+
+        {% endblock %}
+
+        {# Additional CSS - specific to certain pages #}
+        {% block extrastyles %}{% endblock %}
+
+        {% block extrahead %}{% endblock %}
+
+    <!-- /head -->
+{% endblock %}
+
+
+{% block body %}
+    <!-- body -->
+    <div {% block microdata %}itemtype="http://schema.org/Article" itemscope=""{% endblock %}>
+        {% site_name as publication_name %}
+        {# Main content goes in this 'layout' block #}
+        {% block layout %}{% endblock %}
+
+        {# Additional JS scripts #}
+        {% block extrascripts %}
+        <!-- plugins external -->
+        {% render_content_items_media %}
+
+        {% compressed_js 'bootstrap' %}
+        {% endblock %}
+
+        {# Block for body onload functions #}
+        {% compress js %}
+        <script type="text/javascript">
+            $(function() {
+                {% block onbodyload %}{% endblock %}
+            });
+        </script>
+        <script type="text/javascript">
+            ($.fn.smartscroll || (function($){
+                var $event = $.event,
+                    scrollTimeout;
+
+                $event.special.smartscroll = {
+                    setup: function () {
+                        $(this).bind("scroll", $event.special.smartscroll.handler);
+                    },
+                    teardown: function () {
+                        $(this).unbind("scroll", $event.special.smartscroll.handler);
+                    },
+                    handler: function (event, execAsap) {
+                        // Save the context
+                        var context = this,
+                            args = arguments;
+                        // set correct event type
+                        event.type = "smartscroll";
+                        if (scrollTimeout) { clearTimeout(scrollTimeout); }
+                        scrollTimeout = setTimeout(function () {
+                            $.event.handle.apply(context, args);
+                        }, execAsap === "execAsap" ? 0 : 100);
+                    }
+                };
+
+                $.fn.smartscroll = function (fn) {
+                    return fn ? this.bind("smartscroll", fn) : this.trigger("smartscroll", ["execAsap"]);
+                };
+            })(jQuery));
+
+            $(function() {
+                var $window = $(window)
+                // Up-button
+                var $upBtn = $('.up-button')
+                var invalidateUpBtn = function(){
+                    if ( $window.scrollTop() - 300 > 0 ) {
+                        $upBtn.css({display: 'block'}).fadeTo( "slow", 1)
+                    } else {
+                        $upBtn.fadeTo( "fast" , 0, function() {
+                            $(this).css({display: 'none'})
+                        })
+                    }
+
+                }
+
+                $("a[href='#top']").click(function() {
+                    $("html, body").animate({ scrollTop: 0 }, "slow")
+                    return false
+                })
+
+                $window.bind('smartscroll.upbtn', invalidateUpBtn)
+
+                invalidateUpBtn()
+            });
+        </script>
+        <script>
+            $(function() {
+                "use strict";
+                $('[data-toggle="tooltip"]').tooltip()
+
+                // adapted version init
+                BBNS.app.modules["ToggleClassApp"].addToggleButton(".adapted-version")
+
+
+            });
+        </script>
+
+        <!-- Orphus-->
+        <script type="text/javascript" src="{% static "publication_backbone/js/orphus.js" %}"></script>
+
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                        w.yaCounter36396560 = new Ya.Metrika({id:36396560,
+                        webvisor:true,
+                        clickmap:true,
+                        trackHash:true});
+                    } catch(e) { }
+                });
+
+                var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+                    s.type = "text/javascript";
+                    s.async = true;
+                    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+                    if (w.opera == "[object Opera]") {
+                        d.addEventListener("DOMContentLoaded", f, false);
+                    } else { f(); }
+            })(document, window, "yandex_metrika_callbacks");
+        </script>
+        <noscript><div><img src="//mc.yandex.ru/watch/36396560" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /Yandex.Metrika counter -->
+
+        {% endcompress %}
+        {% get_config as config %}<!-- metrika {{ config.COUNTERS|safe }} -->
+    </div>
+    <!-- /body -->
+{% endblock %}

@@ -1,0 +1,5 @@
+{% load i18n %}
+
+<% if ( pageCount > 1 ) { %>
+    {% trans 'Items' %} <%= offset + 1 %> - <%= offset + itemsCount %> {% trans 'of' %} <%= totalCount %>
+<% } %>

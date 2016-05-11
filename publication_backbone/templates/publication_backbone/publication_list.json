@@ -1,0 +1,22 @@
+{% load publication_backbone_utils_tags beautiful_fields_tags %}{% with object_template_name='publication_backbone/catalog/_meta_object.json' relation_template_name='publication_backbone/catalog/_relation.json' subject_template_name='publication_backbone/catalog/_subject.json' group_template_name='publication_backbone/publicationgroup_detail.json' category_template_name='publication_backbone/category_detail.json' order_by_template_name='publication_backbone/orderingalgorithm_detail.json' %}{% templatetag openbrace %}{% comment %}
+{% endcomment %}"meta": {
+"limit": {{ page_obj.limit }},
+"offset": {{ page_obj.offset }},
+"total_count": {{ page_obj.paginator.count }},
+"orphans": {{ page_obj.paginator.orphans }},
+"thumbnail_width": {{ thumbnail_width }},
+"thumbnail_height": {{ thumbnail_height }}{% if potential_rubrics_ids %},
+"potential_rubrics_ids": [{{ potential_rubrics_ids|join:', ' }}]{% endif %}{% if real_rubrics_ids %},
+"real_rubrics_ids": [{{ real_rubrics_ids|join:', ' }}]{% endif %},
+"ranges": {% templatetag openbrace %}{% for range_name, range in ranges.items %}{% if range %}"{{ range_name }}": {% templatetag openbrace %}
+"value": [{% if range.value.0|yesno:"2,1," %}{{ range.value.0|fast_floatformat:-2 }}{% else %}null{% endif %}, {% if range.value.1|yesno:"2,1," %}{{ range.value.1|fast_floatformat:-2 }}{% else %}null{% endif %}],
+"limit": [{% if range.limit.0|yesno:"2,1," %}{{ range.limit.0|fast_floatformat:-2 }}{% else %}null{% endif %}, {% if range.limit.1|yesno:"2,1," %}{{ range.limit.1|fast_floatformat:-2 }}{% else %}null{% endif %}]
+{% templatetag closebrace %}{% if not forloop.last %}, {% endif %}{% endif %}{% endfor %}{% templatetag closebrace %}
+}{% if publication_group %},
+"group": {% include group_template_name with object=publication_group %}{% endif %}{% if category %},
+"category": {% include category_template_name with object=category %}{% endif %}{% if order_by %},
+"order_by": {% include order_by_template_name with object=order_by %}{% endif %},
+"ordering_algorithms": [{% for ordering_mode in ordering_modes %}{% include order_by_template_name with object=ordering_mode only %}{% if not forloop.last %}, {% endif %}{% endfor %}],
+"subjects": [{% for object in subj %}{% include subject_template_name with object=object thumbnail_geometry=thumbnail_geometry thumbnail_background=thumbnail_background only %}{% if not forloop.last %}, {% endif %}{% endfor %}],
+"relations": [{% for object in rel %}{% include relation_template_name with object=object only %}{% if not forloop.last %}, {% endif %}{% endfor %}],
+"objects": [{% for object in object_list %}{% include object_template_name with object=object position=page_obj.offset|add:forloop.counter0 category=category thumbnail_geometry=thumbnail_geometry thumbnail_background=thumbnail_background only %}{% if not forloop.last %}, {% endif %}{% endfor %}]{% templatetag closebrace %}{% endwith %}

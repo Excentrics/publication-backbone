@@ -1,0 +1,1 @@
+{% include "publication_backbone/rubricator/_app.js" with root=root name=name object_list=object_list category=category only %}

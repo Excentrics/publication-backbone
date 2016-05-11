@@ -1,0 +1,51 @@
+{% load i18n %}{% include 'publication_backbone/category/partials/_breadcrumb_prefix.html' %}<%
+    var i
+    ,   pretty_concat = function( items ) {
+            return _.map(items, function(item) { return item.name }).join(" {% trans 'or' %} ")
+        }
+    ,   subj_and_rel
+    if ( subjects.length ) {
+        if ( relations.length ) {
+            var f_rels = _.filter(relations, function(obj) {
+                    return obj.direction == "b" || obj.direction == "f"
+                })
+            ,   r_rels = _.filter(relations, function(obj) {
+                    return obj.direction == "b" || obj.direction == "r"
+                })
+            subj_and_rel = pretty_concat(subjects)
+            if ( r_rels.length ) {
+                subj_and_rel = pretty_concat(r_rels) + " → " + subj_and_rel
+            }
+            if ( f_rels.length ) {
+                subj_and_rel = subj_and_rel + " → " + pretty_concat(f_rels)
+            }
+        } else {
+            subj_and_rel = "{% trans 'subject' %}" + ": " + pretty_concat(subjects)
+        }
+%>
+        <li><%
+        for(i = 0; i < subjects.length; i++) {
+            if (i) { %> {% trans 'or' %} <% } %><a class="ex-js-breadcrumb-subject" data-subject-id="<%= subjects[i].id %>" href="<%= subjects[i].resource_uri %>"><%= subjects[i].name %></a><%
+        }
+      %><i class="ex-divider"></i></li><%
+    } else if ( relations.length ) {
+        subj_and_rel = "{% trans 'relation' %}" + ": " + pretty_concat(relations)
+    } else {
+        subj_and_rel = ""
+    }
+    if ( items.length ) {
+        var j = items.length - 1
+        for(i = 0; i < j; i++) { %>
+    <li><a class="ex-js-breadcrumb-item" data-category-id="<%= items[i].id %>" href="<%= items[i].catalog_resource_uri %>"><%= items[i].name %></a><i class="ex-divider"></i></li>
+<%      }
+        if ( group ) { %>
+    <li><a class="ex-js-breadcrumb-group-unset" href="<%= items[j].catalog_resource_uri %>" title="<%= subj_and_rel %>"><%= items[j].name %></a><i class="ex-divider"></i></li>
+    <li class="ex-active"><%= group.name %></li>
+<%      } else { %>
+    <li class="ex-active" title="<%- subj_and_rel %>"><%= items[j].name %></li>
+<%      }
+    } else {
+        if ( group ) { %>
+    <li class="ex-active"><%= group.name %></li>
+<%      }
+    } %>

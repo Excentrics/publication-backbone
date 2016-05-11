@@ -1,0 +1,22 @@
+{% load staticfiles beautiful_fields_tags publication_backbone_tags i18n %}
+<div itemscope itemtype="http://schema.org/Publication">
+    {% site_domain as domain %}
+    {% with description=object.get_description image_url=object.get_image marks=object.get_marks.all %}
+    <meta itemprop="name" content="{{ object.get_name|safe }}"/>
+    {% if image %}<meta itemprop="image" content="http://{{ domain }}/media/{{ image }}"/>{% endif %}
+    {% if description %}<meta itemprop="description" content="{{ description|striptags }}"/>{% endif %}
+    {% if object.sku %}<meta itemprop="sku" content="{{ object.sku }}" />{% endif %}
+    <link itemprop="url" itemtype="http://schema.org/URL" content="//{{ domain }}{% url 'publication_detail' object.slug %}"/>
+    {% if object.in_stock|yesno:"2,1," %}{% if object.unit_price %}
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="RUR" />
+            <meta itemprop="price" content="{{ object.unit_price|fast_floatformat:2 }}" />
+            {% if object.in_stock > 0 %}
+                <link itemprop="availability" href="http://schema.org/InStock" content="{% trans 'In stock' %}"/>
+            {% else %}
+                <link itemprop="availability" href="http://schema.org/OutOfStock" content="{% trans 'Out of stock' %}"/>
+            {% endif %}
+        </div>
+    {% endif %}{% endif %}
+    {% endwith %}
+</div>

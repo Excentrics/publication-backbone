@@ -1,0 +1,29 @@
+{% load i18n publication_backbone_utils_tags %}{% if page_obj %}{% spaceless %}<div class="ex-catalog-pagination">
+    <ul class="ex-pagination">
+    {% if page_obj.has_previous %}
+        <li class="ex-prev"><a href="{{ url_root }}?offset={{ page_obj.previous_offset }}" title="{% trans 'Previous' %}"><i class="ex-icon-chevron-left"></i></a></li>
+    {% else %}
+        <li class="ex-disabled ex-prev"><span><i class="ex-icon-chevron-left"></i></span></li>
+    {% endif %}
+    {% if show_first %}
+        <li><a href="{% if url_root %}{{ url_root }}{% else %}?offset=0{% endif %}" title="{% trans 'Page' %} 1 {% trans 'of' %} {{ num_pages }}">1</a></li>
+        <li><span class="ex-separator">…</span></li>
+    {% endif %}
+    {% for n in page_numbers %}
+        {% if n == page_obj.number %}
+        <li class="ex-active"><span>{{ n }}</span></li>
+        {% else %}
+        <li><a href="{% if n == 1 and url_root %}{{ url_root }}{% else %}{{ url_root }}?offset={{ n|sub:1|mul:page_obj.limit }}{% endif %}" title="{% trans 'Page' %} {{ n }} {% trans 'of' %} {{ num_pages }}">{{ n }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if show_last %}
+        <li><span class="ex-separator">…</span></li>
+        <li><a href="{{ url_root }}?offset={{ num_pages|sub:1|mul:page_obj.limit }}" title="{% trans 'Page' %} {{ num_pages }} {% trans 'of' %} {{ num_pages }}">{{ num_pages }}</a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+        <li class="ex-next"><a href="{{ url_root }}?offset={{ page_obj.next_offset }}" title="{% trans 'Next' %}"><i class="ex-icon-chevron-right"></i></a></li>
+    {% else %}
+        <li class="ex-disabled ex-next"><span><i class="ex-icon-chevron-right"></i></span></li>
+    {% endif %}
+    </ul>
+</div>{% endspaceless %}{% endif %}

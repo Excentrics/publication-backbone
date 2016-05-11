@@ -1,0 +1,40 @@
+{% load i18n %}
+<div class="ex-collapse">
+
+{% if category and category.rubrics %}
+    <dl>
+    {% for rubric in category.rubrics.active %}
+        {% if rubric.description %}
+        <dt>{{ rubric.name }}</dt>
+        <dd>{{ rubric.description }}</dd>
+        {% endif %}
+        {% for children_rubric in rubric.get_active_children %}
+            {% if children_rubric.description %}
+        <dt>{{ children_rubric.name }}</dt>
+        <dd>{{ children_rubric.description }}</dd>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </dl>
+{% endif %}
+
+    <ul>
+    {% for object in object_list %}
+        <li><a href="{{ object.get_absolute_url }}" title="{{ object.get_name }}">{{ object.get_name }}{% with characteristics=object.get_characteristics|slice:":3" %}{% if characteristics %} ({% for characteristic in characteristics %}{% if not forloop.first %}; {% endif %}{{ characteristic.name|escape }}: {% for value in characteristic.values %}{{ value|escape }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endfor %}){% endif %}{% endwith %}</a></li>
+    {% endfor %}
+    </ul>
+
+    <ul class="pager">
+        {% if page_obj.has_previous %}
+            <li><a href="?offset={{ page_obj.previous_offset }}">{% trans 'Previous' %}</a></li>
+        {% endif %}
+        {% with last_index=page_obj.offset|add:page_obj.limit obj_count=page_obj.paginator.count %}
+        <li class="disabled">
+            {% trans 'items' %} {{ page_obj.offset|add:1 }} - {% if last_index < obj_count %}{{ last_index }}{% else %}{{ obj_count }}{% endif %} {% trans 'of' %} {{ page_obj.paginator.count }}.
+        </li>
+        {% endwith %}
+        {% if page_obj.has_next %}
+            <li><a href="?offset={{ page_obj.next_offset }}">{% trans 'Next' %}</a></li>
+        {% endif %}
+    </ul>
+</div>

@@ -1,0 +1,40 @@
+{% load thumbnail publication_backbone_tags i18n %}{% get_config as config %}
+
+{% if in_group %}
+    {% if is_first %}
+            <script type="text/javascript">
+                $(function() {_.defer(function() {
+                    var $owlslider = $('#owlslider-plugin-{{instance.id}}')
+                    $owlslider.owlCarousel({
+                        navigation: true,
+                        pagination: false,
+                        itemsCustom : [
+                                [319, 1],
+                                [767, 2],
+                                [1023, 3],
+                                [1199, 4],
+                              ],
+
+                        navigationText : false,
+                    });
+                    $owlslider.toggleClass('hidden')
+                  });
+                });
+            </script>
+            <div class="owl-carousel hidden" id="owlslider-plugin-{{instance.id}}">
+
+        {% endif %}
+            <div class="item{% if is_first %} is_first{% endif %}{% if is_last %} is_last{% endif %}">{% if instance.url %}<a href="{{ instance.url }}" rel="nofollow">{% endif %}<img src="{% if instance.image.width < 1140 %}{{ instance.image.url }}{% else %}{% thumbnail instance.image '1140' upscale=False background=config.PUBLICATION_BACKBONE_CATALOG_THUMBNAIL_BACKGROUND as im %}{{ im.url }}{% endthumbnail %}{% endif %}" alt="{{ instance.caption }}" title="{{ instance.caption }} {{ instance.author }}"/>{% if instance.url %}</a>{% endif %}</div>
+        {% if is_last %}
+            </div>
+        {% endif %}
+{% else %}
+    {% if instance.url %}<a href="{{ instance.url }}" rel="nofollow">{% endif %}
+        <img src="{% thumbnail instance.image '1140' upscale=False background=config.PUBLICATION_BACKBONE_CATALOG_THUMBNAIL_BACKGROUND as im %}{{ im.url }}{% endthumbnail %}" alt="{{ instance.caption }}" title="{{ instance.caption }}">
+    {% if instance.url %}</a>{% endif %}
+    <div class="caption">
+        {% if instance.caption %}<small>{{ instance.caption }}</small><br>{% endif %}
+        {% if instance.author %}<small class="text-muted">{{ instance.author }}</small>{% endif %}
+    </div>
+{% endif %}
+

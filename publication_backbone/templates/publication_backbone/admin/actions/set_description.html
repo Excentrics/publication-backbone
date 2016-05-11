@@ -1,0 +1,47 @@
+{% extends "admin/change_form.html" %}
+{% load i18n l10n staticfiles %}
+{% load url from future %}
+{% load admin_urls %}
+
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        &rsaquo; <a href="{% url 'admin:app_list' app_label=app_label %}">{% trans app_label|capfirst|escape %}</a>
+        &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+        &rsaquo; {% trans 'Set description for multiple publications' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+    {{ form.media }}
+    <form action="" method="post">{% csrf_token %}
+        {% block submit_buttons_top %}{% include 'publication_backbone/admin/actions/_submit_row.html' %}{% endblock %}
+        <div class="inline-group" id="choice-group">
+            <div class="form-row field-description">
+                {{ form.description }}
+                {% for error in form.description.errors %}
+                    <span class="help-inline">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="inline-related">
+                <fieldset class="module aligned">
+                    <h2>{% trans 'Selected publications' %}</h2>
+                    <div class="form-row field-publication">
+                        {% for object in to_proceed %}
+                            {{ object|unordered_list|safe }}
+                        {% endfor %}
+                    </div>
+                    {% for obj in queryset %}
+                        <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
+                    {% endfor %}
+                </fieldset>
+            </div>
+        </div>
+        <input type="hidden" name="action" value="set_description" />
+        <input type="hidden" name="post" value="yes" />
+        {% block submit_buttons_bottom %}{% include 'publication_backbone/admin/actions/_submit_row.html' %}{% endblock %}
+    </form>
+    </div>
+{% endblock %}

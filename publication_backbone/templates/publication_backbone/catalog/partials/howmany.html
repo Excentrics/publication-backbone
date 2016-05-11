@@ -1,0 +1,23 @@
+{% load i18n %}
+    <ul class="ex-inline">
+		<li>
+			<span>{% trans 'Quantity:' %}</span>&nbsp;
+		</li>
+	    <li>
+		    <div class="ex-sort-dropdown">
+		        <a href="#" class="ex-btn ex-btn-default js-dropdown-toggle">
+		            <%= limit %>&nbsp;{% comment %}
+                    {% endcomment %}<span class="ex-icon-caret-down"></span>
+		        </a>
+		        <ul class="ex-dropdown-menu2">
+		        <% _.each(pageRanges, function(n) { %>
+		            <% if (limit != n) { %>
+		            <li><a href="#" class="js-howmany" data-range="<%= n %>"><%= n %></a></li>
+		            <% } else if ( pageRanges.length < 2 ) { %>
+		            <li class="js-disabled ex-disabled"><a href="#" ><%= n %></a></li>
+		            <% } %>
+		        <% }) %>
+		        </ul>
+		    </div>
+		</li>
+	</ul>

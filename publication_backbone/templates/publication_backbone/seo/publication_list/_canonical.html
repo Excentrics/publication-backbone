@@ -1,0 +1,1 @@
+{% load i18n publication_backbone_tags %}{% site_domain as domain %}<link rel="canonical" href="http://{{ domain }}{% if category %}{% url 'publication_list' path=category.path %}{% else %}{% url 'publication_list' %}{% endif %}{% if page_obj and page_obj.offset %}?offset={{ page_obj.offset }}{% endif %}"/>

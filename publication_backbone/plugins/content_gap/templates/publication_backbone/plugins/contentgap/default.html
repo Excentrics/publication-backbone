@@ -1,0 +1,27 @@
+{% load publication_backbone_utils_tags thumbnail %}
+{% if is_publication %}
+        </div>
+    </div>
+{% endif %}
+
+            </{{ tag_name }}>
+        </div>
+    </div>
+</div>
+<div id="gap-{{ instance.pk }}"{% if instance.css_class %} class="{% if is_first %}first-gap {% endif %}{% if is_last %}last-gap {% endif %}{{ instance.css_class }}"{% endif %}{% if instance.attributes %} {{ instance.attributes|safe }}{% endif %}>
+    {% if instance.image %}
+        <script type="text/javascript">
+            $('#gap-{{ instance.pk }}').css('background-image', 'url("{% thumbnail instance.image '1920' upscale=False as im %}{{ im.url }}{% endthumbnail %}")');
+            $('#gap-{{ instance.pk }}').css('background-position', 'center');
+            $('#gap-{{ instance.pk }}').css('background-repeat', 'no-repeat');
+            $('#gap-{{ instance.pk }}').css('background-size', 'cover');
+        </script>
+    {% endif %}
+    <div class="container">
+        <div class="row">
+            <{{ tag_name }} class="col-md-{% if is_last %}{{ col_md }}{% else %}12{% endif %}">
+
+{% if is_publication %}
+    <div class="ex-publication">
+        <div>
+{% endif %}

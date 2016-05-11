@@ -1,0 +1,102 @@
+{% load thumbnail publication_backbone_tags publication_backbone_utils_tags i18n %}{% get_config as config %}
+{% if in_group %}
+    {% if is_first %}
+        <script type="text/javascript">
+            $(function() {_.defer(function() {
+                var $slider = $('#slider-plugin-{{ image_group_key }}'),
+                    $window = $(window);
+                $slider.flexslider({
+                    controlNav: false,
+                    animation: "slide",
+                    sync: "#control-thumbs-{{ image_group_key }}",
+                    animationLoop: false,
+                    slideshow: false,
+                    start: function(slider){
+                        var $cutImg = $('.cut-img', $slider),
+                            $cutImgCenter = $('.cut-img-center', $slider),
+                            invalidateCutImg = function(){
+                            var maxHeight = Math.min(Math.round($window.height() * 0.85), 650)
+                            $cutImg.css({
+                                "max-height": '' + maxHeight + 'px'
+                            })
+                           var maxImgHeight = 0;
+                           $cutImg.each(function(){
+                               maxImgHeight = Math.max(maxImgHeight, $(this).height())
+                           })
+                           $cutImgCenter.css({
+                               "line-height": '' + maxImgHeight + 'px'
+                           })
+                        }
+                        $window.bind('smartresize.cutimg', invalidateCutImg);
+                        invalidateCutImg();
+                    }
+                });
+                $slider.toggleClass('hidden')
+              });
+            });
+        </script>
+        {% if photo_reporting and image_group_key == 0 %}
+            </div>
+            </div>
+            </{{ tag_name }}>
+            <{{ tag_name }} class="col-md-12">
+        {% endif %}
+        <div class="flexslider hidden" data-photo-reporting="{{ photo_reporting }}" id="slider-plugin-{{ image_group_key }}">
+            <ul class="slides">
+    {% endif %}
+    <li thumb="{% thumbnail instance.image '144x108' upscale=True crop="center" background=config.PUBLICATION_BACKBONE_CATALOG_THUMBNAIL_BACKGROUND as thumb %}{{ thumb.url }}{% endthumbnail %}">
+        <p class="cut-img-center">{% if instance.url %}<a href="{{ instance.url }}" rel="nofollow">{% endif %}<img class="img-responsive cut-img" src="{% thumbnail instance.image '937x650' upscale=False background=config.PUBLICATION_BACKBONE_CATALOG_THUMBNAIL_BACKGROUND as im %}{{ im.url }}{% endthumbnail %}" alt="{{ instance.caption }}" title="{{ instance.caption }} {{ instance.author }}"/>{% if instance.url %}</a>{% endif %}</p>
+        {% if instance.caption or instance.author %}<p class="flex-caption">
+            {% if instance.caption %}<small>{{ instance.caption }}</small>&nbsp;{% endif %}
+            {% if instance.author %}<small class="text-muted">{{ instance.author }}</small>{% endif %}
+        </p>{% endif %}
+    </li>
+    {% if is_last %}
+        </ul></div>
+        <div class="flexslider control-nav hidden" id="control-thumbs-{{ image_group_key }}">
+            <ul class="slides">
+            </ul>
+        </div>
+        <script type="text/javascript">
+            $(function() {_.defer(function() {
+                var $navslider = $("#control-thumbs-{{ image_group_key }}"),
+                    $navslider_slides = $("#control-thumbs-{{ image_group_key }} .slides")
+                $('#slider-plugin-{{ image_group_key }} li').each(function(){
+                    $thumb = $(this).attr('thumb')
+                    if ($thumb) { $navslider_slides.append('<li><img src="'+$thumb+'"/></li>')}
+                });
+                $navslider.flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    animationLoop: false,
+                    slideshow: false,
+                    itemWidth: 144,
+                    itemHeight: 108,
+                    itemMargin: 5,
+                    asNavFor: "#slider-plugin-{{ image_group_key }}",
+                });
+                $navslider.toggleClass('hidden')
+              });
+            });
+        </script>
+        {% if photo_reporting and image_group_key == 0  %}
+            </div>
+            <{{ tag_name }} class="col-md-{{ col_md }}">
+            <div class="photo-reporting ex-publication">
+            <div>
+        {% endif %}
+    {% endif %}
+{% else %}
+
+<div class="thumbnail">
+    {% if instance.url %}<a href="{{ instance.url }}" rel="nofollow">{% endif %}
+        <img class="img-responsive" src="{% if photo_reporting and image_group_key == 0 %}{% thumbnail instance.image '945' upscale=False as im %}{{ im.url }}{% endthumbnail %}{% else %}{% thumbnail instance.image '850' upscale=False as im %}{{ im.url }}{% endthumbnail %}{% endif %}" alt="{{ instance.caption }}" title="{{ instance.caption }}">
+    {% if instance.url %}</a>{% endif %}
+    {% if instance.caption or instance.author %}<div class="text-center photo-caption">
+        {% if instance.caption %}<small>{{ instance.caption }}</small>&nbsp;{% endif %}
+        {% if instance.author %}<small class="text-muted">{{ instance.author }}</small>{% endif %}
+    </div>{% endif %}
+</div>
+
+{% endif %}
+

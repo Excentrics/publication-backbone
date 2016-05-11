@@ -1,0 +1,19 @@
+{% extends "publication_backbone/base.html" %}
+{% load i18n %}
+
+{% block layout %}
+
+<div class="container error-page">
+    <div class="jumbotron text-center top-margin">
+            <div class="logo">
+                <a href="/" title="Перейти на главную" alt="Сайт органов местного самоуправления города Белгорода"><img src="/static/img/logo.png"></a>
+            </div>
+            <h1 class="top-margin">{% block error_heading %}{% trans 'Sorry!' %}{% endblock %}</h1>
+            {% block error_message %}{% endblock %}
+            <p>
+                <a class="btn btn-primary btn-large" onclick="javascript:history.go(-1);">{% trans 'Return to previous page' %}</a>&nbsp;
+                <a class="btn btn-primary btn-large" href="/">{% trans "Go to homepage" %}</a>
+            </p>
+    </div>
+</div>
+{% endblock %}

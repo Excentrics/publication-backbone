@@ -1,0 +1,11 @@
+{% load mptt_tags i18n %}
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+
+<h3>{{ title }}<a id='clear_rubric_filter' href="#">{% trans 'Clear filter' %}</a></h3>
+<span class="clear tree-container">
+    <ul id="manage-treeview-filter" class="manage-treeview">
+        {% for choice in choices %}
+            {% include "admin/includes/_treeview.html" with queryset=choice.queryset expanded_rubrics=choice.expanded_rubrics value=choice.value name=choice.name is_characteristic=choice.is_characteristic is_mark=choice.is_mark is_relation=choice.is_relation %}
+        {% endfor %}
+    </ul>
+</span>

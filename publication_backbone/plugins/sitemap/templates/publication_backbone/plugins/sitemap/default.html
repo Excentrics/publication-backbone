@@ -1,0 +1,8 @@
+{% load publication_backbone_tags %}{% site_name as site_title %}
+
+<div class="sitemap">
+    <span><a href="/" title="{{ site_title }}"></a></span>
+    <ul class="tree">
+        {% category_sitemap %}
+    </ul>
+</div>

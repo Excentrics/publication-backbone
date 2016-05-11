@@ -1,0 +1,92 @@
+{% extends "admin/base_site.html" %}
+{% load admin_list admin_modify static i18n %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    {{ media.css }}
+    <style>
+        div.inline-group, div.tabular {
+            border: none; !important;
+        }
+        .django-ace-toolbar {
+            display: none !important;
+        }
+        .inline-group .module h2 {
+            margin-bottom: 0!important;
+            padding-top: 0!important;
+            padding-bottom: 0!important;
+        }
+        .grey_panel {
+            padding: 1%;
+            margin: 0;
+            height: 500px;
+            width: 98%;
+            background: #efefef;
+            overflow-x: hidden;
+            border-radius: 0;
+            border: none;
+        }
+        .help_text {
+            padding-left: 10px;
+            color: black;
+        }
+    </style>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
+<script type="text/javascript">
+(function($) {
+    $(document).ready( function () {
+        $('#fieldsetcollapser1').click();
+    });
+})(django.jQuery);
+</script>
+{% endblock %}
+
+{% block bodyclass %}change-list{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <form id="styles-form" action="" method="post">{% csrf_token %}
+            {% include 'publication_backbone/admin/actions/_submit_row.html' %}
+            {% for field in styles_form %}
+                <div class="inline-group">
+                    <div class="tabular inline-related">
+                        <fieldset class="module">
+                            <h2>{{ field.label }}</h2>
+                                {{ field }}
+                        </fieldset>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="inline-group">
+                <div class="tabular inline-related">
+                    <fieldset class="module">
+                        <h2>{% trans 'Default publication detail template (readonly)' %}</h2>
+                        <textarea readonly=readonly rows="60" cols="80" class="grey_panel">{{ default_publication_detail }}</textarea>
+                        <span class="help_text">{% trans 'To override default template, copy this text into edit field of template publication detail.' %}</span>
+                    </fieldset>
+                </div>
+            </div>
+            {% include 'publication_backbone/admin/actions/_submit_row.html' %}
+        </form>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <a href="../../">
+    {% trans "Home" %}
+  </a>
+   &rsaquo; 
+   <a href="../">
+     {% trans app_label|capfirst|escape %}
+  </a>
+  &rsaquo; 
+  {{ opts.verbose_name_plural|capfirst }}
+</div>
+{% endblock %}

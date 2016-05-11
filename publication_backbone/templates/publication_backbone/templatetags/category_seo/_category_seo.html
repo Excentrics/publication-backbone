@@ -1,0 +1,22 @@
+<!-- Category SEO -->
+{% load mptt_tags cache %}{% cache 86400 category_menu_seo %}{% spaceless %}
+<div class="ex-collapse">
+    <ul class="root">
+{% recursetree nodes %}{% if node.get_catalog_url or node.get_url %}
+        <li>
+        {% if node.get_catalog_url %}
+            <a href="{{ node.get_catalog_url }}" title="{% if node.description %}{{ node.description|truncatewords:10|truncatechars:80 }}{% else %}{{ node.name }}{% endif %}">{{ node.name }}</a>
+        {% else %}
+            <a href="{{ node.get_url }}"{% if node.is_external %} rel="nofollow"{% endif %} title="{% if node.description %}{{ node.description|truncatewords:10|truncatechars:80 }}{% else %}{{ node.name }}{% endif %}">{{ node.name }}</a>
+        {% endif %}
+        {% if not node.is_leaf_node %}
+            <ul class="children">
+                {{ children }}
+            </ul>
+        {% endif %}
+        </li>
+{% endif %}{% endrecursetree %}
+    </ul>
+</div>
+{% endspaceless %}{% endcache %}
+<!-- /Category SEO -->

@@ -1,0 +1,35 @@
+{% load compress %}<!-- Rubricator App -->
+<ul id="{{ name }}-app" class="ex-details ex-rubricator"></ul>
+<!-- /Rubricator App -->
+
+{% comment %}
+<!-- Rubricator application common requirements js -->
+<script type="text/javascript" src="{% url 'rubricator_common_js' %}"></script>
+<!-- /Rubricator application common requirements js -->
+{% endcomment %}
+
+<!-- Rubricator application common requirements js -->
+{% compress js %}
+<script type="text/javascript">
+{% include 'publication_backbone/rubricator/rubricator_common.js'  with rubricator_name=name only %}
+</script>
+{% endcompress %}
+
+
+<!-- Templates -->
+<!-- Rubric template-->
+<script type="text/template" id="{{ name }}-item-template">
+    {% include "publication_backbone/rubricator/partials/rubric.html" %}
+</script>
+<!-- /Rubric template-->
+<!-- /Templates -->
+
+<!-- Rubricator application -->
+<script type="text/javascript" src="{% if category %}{% comment %}
+{% endcomment %}{% if set %}{% url 'rubric_list_js' path=category.path set=set|join:';' %}{% else %}{% url 'rubric_list_js' path=category.path %}{% endif %}{% comment %}
+{% endcomment %}{% else %}{% comment %}
+{% endcomment %}{% if set %}{% url 'rubric_list_js' set=set|join:';' %}{% else %}{% url 'rubric_list_js' %}{% endif %}{% comment %}
+{% endcomment %}{% endif %}"></script>
+<!-- /Rubricator application -->
+
+

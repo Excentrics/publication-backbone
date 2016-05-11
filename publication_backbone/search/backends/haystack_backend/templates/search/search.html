@@ -1,0 +1,107 @@
+{% extends "publication_backbone/layout_2_col_aside_right.html" %}
+{% load i18n publication_backbone_utils_tags %}
+
+
+{% block title %}
+    {% trans 'Search' %} - {{ block.super }}
+{% endblock %}
+
+
+{% block headertext %}
+    {% trans 'Search for:' %}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <div class="container">
+        <ol class="ex-breadcrumb">
+            {% include 'publication_backbone/category/partials/_breadcrumb_prefix.html' %}
+            <li class="ex-title">{% trans "Search" %}{{ object.id }}</li>
+        </ol>
+    </div>
+{% endblock %}
+
+
+{% block column_center %}
+    <div class="form-search-result">
+        <form method="get" action="{% url 'haystacksearch' %}">
+            <div class="input-group stylish-input-group">
+                <span class="input-group-addon search-button">
+                    <a id="result-search-button" title="{% trans 'Search' %}" href="#">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+                {{ form.q }}
+                <span class="input-group-addon">
+                    {{ form.order }}
+                </span>
+            </div>
+        </form>
+        <script type="text/javascript">
+            $(function(){
+                $("#result-search-button").click(function(){
+                    $query_box = $(".form-search-result form").find('input[name=q]')
+                    query = $query_box.val()
+                    if(query.length < 3) {
+                        $query_box.focus();
+                        return false
+                    } else {
+                        $(".form-search-result form").submit();
+                        return false;
+                    }
+                });
+                $('#id_order').change(function(){
+                    $(".form-search-result form").submit();
+                })
+            });
+        </script>
+        <hr>
+    </div>
+
+
+    <div class="search-result">
+        {% if query %}
+            <ul class="media-list">
+            {% for result in page.object_list %}
+                {% if result.object %}
+                    {% with item=result.object %}
+                        {% include "search/partials/_item.html" %}
+                    {% endwith %}
+                    <hr>
+                {% endif %}
+            {% empty %}
+                <li>
+                    {% trans 'No results for search' %}
+                </li>
+            {% endfor %}
+            </ul>
+            {% if page.paginator.num_pages > 1 %}
+                {% with order=request.GET.order %}
+                <ul class="ex-pagination">
+                 {% if page.has_previous %}
+                    <li><a href="?q={{ query }}{% if order %}&order={{ order }}{% endif %}&page={{ page.previous_page_number }}" class="js-prev"><i class="ex-icon-chevron-left"></i></a></li>
+                {% else %}
+                    <li class="js-disabled ex-disabled"><a href="#"><i class="ex-icon-chevron-left"></i></a></li>
+                {% endif %}
+                {% if page.paginator.num_pages > 12 %}
+                    <li class="ex-active"><span>{% trans 'Page' %} {{ page.number }} {% trans 'of' %} {{ page.paginator.num_pages }}</span></li>
+                {% else %}
+                    {% for page_num in page.paginator.page_range %}
+                        {% if page.number == page_num %}
+                            <li class="ex-active"><span>{{ page.number }}</span></li>
+                        {% else %}
+                            <li><a href="?q={{ query }}{% if order %}&order={{ order }}{% endif %}&page={{ page_num }}">{{ page_num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if page.has_next %}
+                    <li><a href="?q={{ query }}{% if order %}&order={{ order }}{% endif %}&page={{ page.next_page_number }}" class="js-next"><i class="ex-icon-chevron-right"></i></a></li>
+                {% else %}
+                    <li class="js-disabled ex-disabled"><a href="#"><i class="ex-icon-chevron-right"></i></a></li>
+                {% endif %}
+                </ul>
+                {% endwith %}
+            {% endif %}
+    {% endif %}
+    </div>
+{% endblock %}

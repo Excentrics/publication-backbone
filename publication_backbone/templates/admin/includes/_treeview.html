@@ -1,0 +1,12 @@
+{% load mptt_tags i18n %}
+{% recursetree queryset %}
+    <li{% if node.pk in expanded_rubrics %} class="open"{% endif %}>
+        <input class="rubric_set_checkbox" type="checkbox" name="{{ name }}" value="{{ node.pk }}" id="id_{{ name }}_{{ node.pk }}" {% for i in value %}{% ifequal node.pk|add:"0" i|add:"0" %}checked="checked"{% endifequal %}{% endfor %}>
+        <label for="id_{{ name }}_{{ node.pk }}">{{ node.name }}{% if node.attribute_mode == is_characteristic %}&nbsp;<i class="fa fa-list ex-characteristic"></i>{% endif %}{% if node.attribute_mode == is_mark %}&nbsp;<i class="fa fa-tags ex-mark"></i>{% endif %}{% if node.attribute_mode == is_relation %}&nbsp;<i class="fa fa-link ex-relation"></i>{% endif %}</label>
+        {% if not node.is_leaf_node %}
+            <ul>
+                {{ children }}
+            </ul>
+        {% endif %}
+    </li>
+{% endrecursetree %}

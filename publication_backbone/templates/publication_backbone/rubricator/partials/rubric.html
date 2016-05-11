@@ -1,0 +1,45 @@
+{% load i18n publication_backbone_tags %}<%
+if ( parent ){
+    if ( trunk ){ %>
+        <!-- trunk -->
+<%  } else {
+        if ( branch ) {
+            if ( children.length ){ %>
+            <i class="ex-icon-details ex-js-expand-or-collapse<% if ( has_extra || (children.length && tagged) ) { %> ex-expand<% } %>"></i>&nbsp;{% comment %}
+{% endcomment %}<span class="ex-title ex-js-expand-or-collapse<% if ( isChildrenTagged ) { %> children-tagged<% } %>"><%- name %></span>
+<%          }
+        } else {
+            if ( parent.method == 'hierarchy' ){ %>
+            <span class="ex-label ex-js-set"><i class="ex-ico-slug"></i><%- name %></span>
+<%          } else if ( parent.method == 'determinant' ){ %>
+            <i class="ex-icon-details ex-js-expand-or-collapse<% if ( has_extra || (children.length && tagged) ) { %> ex-expand<% } %>"></i>&nbsp;{% comment %}
+{% endcomment %}<span class="ex-title ex-js-expand-or-collapse<% if ( isChildrenTagged ) { %> children-tagged<% } %>"><%- name %></span>
+<%          } else if ( parent.method == 'facet' ) { %>
+            <span class="ex-label ex-js-toggle"><i class="ex-ico-slug"></i><%- name %></span>
+<%          } else { %>
+            <!-- method n/a -->
+<%          }
+        }
+        if ( short_description && (!branch || children.length) ) { %>
+            <span class="ex-description-wrapper">&nbsp;<i class="ex-icon-question ex-js-toggle-description" title="{% trans 'Info' %}"></i>
+                <div class="ex-baloon">
+                    <div class="ex-arrow"></div>
+                    <button type="button" class="ex-close ex-js-hide-description">×</button>
+                    <% if ( description ) { %><p><%- description %></p><% } else { %><p><%- short_description %></p><% } %>
+                </div>
+            </span>
+<%      }
+        if ( branch && children.length && isChildrenTagged ) {
+            %>&nbsp;<i class="ex-js-unset-children ex-icon-reset" title="{% trans 'Reset filter' %}"></i>
+<%      }
+    }
+    if ( has_extra || (children.length && tagged) ) { %>
+    <ul class="ex-details">
+<%      if ( (method == 'hierarchy') && !trunk ){ %>
+        <li<% if ( !isChildrenTagged ) { %> data-is-checked="true"<% } %>>
+            <span class="ex-label ex-js-unset-children">{% trans 'All' %}</span>
+        </li>
+<%      } %>
+    </ul>
+<%  }
+} %>

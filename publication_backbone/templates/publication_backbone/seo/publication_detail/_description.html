@@ -1,0 +1,9 @@
+{% load i18n %}{% autoescape on %}{% filter truncatewords:20|truncatechars:170 %}{% with characteristics=object.get_characteristics.all %}{% comment %}
+{% endcomment %}{% if category %}{% for ancestor in category.get_ancestors_list %}{% comment %}
+{% endcomment %}{% if ancestor.active %}{{ ancestor.name }}. {% endif %}{% comment %}
+{% endcomment %}{% endfor %}{{ category.name }}. {% endif %}{{ object.get_name }}.{% comment %}
+{% endcomment %}{% if object.sku %} {% trans 'SKU' %}: {{ object.sku }}.{% endif %}{% comment %}
+{% endcomment %}{% if characteristics %} {% for characteristic in characteristics %}{% comment %}
+{% endcomment %}{{ characteristic.name }}: {% for value in characteristic.values %}{{ value|truncatewords:5|truncatechars:40|lower }}{% if not forloop.last %}, {% endif %}{% endfor %}{% comment %}
+{% endcomment %}{% if not forloop.last %}. {% endif %}{% endfor %}{% endif %}{% comment %}
+{% endcomment %}{% endwith %}{% endfilter %}{% endautoescape %}

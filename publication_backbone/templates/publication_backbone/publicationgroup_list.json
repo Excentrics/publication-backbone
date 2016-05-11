@@ -1,0 +1,10 @@
+{% load beautiful_fields_tags %}{% with object_template_name='publication_backbone/publicationgroup_detail.json' %}{% templatetag openbrace %}{% comment %}
+{% endcomment %}"meta": {
+"limit": {{ page_obj.limit }},
+"offset": {{ page_obj.offset }},
+"total_count": {{ page_obj.paginator.count }},
+"orphans": {{ page_obj.paginator.orphans }},
+"thumbnail_width": {{ thumbnail_width }},
+"thumbnail_height": {{ thumbnail_height }}
+},
+"objects": [{% for object in object_list %}{% include object_template_name with object=object thumbnail_geometry=thumbnail_geometry thumbnail_background=thumbnail_background only %}{% if not forloop.last %}, {% endif %}{% endfor %}]{% templatetag closebrace %}{% endwith %}

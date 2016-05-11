@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="{{ lang|default:"en-us" }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="{{ lang|default:"en-us" }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="{{ lang|default:"en-us" }}" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ lang|default:"en-us" }}" class="no-js"> <!--<![endif]-->
+    <head>
+{% spaceless %}{% block head %}{% endblock %}{% block canonical %}{% endblock %}{% endspaceless %}
+    </head>
+    <body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
+{% spaceless %}{% block body %}{% endblock %}{% endspaceless %}
+    </body>
+</html>

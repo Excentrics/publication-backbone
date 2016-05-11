@@ -1,0 +1,6 @@
+{% load i18n %}{% autoescape on %}{% filter truncatewords:22|truncatechars:160 %}{% if category %}{% comment %}
+{% endcomment %}{% if category.description %}{{ category.description }}{% else %}{% comment %}
+{% endcomment %}{% for ancestor in category.get_ancestors_list %}{% comment %}
+{% endcomment %}{% if ancestor.active %}{{ ancestor.name }}. {% endif %}{% comment %}
+{% endcomment %}{% endfor %}{{ category.name }}{% endif %}{% comment %}
+{% endcomment %}{% endif %}{% endfilter %}{% if page_obj.number and page_obj.number != 1 %} ({% trans "page" %} {{ page_obj.number }}){% endif %}{% endautoescape %}

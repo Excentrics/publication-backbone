@@ -1,0 +1,10 @@
+{% extends 'publication_backbone/rubricator/_object.json' %}
+
+{% block default %}{{ block.super }}{% if object.tmp_children_ids %},
+"children_ids": [{% for id in object.tmp_children_ids %}{{ id }}{% if not forloop.last %}, {% endif %}{% endfor %}]{% endif %}{% if object.tmp_tagged %},
+"tagged": true{% endif %}{% if object.tmp_trunk %},
+"trunk": true{% elif object.tmp_branch %},
+"branch": true{% endif %}{% if object.display_mode == object.DISPLAY_EXTRA %},
+"has_extra": true{% elif object.display_mode == object.DISPLAY_COLLAPSED %},
+"currentState": "ex-state-collapsed"{% endif %}{% if object.description %},
+"short_description": "{{ object.description|truncatewords:10|truncatechars:80|escapejs }}"{% endif %}{% endblock %}

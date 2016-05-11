@@ -1,0 +1,75 @@
+ul.jqtree-tree li.jqtree-selected > .jqtree-element, ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover {
+    text-shadow: none!important;
+}
+.ex-rubric .ex-label, .ex-rubric.ex-label {
+    background-color: #777;
+    text-transform: capitalize;
+}
+
+.ex-rubric.facet .ex-label {
+    background-color: #5bc0de;
+}
+
+.ex-rubric.hierarchy .ex-label {
+    background-color: #428bca;
+}
+
+.ex-rubric.determinant .ex-label {
+    background-color: #6f5499;
+}
+
+.ex-rubric .ex-label.tag {
+    background-color: #777;
+    text-transform: inherit;
+}
+
+.ex-rubric .path {
+    padding: 0 0 0 5px;
+    color: #999;
+}
+
+.ex-rubric .ex-characteristic {
+    display: none;
+}
+
+.ex-rubric.is-characteristic > .ex-characteristic {
+    display: inherit;
+    color: #000066;
+}
+
+.ex-rubric .ex-has-system-flags {
+    display: none;
+    color: orangered;
+}
+
+.ex-rubric.has-system-flags > .ex-has-system-flags {
+    display: inherit;
+}
+
+.ex-rubric .ex-mark {
+    display: none;
+    color: orange;
+}
+
+.ex-rubric.is-mark > .ex-mark {
+    display: inherit;
+}
+
+
+.ex-rubric .ex-relation {
+    display: none;
+    color: darkblue;
+}
+
+.ex-rubric.is-relation > .ex-relation {
+    display: inherit;
+}
+
+
+.on .fa-power-off {
+   color: #5cb85c;
+}
+
+.off .fa-power-off {
+   color: #d9534f;
+}

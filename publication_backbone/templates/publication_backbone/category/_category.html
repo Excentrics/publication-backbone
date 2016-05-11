@@ -1,0 +1,30 @@
+{% load compress publication_backbone_tags %}{% get_config as config %}{% with name=config.PUBLICATION_BACKBONE_CATEGORY_KEY %}
+<!-- Category menu app container -->
+<div class="ex-navbar-inner">
+    <ul id="{{ name }}-app" class="ex-category-navbar-items ex-js-details"></ul>
+</div>
+<!-- /Category menu app container -->
+
+{% comment %}
+<!-- Category application common requirements js -->
+<script type="text/javascript" src="{% url 'category_common_js' %}"></script>
+<!-- /Category application common requirements js -->
+{% endcomment %}
+
+<!-- Category application common requirements js -->
+{% compress js %}
+<script type="text/javascript">
+    {% include 'publication_backbone/category/category_common.js' %}
+</script>
+{% endcompress %}
+
+<!-- Templates -->
+<script type="text/template" id="{{ name }}-menu-item-template">
+    {% include "publication_backbone/category/partials/item.html" %}
+</script><!-- /#{{ name }}-menu-item-template -->
+<!-- /Templates -->
+
+<!-- Category application -->
+<script type="text/javascript" src="{% if category %}{% url 'category_list_js' path=category.path %}{% else %}{% url 'category_list_js' %}{% endif %}"></script>
+<!-- /Category application -->
+{% endwith %}

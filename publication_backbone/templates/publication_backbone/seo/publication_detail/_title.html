@@ -1,0 +1,25 @@
+{% load publication_backbone_utils_tags %}{% autoescape on %}{{ object|select_attr:"seo_update_title"|set_attr:""|empty_str }}{{ object|select_attr:"seo_append_title"|set_attr:""|empty_str }}{{ object|select_attr:"seo_prepend_title"|set_attr:""|empty_str }}{% comment %}
+{% endcomment %}{% with marks=object.get_marks.all %}{% for mark in marks %}{% comment %}
+    {% endcomment %}{% if 'seo-title' in mark.tags and object.seo_update_title == "" %}{% with value=mark.values|join:", " %}{% comment %}
+        {% endcomment %}{{ object|select_attr:"seo_update_title"|set_attr:value|empty_str }}{% endwith %}{% comment %}
+    {% endcomment %}{% elif 'seo-title-append' in mark.tags %}{% with value=mark.values|join:", " %}{% comment %}
+        {% endcomment %}{% if value|make_list|first in '.,; '|make_list %}{% with to_append=object.seo_append_title|add:value %}{% comment %}
+            {% endcomment %}{{ object|select_attr:"seo_append_title"|set_attr:to_append|empty_str }}{% endwith %}{% comment %}
+        {% endcomment %}{% else %}{% with to_append=object.seo_append_title|add:" "|add:value %}{% comment %}
+            {% endcomment %}{{ object|select_attr:"seo_append_title"|set_attr:to_append|empty_str }}{% endwith %}{% comment %}
+        {% endcomment %}{% endif %}{% endwith %}{% comment %}
+    {% endcomment %}{% elif 'seo-title-prepend' in mark.tags %}{% with value=mark.values|join:", " %}{% comment %}
+        {% endcomment %}{% with to_prepend=value|add:" "|add:object.seo_prepend_title %}{% comment %}
+        {% endcomment %}{{ object|select_attr:"seo_prepend_title"|set_attr:to_prepend|empty_str }}{% endwith %}{% comment %}
+        {% endcomment %}{% endwith %}{% comment %}
+    {% endcomment %}{% endif %}{% comment %}
+    {% endcomment %}{% endfor %}{% endwith %}{% comment %}
+{% endcomment %}{% if object.seo_update_title %}{% comment %}
+    {% endcomment %}{{ object.seo_update_title }}{% comment %}
+{% endcomment %}{% elif object.seo_prepend_title or object.seo_append_title %}{% comment %}
+    {% endcomment %}{{ object.seo_prepend_title|add:object.get_name|add:object.seo_append_title }}{% comment %}
+{% endcomment %}{% elif base_page_title %}{% comment %}
+    {% endcomment %}{{ object.get_name }} - {{ base_page_title }}{% comment %}
+{% endcomment %}{% else %}{% comment %}
+    {% endcomment %}{{ object.get_name }}{% comment %}
+{% endcomment %}{% endif %}{% endautoescape %}

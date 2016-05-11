@@ -1,0 +1,5 @@
+{% autoescape on %}{% filter truncatewords:30|truncatechars:250|lower %}{% if category %}{{ category.name|lower }}, {{ object.get_name }}, {% endif %}{% with characteristics=object.get_characteristics.all %}{% comment %}
+{% endcomment %}{% if characteristics %}{% for characteristic in characteristics %}{% comment %}
+{% endcomment %}{% for value in characteristic.values %}{{ value|truncatewords:5|truncatechars:40|lower }}{% if not forloop.last %}, {% endif %}{% endfor %}{% comment %}
+{% endcomment %}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %}{% comment %}
+{% endcomment %}{% endwith %}{% endfilter %}{% endautoescape %}

@@ -1,0 +1,112 @@
+{% load publication_backbone_utils_tags %}
+{% with category=category categories=categories publication_relations=category.publication_relations.all subj=""|make_list rel=""|make_list limit=instance.count order_by=instance.order category_title_app_name='category_title'|add:plugin_id statistic_app_name='statistic'|add:plugin_id categories_title_app_name='categories_title'|add:plugin_id pagination_app_name='pagination'|add:plugin_id subjects_app_name='subjects'|add:plugin_id name="publication_promotion_"|add:plugin_id to_publication=to_publication %}{% comment %}
+{% endcomment %}{% if to_publication and publication_relations %}{% for publication_relation in publication_relations %}{{ publication_relation.rubric|select_attr:"direction"|set_attr:publication_relation.relation_direction|empty_str }}{{ rel|append_value:publication_relation.rubric|empty_str }}{% endfor %}{{ subj|append_value:to_publication|empty_str }}{% endif %}
+
+
+<!-- TEMPLATES -->
+{% block category_title_app_template %}
+<!-- Category Title Templates -->
+<script type="text/template" id="{{ category_title_app_name }}-app-template">
+{% include "publication_backbone/promotion/partials/categories_title.html" %}
+</script>
+{% endblock %}
+<!-- Statistic Templates -->
+<script type="text/template" id="{{ statistic_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/stat.html" %}
+</script>
+<!-- Pagination template -->
+<script type="text/template" id="{{ pagination_app_name }}-app-template">
+{% include "publication_backbone/catalog/partials/paginator.html" %}
+</script>
+{% if subj %}
+<!-- Subject template -->
+<script type="text/template" id="{{ subjects_app_name }}-item-template">
+{% include "publication_backbone/catalog/partials/subject.html" %}
+</script>
+{% endif %}
+<!-- Catalog Item Template -->
+<script type="text/template" id="{{ name }}-item-template">
+{% include "publication_backbone/catalog/partials/item.html" %}
+</script><!-- /Catalog Item Template -->
+<!-- /TEMPLATES -->
+
+
+    <!-- Promotion app container -->
+    <div id="{{ name }}-app" class="ex-promotion ex-promotion-plugin-{% block ex-promotion-plugin %}default{% endblock ex-promotion-plugin %}">
+
+    {% if subj %}
+        <div class="ex-js-{{ subjects_app_name }}-{{ name }}-app">
+            <ul class="ex-js-{{ subjects_app_name }}-list ex-subject-list ex-unstyled"></ul>
+        </div>
+    {% endif %}
+
+        <div class="ex-promotion-header">
+            {% block ex-promotion-top-titles %}
+            <div class="ex-promotion-title">
+            <!-- Category title container -->
+            {% include "publication_backbone/promotion/partials/_categories_title_container.html" with app_name=category_title_app_name catalog_key=name category=category only %}
+            <!-- /Category title container -->
+            </div>
+            {% endblock %}
+            <div class="ex-promotion-statistic">
+            <!-- Statistic container -->
+            {% include "publication_backbone/promotion/partials/_statistic_container.html" with app_name=statistic_app_name catalog_key=name only %}
+            <!-- /Statistic container -->
+            </div>
+            <div class="ex-promotion-pagination">
+            <!-- Pagination container  -->
+            <ul class="js-{{ pagination_app_name }}-{{ name }}-app ex-pagination"></ul>
+            <!-- /Pagination container  -->
+            </div>
+        </div>
+        <div>
+            <ul class="ex-js-{{ name }}-list ex-promotion-list ex-unstyled{% if divider %} ex-catalog-grid-{{ divider }}-col{% endif %}"></ul>
+        </div>
+        {% block ex-promotion-footer %}{% endblock %}
+
+    </div><!-- /.{{ name }}-app -->
+
+<!-- APPICATIONS -->
+<!-- compress js -->
+
+{% block category_title_app_js %}
+<!-- Category Title app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/promotion/_app_categories_title.js' with name=category_title_app_name catalog_key=name categories_list=categories category_template_name='publication_backbone/category/_object.json' only %}
+</script>
+<!-- /Category Title app js -->
+{% endblock %}
+
+<!-- Statistic app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_statistic.js' with name=statistic_app_name catalog_key=name only %}
+</script>
+<!-- /Statistic app js -->
+
+<!-- Pagination app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_pagination.js' with name=pagination_app_name catalog_key=name only %}
+</script>
+<!-- /Pagination app js -->
+<!-- endcompress -->
+
+
+{% if subj %}
+<!-- Subjects app js -->
+<script type="text/javascript">
+{% include 'publication_backbone/catalog/_app_subjects.js' with name=subjects_app_name catalog_key=name only %}
+</script>
+<!-- /Statistic app js -->
+{% endif %}
+
+<!-- '{{ app_name }}' application -->
+<script type="text/javascript" src="{% include 'publication_backbone/catalog/_js_url.html' with view_name='publication_promotion_list_js' category=category publication_group=publication_group set=set subj=subj rel=rel only %}?limit={{ limit }}&amp;order_by={{ order_by }}&amp;pid={{ plugin_id }}"></script>
+<!-- /'{{ app_name }}' application -->
+<!-- /APPICATIONS -->
+
+
+<!-- SEO Promo Last Updates -->
+{% block promo_category_seo %}{% include 'publication_backbone/seo/publication_detail/_catalog_category_seo.html' %}{% endblock promo_category_seo %}
+<!-- /SEO Promo Last Updates -->
+
+{% endwith %}

@@ -1,0 +1,28 @@
+{% load publication_backbone_utils_tags %}{% comment %}
+{% endcomment %}{% with children_ids=''|make_list parent_classification_method=rubrics_parent.get_classification_method %}{% comment %}
+    {% endcomment %}{% for rubric in rubrics %}{% comment %}
+        {% endcomment %}{% if rubric.id in tagged_rubrics %}{% comment %}
+            {% endcomment %}{{ children_ids|append_value:rubric.id|empty_str }}{{ objects|append_value:rubric|empty_str }}{% comment %}
+            {% endcomment %}{{ rubric|select_attr:'tmp_tagged'|set_attr:1|empty_str }}{% comment %}
+            {% endcomment %}{{ rubric|select_attr:'parent'|set_attr:rubrics_parent|empty_str }}{% comment %}
+            {% endcomment %}{% with tagged_rubric=tagged_rubrics|pop_value:rubric.id %}{% comment %}
+                {% endcomment %}{% if tagged_rubric.attrs.trunk %}{% comment %}
+                    {% endcomment %}{{ rubric|select_attr:'tmp_trunk'|set_attr:1|empty_str }}{% comment %}
+                {% endcomment %}{% elif tagged_rubric.attrs.branch %}{% comment %}
+                    {% endcomment %}{{ rubric|select_attr:'tmp_branch'|set_attr:1|empty_str }}{% comment %}
+                {% endcomment %}{% endif %}{% comment %}
+                {% endcomment %}{% include template_name with rubrics=rubric.get_active_children tagged_rubrics=tagged_rubric.get_children_dict template_name=template_name rubrics_parent=rubric level=level|add:1 objects=objects attrs=tagged_rubric.attrs only %}{% comment %}
+            {% endcomment %}{% endwith %}{% comment %}
+        {% endcomment %}{% else %}{% comment %}
+            {% endcomment %}{% if not attrs.trunk %}{% if parent_classification_method != 'determinant' or rubric.get_active_children %}{% comment %}
+                {% endcomment %}{{ children_ids|append_value:rubric.id|empty_str }}{{ objects|append_value:rubric|empty_str }}{% comment %}
+                {% endcomment %}{{ rubric|select_attr:'tmp_tagged'|set_attr:0|empty_str }}{% comment %}
+                {% endcomment %}{{ rubric|select_attr:'parent'|set_attr:rubrics_parent|empty_str }}{% comment %}
+                {% endcomment %}{% if rubric.display_mode == rubric.DISPLAY_EXTRA %}{% include template_name with rubrics=rubric.get_active_children tagged_rubrics=''|make_list template_name=template_name rubrics_parent=rubric level=level|add:1 objects=objects attrs=''|make_dict only %}{% endif %}{% comment %}
+            {% endcomment %}{% endif %}{% endif %}{% comment %}
+        {% endcomment %}{% endif %}{% comment %}
+    {% endcomment %}{% endfor %}{% comment %}
+    {% endcomment %}{% if level %}{% comment %}
+        {% endcomment %}{{ rubrics_parent|select_attr:'tmp_children_ids'|set_attr:children_ids|empty_str }}{% comment %}
+    {% endcomment %}{% endif %}{% comment %}
+{% endcomment %}{% endwith %}

@@ -1,0 +1,5 @@
+{% extends 'publication_backbone/category/_object.json' %}
+
+{% block default %}{{ block.super }}{% if object.description %},
+"description": "{{ object.description|escapejs }}"{% endif %},
+"creation_date": "{{ object.creation_date|date:"U" }}"{% endblock %}
