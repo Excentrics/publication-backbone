@@ -4,6 +4,7 @@ publication-backbone
 
 This is a stand-alone module, which provides a flexible,
 scalable publications management system with flexible block content.
+An example of a site where it works ``http://www.beladm.ru``
 
 Installations
 ============
