@@ -241,5 +241,5 @@ In ``urls.py``
 Addition
 --------
 
-In the folder ``additional`` , you can find the necessary to your project directory ``static``, ``templates``
+In the folder ``additional``, you can find the necessary to your project directory ``static``, ``templates``
 and ``locale``. Without this folders your project will not work. Just copy them to the root of your project.
