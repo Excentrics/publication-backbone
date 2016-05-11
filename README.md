@@ -19,7 +19,7 @@ Configuration
 
 To have a standard setup with publication-backbone, use
 
-In ``settings.py``::
+In ``settings.py``
 
     STATICFILES_FINDERS = (
         ...
