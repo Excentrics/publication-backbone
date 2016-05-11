@@ -1,5 +1,5 @@
 ===================
-publication-backbone
+Publication backbone
 ===================
 
 This is a stand-alone module, which provides a flexible,
