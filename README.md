@@ -247,5 +247,5 @@ and ``locale``. Without this folders your project will not work. Just copy them 
 Manuals
 --------
 
-In the folder ``docs``, you can find ``sample_admin_manual.docx``. It contains instructions for administration
+In the folder ``docs``, you can find ``sample_admin_manual.doc``. It contains instructions for administration
 of a site where this package works. Later instructions will be refined and updated.
