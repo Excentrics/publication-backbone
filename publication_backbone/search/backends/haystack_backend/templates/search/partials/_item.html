@@ -8,7 +8,6 @@
         {% endthumbnail %}
     {% endif %}
     <div class="media-body">
-        <!--{% if item.get_marks %}<li>{% for mark in item.get_marks %}{% for value in mark.values %}{{ value }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if not forloop.last %}, {% endif %}{% endfor %}</li>{% endif %}-->
         <div class="caption">
             <h4><a href="{{ item.get_absolute_url }}" title="{{ item.get_name }}">{{ item.get_name }}</a></h4>
             {% if item.get_author %}<span class="author">{{ item.get_author }}</span>{% endif %}

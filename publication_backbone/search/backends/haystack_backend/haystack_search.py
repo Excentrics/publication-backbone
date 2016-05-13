@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
 from django.utils.translation import ugettext_lazy as _
-from publication_backbone import conf as config
 from .views import PublicationSearchView, autocomplete
 from .forms import PublicationSearchForm
 

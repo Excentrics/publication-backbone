@@ -5,6 +5,7 @@ from publication_backbone.plugins.text.models import TextItem
 from publication_backbone.plugins.file.models import FileItem
 from publication_backbone.plugins.picture.models import PictureItem
 from django.template import loader, Context
+from fluent_pages.pagetypes.fluentpage.models import FluentPage
 
 
 class PublicationIndex(indexes.SearchIndex, indexes.Indexable):
@@ -44,5 +45,40 @@ class PublicationIndex(indexes.SearchIndex, indexes.Indexable):
         t = loader.select_template(('search/indexes/publication_backbone/publication_text.txt', ))
         data['text'] = t.render(Context({'object': obj,
                                      'content_data': { 'text': text_contentitems, 'file': file_contentitems, 'picture': picture_contentitems }}))
+        return data
 
+
+class FluentPageIndex(indexes.SearchIndex, indexes.Indexable):
+    title = indexes.CharField(model_attr='title')
+    date_added = indexes.DateTimeField(model_attr='creation_date')
+    text = indexes.NgramField(document=True, use_template=True)
+
+    def get_model(self):
+        return FluentPage
+
+    def index_queryset(self, using=None):
+        """Used when the entire index for model is updated."""
+        return self.get_model().objects.published()
+
+    def prepare(self, obj):
+        """
+        Fetches and adds/alters data before indexing.
+        """
+        data = super(FluentPageIndex, self).prepare(obj)
+        # get all text plugins
+        try:
+            text_contentitems = obj.contentitem_set.instance_of(TextItem)
+        except:
+            text_contentitems = []
+        try:
+            file_contentitems = obj.contentitem_set.instance_of(FileItem)
+        except:
+            file_contentitems = []
+        try:
+            picture_contentitems = obj.contentitem_set.instance_of(PictureItem)
+        except:
+            picture_contentitems = []
+        t = loader.select_template(('search/indexes/fluentpage/fluentpage_text.txt', ))
+        data['text'] = t.render(Context({'object': obj,
+                                     'content_data': { 'text': text_contentitems, 'file': file_contentitems, 'picture': picture_contentitems }}))
         return data

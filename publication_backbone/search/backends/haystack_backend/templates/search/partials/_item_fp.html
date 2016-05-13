@@ -1,0 +1,13 @@
+{% load i18n thumbnail publication_backbone_tags highlight %}{% get_config as config %}{% site_domain as domain %}
+<li class="media">
+    <div class="media-body">
+        <div class="caption">
+            <h4><a href="{{ item.get_absolute_url }}" title="{{ item.title }}">{{ item.title }}</a></h4>
+        </div>
+        <div class="description">
+            {% if item.text %}
+                {% highlight item.text with query html_tag "span" class "highlight" max_length 300 %}
+            {% endif %}
+        </div>
+    </div>
+</li>

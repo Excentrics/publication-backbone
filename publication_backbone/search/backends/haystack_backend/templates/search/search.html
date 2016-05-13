@@ -65,7 +65,11 @@
             {% for result in page.object_list %}
                 {% if result.object %}
                     {% with item=result.object %}
-                        {% include "search/partials/_item.html" %}
+                        {% if item.get_name %}
+                            {% include "search/partials/_item.html" %}
+                        {% else %}
+                            {% include "search/partials/_item_fp.html" %}
+                        {% endif %}
                     {% endwith %}
                     <hr>
                 {% endif %}
