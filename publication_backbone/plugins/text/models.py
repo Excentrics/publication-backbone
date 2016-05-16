@@ -1,4 +1,4 @@
-from    future.utils import python_2_unicode_compatible
+from future.utils import python_2_unicode_compatible
 from django.utils.html import strip_tags
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
