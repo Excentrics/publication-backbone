@@ -94,5 +94,6 @@ setup(
         "django_compressor==1.4",
         "django-any-urlfield",
         "django-any-imagefield",
+        "git+git://github.com/SmartTeleMax/chakert.git",
     ],
 )

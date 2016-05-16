@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Publication Backbone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-31 18:16+0300\n"
-"PO-Revision-Date: 2016-04-01 12:01+0300\n"
+"POT-Creation-Date: 2016-05-16 16:31+0300\n"
+"PO-Revision-Date: 2016-05-16 16:33+0300\n"
 "Last-Translator: 1 <1>\n"
 "Language-Team: Excentrics <info@excentrics.ru>\n"
 "MIME-Version: 1.0\n"
@@ -323,6 +323,10 @@ msgstr "Количество результатов выводимых при \"
 #: config/settings.py:19
 msgid "Count of items in RSS feed"
 msgstr "Количество новостей для RSS ленты"
+
+#: config/settings.py:20
+msgid "Set of common typography rules to the text plugin before save them"
+msgstr "Типографировать содержимое текстовых плагинов при их сохранении."
 
 #: management/commands/make_rubrics_by_publications_attributes.py:22
 msgid "Make sub rubrics structure by additional publications attributes."
@@ -1096,11 +1100,11 @@ msgstr "Подменю"
 msgid "Sub menus"
 msgstr "Подменю"
 
-#: plugins/text/models.py:16
+#: plugins/text/models.py:18
 msgid "text"
 msgstr "текст"
 
-#: plugins/text/models.py:19 plugins/text/models.py:20
+#: plugins/text/models.py:21 plugins/text/models.py:22
 msgid "Text"
 msgstr "Текст"
 
@@ -1216,7 +1220,7 @@ msgstr "По дате"
 msgid "Sort order"
 msgstr "Порядок сортировки"
 
-#: search/backends/haystack_backend/haystack_search.py:12
+#: search/backends/haystack_backend/haystack_search.py:11
 msgid "Haystack Search"
 msgstr "Haystack Поиск"
 
@@ -1232,19 +1236,19 @@ msgstr "Поиск"
 msgid "Search for:"
 msgstr "Результаты поиска по запросу:"
 
-#: search/backends/haystack_backend/templates/search/search.html:74
+#: search/backends/haystack_backend/templates/search/search.html:78
 #: search/backends/haystack_backend/templates/search/search_form.html:85
 msgid "No results for search"
 msgstr "Нет результатов по запросу"
 
-#: search/backends/haystack_backend/templates/search/search.html:87
+#: search/backends/haystack_backend/templates/search/search.html:91
 #: templates/publication_backbone/templatetags/pagination/paginator.html:9
 #: templates/publication_backbone/templatetags/pagination/paginator.html:16
 #: templates/publication_backbone/templatetags/pagination/paginator.html:21
 msgid "Page"
 msgstr "Страница"
 
-#: search/backends/haystack_backend/templates/search/search.html:87
+#: search/backends/haystack_backend/templates/search/search.html:91
 #: templates/publication_backbone/catalog/partials/seo.html:33
 #: templates/publication_backbone/catalog/partials/stat.html:4
 #: templates/publication_backbone/seo/publication_detail/_category_seo.html:8

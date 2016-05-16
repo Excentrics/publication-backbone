@@ -1,4 +1,4 @@
-from future.utils import python_2_unicode_compatible
+from    future.utils import python_2_unicode_compatible
 from django.utils.html import strip_tags
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
@@ -6,6 +6,8 @@ from fluent_contents.extensions import PluginHtmlField
 from fluent_contents.models import ContentItem
 from fluent_contents.plugins.text import appsettings
 from django_wysiwyg.utils import clean_html, sanitize_html
+from chakert import Typograph
+from publication_backbone import conf as config
 
 
 @python_2_unicode_compatible
@@ -30,5 +32,9 @@ class TextItem(ContentItem):
         # Remove unwanted tags if requested
         if appsettings.FLUENT_TEXT_SANITIZE_HTML:
             self.text = sanitize_html(self.text)
+
+        # Set of common typography rules to the text plugin before save them
+        if config.TYPOGRAPH_TEXT_PLUGIN_BEFORE_SAVE:
+            self.text = Typograph.typograph_html(self.text, 'ru')
 
         super(TextItem, self).save(*args, **kwargs)

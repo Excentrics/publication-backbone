@@ -17,4 +17,5 @@ CONFIG = getattr(settings, 'PUBLICATION_BACKBONE_CONFIG', {
     'PUBLICATION_BACKBONE_CATEGORY_KEY': (BaseCategory._meta.object_name.lower(), _("Keyword for linking category widget elements")),
     'PUBLICATION_BACKBONE_LIVE_SEARCH_RESULTS': (10, _("Number of results displayed in Live search")),
     'PUBLICATION_RSS_FEED_COUNT': (10, _('Count of items in RSS feed')),
+    'TYPOGRAPH_TEXT_PLUGIN_BEFORE_SAVE': (False, _('Set of common typography rules to the text plugin before save them')),
 })
