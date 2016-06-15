@@ -59,7 +59,7 @@ setup(
     url='https://github.com/Excentrics/publication-backbone.git',
     license='LICENSE.txt',
     description='Publication Backbone.',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
     install_requires=[
         "Pillow",
         "Django == 1.7.10",
