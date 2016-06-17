@@ -88,7 +88,7 @@ setup(
         "django-constance==1.0.1",
         "django-ckeditor==4.4.6",
         "django-ace",
-        "beautiful_fields",
+        "BeautifulFields",
         "django-bitfield",
         "django-mptt-admin",
         "sorl-thumbnail==12.3",
