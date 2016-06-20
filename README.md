@@ -4,6 +4,9 @@ Publication backbone
 This is a stand-alone module, which provides a flexible,
 scalable publications management system with flexible block content.
 An example of a site where it works http://www.beladm.ru
+```
+PS: Updated. Add quick start demo project. See section bellow.
+```
 
 Installations
 ============
@@ -131,7 +134,7 @@ In ``settings.py``
     if DEBUG:
         PIPELINE_LESS_ARGUMENTS = "-ru --source-map --include-path=../../../../../src/publicationbackbone/publication_backbone/:../../../../../lib/python2.7/site-packages/publication_backbone/:../../../../../lib/python2.7/site-packages/twitter_bootstrap/"
     else:
-        PIPELINE_LESS_ARGUMENTS = "-ru --clean-css --compress --include-path=../../../../../lib/python2.7/site-packages/publication_backbone/:../../../../../lib/python2.7/site-packages/twitter_bootstrap/"
+        PIPELINE_LESS_ARGUMENTS = "-ru --clean-css --compress         --include-path=../../../../../lib/python2.7/site-packages/publication_backbone/:../../../../../lib/python2.7/site-packages/twitter_bootstrap/"
 
     PIPELINE_CSS = {
         'styles': {
@@ -243,6 +246,35 @@ Addition
 
 In the folder ``additional``, you can find the necessary to your project directory ``static``, ``templates``
 and ``locale``. Without this folders your project will not work. Just copy them to the root of your project.
+
+Quick start sample demo project
+-------------------
+
+Create virtualenv and start django demo project
+```
+> mkdir example
+> cd ./example
+> mkdir venv
+> virtualenv venv
+> source venv/bin/activate
+> mkdir project
+> cd ./project
+> django-admin.py startproject --template=https://github.com/Excentrics/publication-backbone-tpl/archive/master.zip sample .
+> export GIT_SSL_NO_VERIFY=true
+> pip install -r requirements.txt
+```
+
+Edit ```settings.py``` MySQL database user and password (example: vim ./sample/settings.py)
+
+Import demo database (replace ```<USER>``` to yours database user, input passwort by request)
+```
+> mysql -u <USER> -p mysql < pb_sample_db.sql
+```
+
+Run server
+```
+> python manage.py runserver 0.0.0.0:8000 --insecure
+```
 
 Manuals
 --------
