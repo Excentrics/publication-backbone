@@ -275,6 +275,7 @@ Run server
 ```
 > python manage.py runserver 0.0.0.0:8000 --insecure
 ```
+Use ```root``` and ```masterkey``` as user and password for administration web interface
 
 Manuals
 --------
