@@ -38,6 +38,8 @@
 scalable publications management system with flexible block content.
 An example of a site where it works <a href="http://www.beladm.ru">http://www.beladm.ru</a></p>
 
+<p>PS: Updated. Add quick start demo project install section. <a href="https://github.com/Excentrics/publication-backbone/blob/master/README.md#quick-start-sample-demo-project">See section bellow</a>.</p>
+
 <h1>
 <a id="installations" class="anchor" href="#installations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installations</h1>
 
@@ -165,7 +167,7 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 if DEBUG:
     PIPELINE_LESS_ARGUMENTS = "-ru --source-map --include-path=../../../../../src/publicationbackbone/publication_backbone/:../../../../../lib/python2.7/site-packages/publication_backbone/:../../../../../lib/python2.7/site-packages/twitter_bootstrap/"
 else:
-    PIPELINE_LESS_ARGUMENTS = "-ru --clean-css --compress --include-path=../../../../../lib/python2.7/site-packages/publication_backbone/:../../../../../lib/python2.7/site-packages/twitter_bootstrap/"
+    PIPELINE_LESS_ARGUMENTS = "-ru --clean-css --compress         --include-path=../../../../../lib/python2.7/site-packages/publication_backbone/:../../../../../lib/python2.7/site-packages/twitter_bootstrap/"
 
 PIPELINE_CSS = {
     'styles': {
@@ -278,6 +280,37 @@ urlpatterns += patterns('',
 
 <p>In the folder <code>additional</code>, you can find the necessary to your project directory <code>static</code>, <code>templates</code>
 and <code>locale</code>. Without this folders your project will not work. Just copy them to the root of your project.</p>
+
+<h2>
+<a id="quick-start-sample-demo-project" class="anchor" href="#quick-start-sample-demo-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick start sample demo project</h2>
+
+<p>Create virtualenv and start django demo project</p>
+
+<pre><code>&gt; mkdir example
+&gt; cd ./example
+&gt; mkdir venv
+&gt; virtualenv venv
+&gt; source venv/bin/activate
+&gt; mkdir project
+&gt; cd ./project
+&gt; django-admin.py startproject --template=https://github.com/Excentrics/publication-backbone-tpl/archive/master.zip sample .
+&gt; export GIT_SSL_NO_VERIFY=true
+&gt; pip install -r requirements.txt
+</code></pre>
+
+<p>Edit <code>settings.py</code> MySQL database user and password (example: vim ./sample/settings.py)</p>
+
+<p>Import demo database (replace <code>&lt;USER&gt;</code> to yours database user, input passwort by request)</p>
+
+<pre><code>&gt; mysql -u &lt;USER&gt; -p mysql &lt; pb_sample_db.sql
+</code></pre>
+
+<p>Run server</p>
+
+<pre><code>&gt; python manage.py runserver 0.0.0.0:8000 --insecure
+</code></pre>
+
+<p>Use <code>root</code> and <code>masterkey</code> as user and password for administration web interface</p>
 
 <h2>
 <a id="manuals" class="anchor" href="#manuals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Manuals</h2>
