@@ -5,7 +5,7 @@ This is a stand-alone module, which provides a flexible,
 scalable publications management system with flexible block content.
 An example of a site where it works http://www.beladm.ru
 ```
-PS: Updated. Add quick start demo project. See section bellow.
+PS: Updated. Add quick start demo project install section. See section bellow.
 ```
 
 Installations
