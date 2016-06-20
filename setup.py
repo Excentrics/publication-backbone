@@ -90,7 +90,7 @@ setup(
         "django-ace",
         "BeautifulFields",
         "django-bitfield",
-        "django-form-designer==0.8.1.5",
+        "django-form-designer",
         "django-mptt-admin",
         "sorl-thumbnail==12.3",
         "django-classy-tags==0.6.2",
