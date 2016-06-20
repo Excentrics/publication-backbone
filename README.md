@@ -4,9 +4,8 @@ Publication backbone
 This is a stand-alone module, which provides a flexible,
 scalable publications management system with flexible block content.
 An example of a site where it works http://www.beladm.ru
-```
-PS: Updated. Add quick start demo project install section. See section bellow.
-```
+
+PS: Updated. Add quick start demo project install section. [See section bellow](https://github.com/Excentrics/publication-backbone/blob/master/README.md#quick-start-sample-demo-project).
 
 Installations
 ============
